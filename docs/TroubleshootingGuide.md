@@ -1,4 +1,4 @@
-## [ZENCash](https://zensystem.io/) Desktop GUI Wallet troubleshooting guide
+## [ZENCash](https://zensystem.io/) Desktop GUI Wallet troubleshooting guide TODO
 
 ![Screenshot1](ZENChat_small.png "Chat Window") ![Screenshot1](ZENCashWalletMac_0.74.7_small.png "Wallet Window") 
 
