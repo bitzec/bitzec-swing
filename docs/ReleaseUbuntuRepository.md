@@ -19,7 +19,7 @@ for Debian/Ubuntu (and similar) Linux systems.
 **Users need to be prepared to fix such problems manually as described in the [troubleshooting guide](TroubleshootingGuide.md).**
 **Doing so requires command line skills.**
 
-### Installing the ZCash Desktop GUI Wallet on Linux TODO
+### Installing the ZCash Desktop GUI Wallet on Linux
 
 To setup the APT repository and install packages, using a terminal run the following commands 
 ```
