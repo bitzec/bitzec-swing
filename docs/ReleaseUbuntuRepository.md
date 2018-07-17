@@ -23,39 +23,27 @@ for Debian/Ubuntu (and similar) Linux systems.
 
 To setup the APT repository and install packages, using a terminal run the following commands 
 ```
-sudo apt-get update
-sudo apt-get install apt-transport-https lsb-release
-
-echo 'deb https://zencashofficial.github.io/repo/ '$(lsb_release -cs)' main' | sudo tee --append /etc/apt/sources.list.d/zen.list
-gpg --keyserver ha.pool.sks-keyservers.net --recv 219F55740BBF7A1CE368BA45FB7053CE4991B669
-gpg --export 219F55740BBF7A1CE368BA45FB7053CE4991B669 | sudo apt-key add -
+echo 'deb https://thetrunk.github.io/releases/ all main' | sudo tee --append /etc/apt/sources.list.d/thetrunk.list
+gpg --keyserver keyserver.ubuntu.com --recv 69FAF6DE41B8AC51
+gpg --export 69FAF6DE41B8AC51| sudo apt-key add -
 
 sudo apt-get update
-sudo apt-get install zen zencash-desktop-gui-wallet
-```
-Then you need to set up the `zen.conf` configuration file:
-```
-mkdir -p ~/.zen
-echo "rpcuser=username" >> ~/.zen/zen.conf
-echo "rpcpassword=$(head -c 32 /dev/urandom | base64)" >> ~/.zen/zen.conf
+sudo apt-get install zcashswingwallet
 ```
 
-Finally you need to download the Z cryptographic keys (takes a while):
+Then you need to download the Z cryptographic keys (takes a while):
 ```
-zen-fetch-params
+fetch-params
 ```
    
-### Running the ZENCash Desktop GUI Wallet on Linux TODO
+### Running the ZCash Desktop GUI Wallet on Linux
 
-To launch the ZENCash Desktop GUI Wallet you can just search and click on it in the Ubuntu unity menu:
-![UnityLauncher](ZENUnityLauncher.png "ZENCash Wallet launcher")
-
-...or alternatively, run the command `zencash-desktop-gui-wallet` from a terminal:
+To launch the ZCash Desktop GUI Wallet you can just search and click on it in the Ubuntu unity menu or alternatively, run the command `zcashswingwallet` from a terminal:
 ```
-zencash-desktop-gui-wallet
+zcashswingwallet
 ```
 
-### Disclaimer TODO
+### Disclaimer
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
