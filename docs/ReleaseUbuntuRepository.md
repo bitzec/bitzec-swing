@@ -20,6 +20,7 @@ for Debian/Ubuntu (and similar) Linux systems.
 **Doing so requires command line skills.**
 
 ### Installing the ZCash Desktop GUI Wallet on Linux
+*Zcash is needed to be installed, follow https://z.cash/download.html prior installing this Swing wallet.*
 
 To setup the APT repository and install packages, using a terminal run the following commands 
 ```
@@ -29,11 +30,6 @@ gpg --export 69FAF6DE41B8AC51| sudo apt-key add -
 
 sudo apt-get update
 sudo apt-get install zcashswingwallet
-```
-
-Then you need to download the Z cryptographic keys (takes a while):
-```
-fetch-params
 ```
    
 ### Running the ZCash Desktop GUI Wallet on Linux
