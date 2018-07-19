@@ -1,4 +1,4 @@
-## [Zcash](https://z.cash/) Desktop GUI Wallet troubleshooting guide TODO
+## [Zcash](https://z.cash/) Desktop GUI Wallet troubleshooting guide
 
 This document outlines possible solutions to several common problems that user might encounter while using the wallet.
 

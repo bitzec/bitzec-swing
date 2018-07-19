@@ -1,6 +1,8 @@
 Readme from ZCash
 # [ZCash](https://z.cash/) Desktop GUI Wallet
 
+## *Latest Releases:* **[Linux](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.1) [Windows](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.2)  [MacOS](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.3)**
+
 ## Graphical user interface wrapper for the [ZCash](https://z.cash/) command line tools
 
 This program provides a Graphical User Interface (GUI) for the ZCash client tools that acts as a wrapper and 
