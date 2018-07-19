@@ -1,4 +1,3 @@
-Readme from ZCash
 # [ZCash](https://z.cash/) Desktop GUI Wallet
 
 ## *Latest Releases:* **[Linux](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.1) [Windows](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.2)  [MacOS](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.3)**
