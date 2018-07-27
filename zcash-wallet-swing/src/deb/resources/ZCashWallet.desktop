@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
-Name=ZCash Wallet
-Comment=ZCash Desktop GUI Wallet (full node)
-GenericName=ZCash Wallet
-Keywords=ZCash;Crypto-currency;ZCash;
+Name=Zcash Wallet
+Comment=Zcash Desktop GUI Wallet (full node)
+GenericName=Zcash Wallet
+Keywords=Zcash;Crypto-currency;Zcash;
 Exec=zcash-desktop-gui-wallet
 Terminal=false
 X-MultipleArgs=false

@@ -95,7 +95,7 @@ public class ZCashClientCaller
 	}
 
 
-	// ZCash client program and daemon
+	// Zcash client program and daemon
 	private File zcashcli, zcashd;
 	
 	// Table caching the wallet transaction times - to speed up performance
@@ -127,7 +127,7 @@ public class ZCashClientCaller
 		if ((zcashcli == null) || (!zcashcli.exists()))
 		{
 			throw new IOException(
-				"The ZCash installation directory " + installDir + " needs to contain " +
+				"The Zcash installation directory " + installDir + " needs to contain " +
 				"the command line utilities zcashd and zcash-cli. zcash-cli is missing!");
 		}
 		
@@ -140,7 +140,7 @@ public class ZCashClientCaller
 		if (zcashd == null || (!zcashd.exists()))
 		{
 		    throw new IOException(
-		    	"The ZCash command line utility " + zcashcli.getCanonicalPath() + 
+		    	"The Zcash command line utility " + zcashcli.getCanonicalPath() + 
 		    	" was found, but zcashd was not found!");
 		}
 	}
@@ -255,13 +255,13 @@ public class ZCashClientCaller
 	    	JsonObject trans = jsonTransactions.get(i).asObject();
 
 	    	// Needs to be the same as in getWalletZReceivedTransactions()
-	    	// TODO: some day refactor to use object containers
+	    	// TODO: someday refactor to use object containers
 	    	strTransactions[i][0] = "\u2606T (Public)";
 	    	strTransactions[i][1] = trans.getString("category", "ERROR!");
 	    	strTransactions[i][2] = trans.get("confirmations").toString();
 	    	strTransactions[i][3] = trans.get("amount").toString();
 	    	strTransactions[i][4] = trans.get("time").toString();
-	    	strTransactions[i][5] = trans.getString("address", notListed + " (Z Address not listed by wallet!)");
+	    	strTransactions[i][5] = trans.getString("address", notListed + " (Z address not listed by wallet!)");
 	    	strTransactions[i][6] = trans.get("txid").toString();
 
 	    }
@@ -302,7 +302,7 @@ public class ZCashClientCaller
 
 		    	String txID = trans.getString("txid", "ERROR!");
 		    	// Needs to be the same as in getWalletPublicTransactions()
-		    	// TODO: some day refactor to use object containers
+		    	// TODO: someday refactor to use object containers
 		    	currentTransaction[0] = "\u2605Z (Private)";
 		    	currentTransaction[1] = "receive";
 		    	
@@ -466,7 +466,7 @@ public class ZCashClientCaller
 	}
 
 
-	// return UNIX time as tring
+	// return UNIX time as string
 	public synchronized String getWalletTransactionTime(String txID)
 		throws WalletCallException, IOException, InterruptedException
 	{
@@ -558,7 +558,7 @@ public class ZCashClientCaller
 		}
 
 		// The JSON Builder has a problem with double values that have no fractional part
-		// it serializes them as integers that ZCash does not accept. So we do a replacement
+		// it serializes them as integers that Zcash does not accept. So we do a replacement
 		// TODO: find a better/cleaner way to format the amount
 		toArgument.set("amount", "\uFFFF\uFFFF\uFFFF\uFFFF\uFFFF");
 
@@ -577,7 +577,7 @@ public class ZCashClientCaller
 
 		DecimalFormatSymbols decSymbols = new DecimalFormatSymbols(Locale.ROOT);
 		
-		// Properly format teh transaction fee as a number
+		// Properly format the transaction fee as a number
 		if ((transactionFee == null) || (transactionFee.trim().length() <= 0))
 		{
 			transactionFee = "0.0001"; // Default value
@@ -662,7 +662,7 @@ public class ZCashClientCaller
 			                                              String amount, String memo, String transactionFee)
 		throws WalletCallException, IOException, InterruptedException
 	{
-		Log.info("Starting operation send cash with retrun of change. Parameters are: from address: {0}, to address: {1}, " + 
+		Log.info("Starting operation send cash with return of change. Parameters are: from address: {0}, to address: {1}, " + 
 	             "current balance: {2}, amount: {3}, memo: {4}, transaction fee: {5}",
 				 from, to, balance, amount, memo, transactionFee);
 		
@@ -739,7 +739,7 @@ public class ZCashClientCaller
 					                      formattedAmountToSend + " | \n" + toManyArrayStr);
 		}		
 		
-		Log.info("The following send command (with change retrun) will be issued: " +
+		Log.info("The following send command (with change return) will be issued: " +
                 sendCashParameters[0] + " " + sendCashParameters[1] + " " +
                 sendCashParameters[2] + " " + sendCashParameters[3] + " " +
                 sendCashParameters[4] + " " + sendCashParameters[5] + ".");
@@ -779,7 +779,7 @@ public class ZCashClientCaller
 		DecimalFormatSymbols decSymbols = new DecimalFormatSymbols(Locale.ROOT);
 
 		// TODO: The JSON Builder has a problem with double values that have no fractional part
-		// it serializes them as integers that ZCash does not accept. This will work with the 
+		// it serializes them as integers that Zcash does not accept. This will work with the 
 		// fractional amounts always used for messaging
 		toArgument.set("amount", new DecimalFormat("########0.00######", decSymbols).format(amount));
 
@@ -1004,7 +1004,7 @@ public class ZCashClientCaller
    			 if ((respObject.getDouble("code", -1) == -15) &&
    				 (respObject.getString("message", "ERR").indexOf("unencrypted wallet") != -1))
    			 {
-   				 // Obviously unencrupted
+   				 // Obviously unencrypted
    				 return false;
    			 } else
    			 {
@@ -1016,7 +1016,7 @@ public class ZCashClientCaller
    			 if ((respObject.getDouble("code", -1) == -15) &&
    				 (respObject.getString("message", "ERR").indexOf("unencrypted wallet") != -1))
    			 {
-   				 // Obviously unencrupted
+   				 // Obviously unencrypted
    				 return false;
    			 } else
    			 {

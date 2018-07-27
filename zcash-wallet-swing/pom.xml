@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>z.cash</groupId>
-        <artifactId>ZCashUNOfficialSwingWalletUI</artifactId>
+        <artifactId>ZcashUNOfficialSwingWalletUI</artifactId>
         <version>0.82.9-SNAPSHOT</version>
     </parent>
 
@@ -15,7 +15,7 @@
 
     <properties>
         <main.class>com.vaklinov.zcashui.ZCashUI</main.class>
-        <application.finalName>ZCashSwingWalletUI</application.finalName>
+        <application.finalName>ZcashSwingWalletUI</application.finalName>
     </properties>
 
     <dependencies>
