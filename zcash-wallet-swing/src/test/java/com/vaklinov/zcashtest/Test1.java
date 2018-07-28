@@ -35,11 +35,11 @@ public class Test1
 		//System.out.println(hexify("\n"));
 		
 		
-		String phrase = "Z pigs likes to snooze. ZZZZ";
+		String phrase = "Z pigs like to snooze. ZZZZ";
 		System.out.println(phrase + "|=> " + Util.convertGroupPhraseToZPrivateKey(phrase));
 		phrase = "ABCD";
 		System.out.println(phrase + "|=> " + Util.convertGroupPhraseToZPrivateKey(phrase));
-		phrase = "ZCash is great";
+		phrase = "Zcash is great";
 		System.out.println(phrase + "|=> " + Util.convertGroupPhraseToZPrivateKey(phrase));
 		phrase = "Here is a long phrase that we will see ... how it converts to a key";
 		System.out.println(phrase + "|=> " + Util.convertGroupPhraseToZPrivateKey(phrase));

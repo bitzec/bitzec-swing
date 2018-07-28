@@ -73,7 +73,7 @@ public class ZCashInstallationObserver
 		if (!dir.exists() || dir.isFile())
 		{
 			throw new InstallationDetectionException(
-				"The ZCash installation directory " + installDir + " does not exist or is not " +
+				"The Zcash installation directory " + installDir + " does not exist or is not " +
 			    "a directory or is otherwise inaccessible to the wallet!");
 		}
 
@@ -86,14 +86,14 @@ public class ZCashInstallationObserver
 			zcashcli = OSUtil.findZCashCommand(OSUtil.getZCashCli());
 		}
 
-		Log.info("Using ZCash utilities: " +
+		Log.info("Using Zcash utilities: " +
 		                   "zcashd: "    + ((zcashd != null) ? zcashd.getCanonicalPath() : "<MISSING>") + ", " +
 		                   "zcash-cli: " + ((zcashcli != null) ? zcashcli.getCanonicalPath() : "<MISSING>"));
 
 		if ((zcashd == null) || (zcashcli == null) || (!zcashd.exists()) || (!zcashcli.exists()))
 		{
 			throw new InstallationDetectionException(
-				"The ZCash GUI Wallet installation directory " + installDir + " needs\nto contain " +
+				"The Zcash GUI Wallet installation directory " + installDir + " needs\nto contain " +
 				"the command line utilities zcashd and zcash-cli. At least one of them is missing! \n" +
 				"Please place files ZCashSwingWalletUI.jar, " + OSUtil.getZCashCli() + ", " + 
 				OSUtil.getZCashd() + " in the same directory.");
@@ -122,7 +122,7 @@ public class ZCashInstallationObserver
 		return getDaemonInfoForUNIXLikeOS("zcashd");
 	}
 
-	// So far tested on Mac OS X and Linux - expected to work on other UNIXes as well
+	// So far tested on macOS and Linux - expected to work on other UNIXes as well
 	public static synchronized DaemonInfo getDaemonInfoForUNIXLikeOS(String daemonName)
 		throws IOException, InterruptedException
 	{

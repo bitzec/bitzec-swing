@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>z.cash</groupId>
-    <artifactId>ZCashUNOfficialSwingWalletUI</artifactId>
+    <artifactId>ZcashUNOfficialSwingWalletUI</artifactId>
     <version>0.82.9-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>ZCash UNOfficial Swing Wallet UI</name>
+    <name>Zcash UNOfficial Swing Wallet UI</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

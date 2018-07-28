@@ -1,19 +1,19 @@
-# [ZCash](https://z.cash/) Desktop GUI Wallet
+# [Zcash](https://z.cash/) Desktop GUI Wallet
 
-## *Latest Releases:* **[Linux](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.1) [Windows](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.2)  [MacOS](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.4)**
+## *Latest Releases:* **[Linux](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.1) [Windows](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.2)  [macOS](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.4)**
 
-## Graphical user interface wrapper for the [ZCash](https://z.cash/) command line tools
+## Graphical user interface wrapper for the [Zcash](https://z.cash/) command line tools
 
-This program provides a Graphical User Interface (GUI) for the ZCash client tools that acts as a wrapper and 
+This program provides a Graphical User Interface (GUI) for the Zcash client tools that acts as a wrapper and 
 presents the information in a user-friendly manner.
 
 ![Screenshot](https://github.com/TheTrunk/zcash-swing-wallet/raw/master/docs/zcashwallet.png "Main Window")
 
 **This wallet is targeted at advanced users who understand the implications of running a full Zcash node on**
 **the local machine, maintaining a full local copy of the blockchain, maintaining and backing up the**
-**Zcash nodes's `wallet.dat` file etc! The wallet is not suitable for novice crypto-currency users!**
+**Zcash nodes' `wallet.dat` file etc! The wallet is not suitable for novice crypto-currency users!**
 
-**SECURITY WARNING: Encryption of the wallet.dat file is not yet supported for ZCash. Using the wallet** 
+**SECURITY WARNING: Encryption of the wallet.dat file is not yet supported for Zcash. Using the wallet** 
 **on a system infected with malware may result in wallet data/funds being stolen. The**
 **wallet.dat needs to be backed up regularly (not just once - e.g. after every 30-40**
 **outgoing transactions) and it must also be backed up after creating a new Z address.**
@@ -31,9 +31,9 @@ presents the information in a user-friendly manner.
 
 ## Building, installing and running the Wallet GUI
 
-Before installing the Desktop GUI Wallet you need to have ZCash up and running. The following 
+Before installing the Desktop GUI Wallet you need to have Zcash up and running. The following 
 [guide](https://github.com/zcash/zcash/blob/master/README.md) 
-explains how to set up [ZCash](https://z.cash/). 
+explains how to set up [Zcash](https://z.cash/). 
 
 **For security reasons it is recommended to always build the GUI wallet program from GitHub**
 **[source](https://github.com/TheTrunk/zcash-swing-wallet/archive/master.zip).**
@@ -42,7 +42,7 @@ The details of how to build it are described below (easy to follow).
 
 1. Operating system and tools
 
-   This program supports Linux and Mac OS X and Windows.
+   This program supports Linux, macOS and Windows.
    The Linux tools you need to build and run the Wallet GUI are Git, Java (JDK8) and
    Ant. If using Ubuntu Linux, they may be installed via command: 
    ```
@@ -81,28 +81,28 @@ The details of how to build it are described below (easy to follow).
    file `./build/jars/ZCashSwingWalletUI.jar`. In addition the JAR file 
    `bitcoinj-core-0.14.5.jar` is also necessary to run the wallet. 
 
-3. Installing the built ZCash GUI wallet
+3. Installing the built Zcash GUI wallet
 
-   3.1. If you have built ZCash from source code:
+   3.1. If you have built Zcash from source code:
 
-     Assuming you have already built from source code [ZCash](https://z.cash/) in directory `/home/user/zcash/src` (for example - this is the typical build dir. for ZCash v1.1.0) which contains the command line tools `zcash-cli` and `zcashd` you need to take the created JAR files and copy them to directory `/home/user/zcash/src` (the same dir. that contains `zcash-cli` and `zcashd`). Example copy command:
+     Assuming you have already built from source code [Zcash](https://z.cash/) in directory `/home/user/zcash/src` (for example - this is the typical build dir. for Zcash v1.1.0) which contains the command line tools `zcash-cli` and `zcashd` you need to take the created JAR files and copy them to directory `/home/user/zcash/src` (the same dir. that contains `zcash-cli` and `zcashd`). Example copy command:
       ```
       user@ubuntu:~/build-dir/zcash-swing-wallet$ cp -R -v ./build/jars/* /home/user/zcash/src    
       ```
 
-4. Running the installed ZCash GUI wallet
+4. Running the installed Zcash GUI wallet
 
    It may be run from command line or started from another GUI tool (e.g. file manager). 
-   Assuming you have already installed [ZCash](https://z.cash/) and the GUI Wallet `ZCashSwingWalletUI.jar` in 
+   Assuming you have already installed [Zcash](https://z.cash/) and the GUI Wallet `ZCashSwingWalletUI.jar` in 
    directory `/home/user/zcash/src` one way to run it from command line is:
    ```
    user@ubuntu:~/build-dir/zcash-swing-wallet$ java -jar /home/user/zcash/src/ZCashSwingWalletUI.jar
    ```
    If you are using Ubuntu (or similar ;) Linux you may instead just use the file manager and 
    right-click on the `ZCashSwingWalletUI.jar` file and choose the option "Open with OpenJDK 8 Runtime". 
-   This will start the ZCash GUI wallet.
+   This will start the Zcash GUI wallet.
    
-   **Important:** the ZCash configuration file `~/.zcash/zcash.conf` needs to be correctly set up for the GUI
+   **Important:** the Zcash configuration file `~/.zcash/zcash.conf` needs to be correctly set up for the GUI
    wallet to work. Specifically the RPC user and password need to be set in it like:
    ```
    rpcuser=username
@@ -126,18 +126,18 @@ SOFTWARE.
 
 ### Known issues and limitations
 
-1. Issue: The ZCash Desktop GUI Wallet is not compatible with applications that modify the ZCash `wallet.dat` file. The wallet should not be used
+1. Issue: The Zcash Desktop GUI Wallet is not compatible with applications that modify the Zcash `wallet.dat` file. The wallet should not be used
 with such applications on the same PC. For instance some distributed exchange applications are known to create watch-only addresses in the
 `wallet.dat` file that cause the GUI wallet to display a wrong balance and/or display addresses that do not belong to the wallet. 
 1. Limitation: if two users exchange text messages via the messaging UI TAB and one of them has a system clock, substantially running slow or fast by more than 1 minute, it is possible that this user will see text messages appearing out of order. 
 1. Limitation: if a messaging identity has been created (happens on first click on the messaging UI tab), then replacing the `wallet.dat` or changing the node configuration between mainnet and testnet will make the identity invalid. This will result in a wallet update error. To remove the error the directory `~/.ZCashSwingWalletUI/messaging` may be manually renamed or deleted (when the wallet is stopped). **CAUTION: all messaging history will be lost in this case!**
-1. Limitation: Wallet encryption has been temporarily disabled in ZCash due to stability problems. A corresponding issue 
-[#1552](https://github.com/zcash/zcash/issues/1552) has been opened by the ZCash developers. Correspondingly
-wallet encryption has been temporarily disabled in the ZCash Desktop GUI Wallet.
+1. Limitation: Wallet encryption has been temporarily disabled in Zcash due to stability problems. A corresponding issue 
+[#1552](https://github.com/zcash/zcash/issues/1552) has been opened by the Zcash developers. Correspondingly
+wallet encryption has been temporarily disabled in the Zcash Desktop GUI Wallet.
 The latter needs to be disabled. 
 1. Limitation: The list of transactions does not show all outgoing ones (specifically outgoing Z address 
 transactions). A corresponding issue [#1438](https://github.com/zcash/zcash/issues/1438) has been opened 
-for the ZCash developers. 
+for the Zcash developers. 
 1. Limitation: The CPU percentage shown to be taken by zcashd on Linux is the average for the entire lifetime 
 of the process. This is not very useful. This will be improved in future versions.
 1. Limitation: When using a natively compiled wallet version (e.g. `ZCashSwingWalletUI.exe` for Windows) on a 
