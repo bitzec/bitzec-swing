@@ -1,13 +1,13 @@
 # [Zcash](https://z.cash/) Desktop GUI Wallet
 
-## *Latest Releases:* **[Linux](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.1) [Windows](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.2)  [macOS](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.4)**
+## *Latest Releases:* **[Linux](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.1) [Windows](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.5)  [macOS](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.4)**
 
 ## Graphical user interface wrapper for the [Zcash](https://z.cash/) command line tools
 
 This program provides a Graphical User Interface (GUI) for the Zcash client tools that acts as a wrapper and 
 presents the information in a user-friendly manner.
 
-![Screenshot](https://github.com/TheTrunk/zcash-swing-wallet/raw/master/docs/zcashwallet.png "Main Window")
+![Screenshot](https://github.com/TheTrunk/zcash-swing-wallet/raw/master/docs/zcash-wallet-win.png "Main Window")
 
 **This wallet is targeted at advanced users who understand the implications of running a full Zcash node on**
 **the local machine, maintaining a full local copy of the blockchain, maintaining and backing up the**
