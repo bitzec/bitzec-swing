@@ -4,8 +4,8 @@
 
     <parent>
         <groupId>z.cash</groupId>
-        <artifactId>ZcashUNOfficialSwingWalletUI</artifactId>
-        <version>0.82.9-SNAPSHOT</version>
+        <artifactId>ZcashSwingWalletUI</artifactId>
+        <version>1.0.0</version>
     </parent>
 
   <artifactId>installer</artifactId>
@@ -16,7 +16,7 @@
     <staging.dir>${project.build.directory}/staging</staging.dir>
     <installer-output-filename>zcash-wallet-installer</installer-output-filename>
     <zcash.project.url>https://github.com</zcash.project.url>
-    <zcash.binaries.file.name.windows>TheTrunk/ZCashBin/releases/download/initial/windows.zip</zcash.binaries.file.name.windows>
+    <zcash.binaries.file.name.windows>ZcashWallets/ZCashBin/releases/download/initial/windows.zip</zcash.binaries.file.name.windows>
     <izpack.version>5.0.6</izpack.version>
   </properties>
 

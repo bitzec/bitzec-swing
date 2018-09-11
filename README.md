@@ -1,13 +1,13 @@
 # [Zcash](https://z.cash/) Desktop GUI Wallet
 
-## *Latest Releases:* **[Linux](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.1) [Windows](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.5)  [macOS](https://github.com/TheTrunk/zcash-swing-wallet/releases/tag/v1.1.6)**
+## *Latest Releases:* **[Linux](https://github.com/ZcashWallets/zcash-swing-wallet/releases/tag/v1.1.1) [Windows](https://github.com/ZcashWallets/zcash-swing-wallet/releases/tag/v1.1.5)  [macOS](https://github.com/ZcashWallets/zcash-swing-wallet/releases/tag/v1.1.6)**
 
 ## Graphical user interface wrapper for the [Zcash](https://z.cash/) command line tools
 
 This program provides a Graphical User Interface (GUI) for the Zcash client tools that acts as a wrapper and 
 presents the information in a user-friendly manner.
 
-![Screenshot](https://github.com/TheTrunk/zcash-swing-wallet/raw/master/docs/zcash-wallet-win.png "Main Window")
+![Screenshot](https://github.com/ZcashWallets/zcash-swing-wallet/raw/master/docs/zcash-wallet-win.png "Main Window")
 
 **This wallet is targeted at advanced users who understand the implications of running a full Zcash node on**
 **the local machine, maintaining a full local copy of the blockchain, maintaining and backing up the**
@@ -27,7 +27,7 @@ presents the information in a user-friendly manner.
 **they are considered outdated after 18 weeks and stop working. So they need to be updated to a newer version before this term expires.**
 **Users need to ensure they use an up-to-date version of the wallet (e.g. update the wallet every two months or so).**
 
-#### Download Swing wallet at https://github.com/TheTrunk/zcash-swing-wallet/releases
+#### Download Swing wallet at https://github.com/ZcashWallets/zcash-swing-wallet/releases
 
 ## Building, installing and running the Wallet GUI
 
@@ -36,7 +36,7 @@ Before installing the Desktop GUI Wallet you need to have Zcash up and running. 
 explains how to set up [Zcash](https://z.cash/). 
 
 **For security reasons it is recommended to always build the GUI wallet program from GitHub**
-**[source](https://github.com/TheTrunk/zcash-swing-wallet/archive/master.zip).**
+**[source](https://github.com/ZcashWallets/zcash-swing-wallet/archive/master.zip).**
 The details of how to build it are described below (easy to follow). 
 
 
@@ -62,7 +62,7 @@ The details of how to build it are described below (easy to follow).
 
    As a start you need to clone the zcash-swing-wallet Git repository:
    ```
-   user@ubuntu:~/build-dir$ git clone https://github.com/TheTrunk/zcash-swing-wallet.git
+   user@ubuntu:~/build-dir$ git clone https://github.com/ZcashWallets/zcash-swing-wallet.git
    ```
    Change the current directory:
    ```
@@ -112,7 +112,7 @@ The details of how to build it are described below (easy to follow).
 
 
 ### License
-This program is distributed under an [MIT License](https://github.com/TheTrunk/zcash-swing-wallet/raw/master/LICENSE).
+This program is distributed under an [MIT License](https://github.com/ZcashWallets/zcash-swing-wallet/raw/master/LICENSE).
 
 ### Disclaimer
 

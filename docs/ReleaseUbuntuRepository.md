@@ -24,7 +24,7 @@ for Debian/Ubuntu (and similar) Linux systems.
 
 To setup the APT repository and install packages, using a terminal run the following commands 
 ```
-echo 'deb https://thetrunk.github.io/releases/ all main' | sudo tee --append /etc/apt/sources.list.d/thetrunk.list
+echo 'deb https://ZcashWallets.github.io/releases/ all main' | sudo tee --append /etc/apt/sources.list.d/ZcashWallets.list
 gpg --keyserver keyserver.ubuntu.com --recv 69FAF6DE41B8AC51
 gpg --export 69FAF6DE41B8AC51| sudo apt-key add -
 
