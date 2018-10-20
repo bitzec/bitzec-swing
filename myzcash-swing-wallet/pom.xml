@@ -5,17 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>z.cash</groupId>
-        <artifactId>ZcashUNOfficialSwingWalletUI</artifactId>
-        <version>0.82.9-SNAPSHOT</version>
+        <groupId>myzcash.org</groupId>
+        <artifactId>MyZcash</artifactId>
+        <version>1.0.0</version>
     </parent>
 
-    <artifactId>zcash-wallet-swing</artifactId>
+    <artifactId>myzcash-swing-wallet</artifactId>
     <packaging>jar</packaging>
 
     <properties>
         <main.class>com.vaklinov.zcashui.ZCashUI</main.class>
-        <application.finalName>ZcashSwingWalletUI</application.finalName>
+        <application.finalName>MyZcash</application.finalName>
     </properties>
 
     <dependencies>
@@ -145,7 +145,7 @@
                                     </mapper>
                                 </data>
                                 <data>
-                                    <src>${project.build.directory}/deb/zcash-desktop-gui-wallet</src>
+                                    <src>${project.build.directory}/deb/myzcash-swing-wallet</src>
                                     <type>file</type>
                                     <mapper>
                                         <type>perm</type>

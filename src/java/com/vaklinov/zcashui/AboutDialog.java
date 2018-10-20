@@ -39,23 +39,23 @@ import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
+
+import com.cabecinha84.zcashui.ZcashJButton;
+import com.cabecinha84.zcashui.ZcashJDialog;
+import com.cabecinha84.zcashui.ZcashJFrame;
+import com.cabecinha84.zcashui.ZcashJLabel;
+import com.cabecinha84.zcashui.ZcashJPanel;
+import com.cabecinha84.zcashui.ZcashJTabbedPane;
 
 
 /**
  * Typical about box stuff...
  */
 public class AboutDialog
-	extends JDialog
+	extends ZcashJDialog
 {
-	public AboutDialog(JFrame parent)
+	public AboutDialog(ZcashJFrame parent)
 		throws UnsupportedEncodingException
 	{
 		LanguageUtil langUtil = LanguageUtil.instance();
@@ -66,12 +66,12 @@ public class AboutDialog
 		this.setModal(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-		JTabbedPane tabs = new JTabbedPane();
+		ZcashJTabbedPane tabs = new ZcashJTabbedPane();
 
-		JPanel copyrigthPanel = new JPanel();
+		ZcashJPanel copyrigthPanel = new ZcashJPanel();
 		copyrigthPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		copyrigthPanel.setLayout(new BorderLayout(3, 3));
-		JLabel copyrightLabel = new JLabel();
+		ZcashJLabel copyrightLabel = new ZcashJLabel();
 		
 		copyrightLabel.setText(langUtil.getString("dialog.about.front.text"));
 		copyrightLabel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
@@ -79,10 +79,10 @@ public class AboutDialog
 				
 		tabs.add(langUtil.getString("dialog.about.tab.title"), copyrigthPanel);
 
-		JPanel licensePanel = new JPanel();
+		ZcashJPanel licensePanel = new ZcashJPanel();
 		licensePanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		licensePanel.setLayout(new BorderLayout(3, 3));
-		JLabel licenseLabel = new JLabel();
+		ZcashJLabel licenseLabel = new ZcashJLabel();
 		licenseLabel.setText(langUtil.getString("dialog.about.licence"));
 		licenseLabel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		licensePanel.add(licenseLabel, BorderLayout.NORTH);
@@ -92,9 +92,9 @@ public class AboutDialog
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
 		this.getContentPane().add(tabs, BorderLayout.NORTH);
 
-		JPanel closePanel = new JPanel();
+		ZcashJPanel closePanel = new ZcashJPanel();
 		closePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 3, 3));
-		JButton closeButon = new JButton(langUtil.getString("dialog.about.button.close.text"));
+		ZcashJButton closeButon = new ZcashJButton(langUtil.getString("dialog.about.button.close.text"));
 		closePanel.add(closeButon);
 		this.getContentPane().add(closePanel, BorderLayout.SOUTH);
 

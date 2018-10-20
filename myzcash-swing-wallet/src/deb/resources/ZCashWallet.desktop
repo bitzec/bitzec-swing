@@ -1,10 +1,10 @@
 [Desktop Entry]
 Version=1.0
-Name=Zcash Wallet
-Comment=Zcash Desktop GUI Wallet (full node)
-GenericName=Zcash Wallet
+Name=MyZcash Swing Wallet
+Comment=MyZcash Swing Wallet is a dekstop GUI full node for Zcash
+GenericName=MyZcash
 Keywords=Zcash;Crypto-currency;Zcash;
-Exec=zcash-desktop-gui-wallet
+Exec=myzcash-swing-wallet
 Terminal=false
 X-MultipleArgs=false
 Type=Application

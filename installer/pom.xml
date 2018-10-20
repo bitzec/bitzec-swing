@@ -3,27 +3,27 @@
   <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>z.cash</groupId>
-        <artifactId>ZcashUNOfficialSwingWalletUI</artifactId>
-        <version>0.82.9-SNAPSHOT</version>
+        <groupId>myzcash.org</groupId>
+        <artifactId>MyZcash</artifactId>
+        <version>1.0.0</version>
     </parent>
 
   <artifactId>installer</artifactId>
-  <name>Zcash Wallet Installer</name>
+  <name>MyZcash Swing Wallet Installer</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <staging.dir>${project.build.directory}/staging</staging.dir>
     <installer-output-filename>zcash-wallet-installer</installer-output-filename>
     <zcash.project.url>https://github.com</zcash.project.url>
-    <zcash.binaries.file.name.windows>TheTrunk/ZCashBin/releases/download/initial/windows.zip</zcash.binaries.file.name.windows>
+    <zcash.binaries.file.name.windows>ZcashWallets/ZCashBin/releases/download/initial/windows.zip</zcash.binaries.file.name.windows>
     <izpack.version>5.0.6</izpack.version>
   </properties>
 
   <dependencies>
       <dependency>
-          <groupId>z.cash</groupId>
-          <artifactId>zcash-wallet-swing</artifactId>
+          <groupId>myzcash.org</groupId>
+          <artifactId>myzcash-swing-wallet</artifactId>
           <version>${project.version}</version>
       </dependency>
   </dependencies>
@@ -58,7 +58,7 @@
                                             <filtering>false</filtering>
                                         </resource>
                                         <resource>
-                                            <directory>../zcash-wallet-swing/src/deb/resources</directory>
+                                            <directory>../myzcash-swing-wallet/src/deb/resources</directory>
                                             <includes>
                                                 <include>licences/*</include>
                                             </includes>
@@ -130,7 +130,7 @@
                               <overWriteReleases>true</overWriteReleases>
                               <overWriteSnapshots>true</overWriteSnapshots>
                               <overWriteIfNewer>true</overWriteIfNewer>
-                              <includeArtifactIds>zcash-wallet-swing,bitcoinj-core,sqlite-jdbc,minimal-json</includeArtifactIds>
+                              <includeArtifactIds>myzcash-swing-wallet,bitcoinj-core,sqlite-jdbc,minimal-json</includeArtifactIds>
                            </configuration>
                         </execution>
                    </executions>
@@ -160,8 +160,8 @@
                    for the panels -->
                    <dependencies>
                       <dependency>
-                        <groupId>z.cash</groupId>
-                        <artifactId>zcash-wallet-swing</artifactId>
+                        <groupId>myzcash.org</groupId>
+                        <artifactId>myzcash-swing-wallet</artifactId>
                           <version>${project.version}</version>
                       </dependency>
                     </dependencies>

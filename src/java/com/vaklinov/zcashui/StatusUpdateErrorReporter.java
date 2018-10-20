@@ -28,18 +28,19 @@
  **********************************************************************************/
 package com.vaklinov.zcashui;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import com.cabecinha84.zcashui.ZcashJFrame;
 
 /**
  * Reporter for periodic errors. Will later have options to filter errors etc.
  */
 public class StatusUpdateErrorReporter 
 {	
-	private JFrame parent;
+	private ZcashJFrame parent;
 	private long lastReportedErrroTime = 0;
 	
-	public StatusUpdateErrorReporter(JFrame parent)
+	public StatusUpdateErrorReporter(ZcashJFrame parent)
 	{
 		this.parent = parent;
 	}
@@ -67,7 +68,7 @@ public class StatusUpdateErrorReporter
 			lastReportedErrroTime = time;
 		}
 		
-		String settingsDirectory = ".ZCashSwingWalletUI";
+		String settingsDirectory = ".MyZcash";
 		
 		try
 		{

@@ -1,8 +1,8 @@
-Package: zcash-desktop-gui-wallet
-Version: 0.82.9
+Package: myzcash-swing-wallet
+Version: 1.0.0
 Section: misc
 Priority: low
 Architecture: all
-Description: Zcash Desktop GUI Wallet 
+Description: MyZcash Swing Wallet - Zcash Desktop GUI Wallet 
 Maintainer: tadeas.kmenta@zel.cash
 Depends: default-jdk, zcash
