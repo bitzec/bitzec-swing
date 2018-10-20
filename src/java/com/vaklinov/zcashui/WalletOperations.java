@@ -28,7 +28,10 @@
  **********************************************************************************/
 package com.vaklinov.zcashui;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.io.File;
@@ -39,8 +42,21 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import com.cabecinha84.zcashui.ZcashJDialog;
+import com.cabecinha84.zcashui.ZcashJFileChooser;
+import com.cabecinha84.zcashui.ZcashJFrame;
+import com.cabecinha84.zcashui.ZcashJLabel;
+import com.cabecinha84.zcashui.ZcashJProgressBar;
+import com.cabecinha84.zcashui.ZcashJTabbedPane;
 
 import com.vaklinov.zcashui.ZCashClientCaller.WalletCallException;
 import com.vaklinov.zcashui.arizen.models.Address;
@@ -54,7 +70,7 @@ import com.vaklinov.zcashui.arizen.repo.WalletRepo;
 public class WalletOperations
 {	
 	private ZCashUI parent;
-	private JTabbedPane tabs;
+	private ZcashJTabbedPane tabs;
 	private DashboardPanel dashboard;
 	private SendCashPanel  sendCash;
 	private AddressesPanel addresses;
@@ -68,7 +84,7 @@ public class WalletOperations
 
 
 	public WalletOperations(ZCashUI parent,
-			                JTabbedPane tabs,
+			                ZcashJTabbedPane tabs,
 			                DashboardPanel dashboard,
 			                AddressesPanel addresses,
 			                SendCashPanel  sendCash,
@@ -162,7 +178,7 @@ public class WalletOperations
 		{
 			this.issueBackupDirectoryWarning();
 			
-			JFileChooser fileChooser = new JFileChooser();
+			ZcashJFileChooser fileChooser = new ZcashJFileChooser();
 			fileChooser.setDialogTitle(langUtil.getString("wallet.operations.dialog.backup.wallet.title"));
 			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			fileChooser.setCurrentDirectory(OSUtil.getUserHomeDirectory());
@@ -221,7 +237,7 @@ public class WalletOperations
 		{
 			this.issueBackupDirectoryWarning();
 			
-			JFileChooser fileChooser = new JFileChooser();
+			ZcashJFileChooser fileChooser = new ZcashJFileChooser();
 			fileChooser.setDialogTitle(langUtil.getString("wallet.operations.dialog.export.private.keys.title"));
 			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			fileChooser.setCurrentDirectory(OSUtil.getUserHomeDirectory());
@@ -288,7 +304,7 @@ public class WalletOperations
 		
 		try
 		{
-			JFileChooser fileChooser = new JFileChooser();
+			ZcashJFileChooser fileChooser = new ZcashJFileChooser();
 			fileChooser.setDialogTitle(langUtil.getString("wallet.operations.file.chooser.import.private.keys.title"));
 			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			 
@@ -366,7 +382,7 @@ public class WalletOperations
 			final boolean bEncryptedWallet = this.clientCaller.isWalletEncrypted();
 			if (bEncryptedWallet)
 			{
-				PasswordDialog pd = new PasswordDialog((JFrame)(this.parent));
+				PasswordDialog pd = new PasswordDialog((ZcashJFrame)(this.parent));
 				pd.setVisible(true);
 				
 				if (!pd.isOKPressed())
@@ -423,11 +439,11 @@ public class WalletOperations
 	 */
 	public void exportToArizenWallet()
 	{
-		final JDialog dialog = new JDialog(this.parent, langUtil.getString("wallet.operations.dialog.export.arizen.title"));
-		final JLabel exportLabel = new JLabel();
+		final ZcashJDialog dialog = new ZcashJDialog(this.parent, langUtil.getString("wallet.operations.dialog.export.arizen.title"));
+		final ZcashJLabel exportLabel = new ZcashJLabel();
 		final WalletRepo arizenWallet = new ArizenWallet();
 		try {
-			JFileChooser fileChooser = new JFileChooser();
+			ZcashJFileChooser fileChooser = new ZcashJFileChooser();
 			fileChooser.setFileFilter(new FileNameExtensionFilter(langUtil.getString("wallet.operations.dialog.export.arizen.filechooser.filter"), "uawd"));
 			fileChooser.setDialogTitle(langUtil.getString("wallet.operations.dialog.export.arizen.filechooser.title"));
 			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -461,7 +477,7 @@ public class WalletOperations
 			dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 			dialog.setLayout(new BorderLayout());
 
-			JProgressBar progressBar = new JProgressBar();
+			ZcashJProgressBar progressBar = new ZcashJProgressBar();
 			progressBar.setIndeterminate(true);
 			dialog.add(progressBar, BorderLayout.CENTER);
 			exportLabel.setText(langUtil.getString("wallet.operations.dialog.export.label"));

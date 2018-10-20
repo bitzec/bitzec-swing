@@ -40,16 +40,18 @@ import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
+
+import com.cabecinha84.zcashui.ZcashJButton;
+import com.cabecinha84.zcashui.ZcashJCheckBox;
+import com.cabecinha84.zcashui.ZcashJDialog;
+import com.cabecinha84.zcashui.ZcashJFrame;
+import com.cabecinha84.zcashui.ZcashJLabel;
+import com.cabecinha84.zcashui.ZcashJPanel;
+import com.cabecinha84.zcashui.ZcashJTextField;
 
 import com.vaklinov.zcashui.Log;
 import com.vaklinov.zcashui.StatusUpdateErrorReporter;
@@ -60,20 +62,20 @@ import com.vaklinov.zcashui.Util;
  * Dialog showing the messaging options and allowing them to be edited.
  */
 public class MessagingOptionsEditDialog
-	extends JDialog
+	extends ZcashJDialog
 {
-	protected JFrame parentFrame;
+	protected ZcashJFrame parentFrame;
 	protected MessagingStorage storage;
 	protected StatusUpdateErrorReporter errorReporter;
 	
-	protected JLabel infoLabel;
-	protected JPanel buttonPanel;
+	protected ZcashJLabel infoLabel;
+	protected ZcashJPanel buttonPanel;
 	
-	protected JTextField amountTextField;
-	protected JTextField transactionFeeTextField;
-	protected JCheckBox  automaticallyAddUsers;
+	protected ZcashJTextField amountTextField;
+	protected ZcashJTextField transactionFeeTextField;
+	protected ZcashJCheckBox  automaticallyAddUsers;
 	
-	public MessagingOptionsEditDialog(JFrame parentFrame, MessagingStorage storage, StatusUpdateErrorReporter errorReporter)
+	public MessagingOptionsEditDialog(ZcashJFrame parentFrame, MessagingStorage storage, StatusUpdateErrorReporter errorReporter)
 		throws IOException
 	{
 		this.parentFrame   = parentFrame;
@@ -88,9 +90,9 @@ public class MessagingOptionsEditDialog
 			
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
 			
-		JPanel tempPanel = new JPanel(new BorderLayout(0, 0));
+		ZcashJPanel tempPanel = new ZcashJPanel(new BorderLayout(0, 0));
 		tempPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-		infoLabel = new JLabel(
+		infoLabel = new ZcashJLabel(
 				"<html><span style=\"font-size:0.93em;\">" +
 				"The options below pertain to messaging. It is possible to set the amount of ZEC<br/>" +
 				"to be sent with every messaging transaction and also the transaction fee. It is<br/>" + 
@@ -99,13 +101,13 @@ public class MessagingOptionsEditDialog
 	    tempPanel.add(infoLabel, BorderLayout.CENTER);
 		this.getContentPane().add(tempPanel, BorderLayout.NORTH);
 			
-		JPanel detailsPanel = new JPanel();
+		ZcashJPanel detailsPanel = new ZcashJPanel();
 		detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS));
 		
 		addFormField(detailsPanel, "Automatically add users to contact list:",   
-				     automaticallyAddUsers = new JCheckBox());
-		addFormField(detailsPanel, "ZEC amount to send with every message:",   amountTextField = new JTextField(12));
-		addFormField(detailsPanel, "Transaction fee:",  transactionFeeTextField = new JTextField(12));
+				     automaticallyAddUsers = new ZcashJCheckBox());
+		addFormField(detailsPanel, "ZEC amount to send with every message:",   amountTextField = new ZcashJTextField(12));
+		addFormField(detailsPanel, "Transaction fee:",  transactionFeeTextField = new ZcashJTextField(12));
 		
 		DecimalFormatSymbols decSymbols = new DecimalFormatSymbols(Locale.ROOT);
 		automaticallyAddUsers.setSelected(options.isAutomaticallyAddUsersIfNotExplicitlyImported());
@@ -116,9 +118,9 @@ public class MessagingOptionsEditDialog
 		this.getContentPane().add(detailsPanel, BorderLayout.CENTER);
 
 		// Lower buttons - by default only close is available
-		buttonPanel = new JPanel();
+		buttonPanel = new ZcashJPanel();
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 3));
-		JButton closeButon = new JButton("Close");
+		ZcashJButton closeButon = new ZcashJButton("Close");
 		buttonPanel.add(closeButon);
 		this.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 
@@ -132,7 +134,7 @@ public class MessagingOptionsEditDialog
 				}
 		});
 		
-		JButton saveButon = new JButton("Save & close");
+		ZcashJButton saveButon = new ZcashJButton("Save & close");
 		buttonPanel.add(saveButon);
 		saveButon.addActionListener(new ActionListener()
 		{
@@ -211,12 +213,12 @@ public class MessagingOptionsEditDialog
 	}
 	
 	
-	private void addFormField(JPanel detailsPanel, String name, JComponent field)
+	private void addFormField(ZcashJPanel detailsPanel, String name, JComponent field)
 	{
-		JPanel tempPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 4, 2));
-		JLabel tempLabel = new JLabel(name, JLabel.RIGHT);
+		ZcashJPanel tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 4, 2));
+		ZcashJLabel tempLabel = new ZcashJLabel(name, JLabel.RIGHT);
 		// TODO: hard sizing of labels may not scale!
-		final int width = new JLabel("ZEC amount to send with every message:").getPreferredSize().width + 30;
+		final int width = new ZcashJLabel("ZEC amount to send with every message:").getPreferredSize().width + 30;
 		tempLabel.setPreferredSize(new Dimension(width, tempLabel.getPreferredSize().height));
 		tempPanel.add(tempLabel);
 		tempPanel.add(field);

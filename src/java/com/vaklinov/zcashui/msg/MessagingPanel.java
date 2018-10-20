@@ -30,7 +30,6 @@ package com.vaklinov.zcashui.msg;
 
 import java.awt.BorderLayout;
 import java.awt.Cursor;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -56,24 +55,27 @@ import java.util.UUID;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+
+import com.cabecinha84.zcashui.ZcashJButton;
+import com.cabecinha84.zcashui.ZcashJCheckBox;
+import com.cabecinha84.zcashui.ZcashJFileChooser;
+import com.cabecinha84.zcashui.ZcashJFrame;
+import com.cabecinha84.zcashui.ZcashJLabel;
+import com.cabecinha84.zcashui.ZcashJPanel;
+import com.cabecinha84.zcashui.ZcashJProgressBar;
+import com.cabecinha84.zcashui.ZcashJScrollPane;
+import com.cabecinha84.zcashui.ZcashJSplitPane;
+import com.cabecinha84.zcashui.ZcashJTabbedPane;
+import com.cabecinha84.zcashui.ZcashJTextArea;
+import com.cabecinha84.zcashui.ZcashJTextPane;
 
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
@@ -99,9 +101,9 @@ import com.vaklinov.zcashui.msg.Message.VERIFICATION_TYPE;
 public class MessagingPanel
 	extends WalletTabPanel
 {
-	private JFrame parentFrame;
+	private ZcashJFrame parentFrame;
 	private SendCashPanel sendCashPanel; 
-	private JTabbedPane parentTabs;
+	private ZcashJTabbedPane parentTabs;
 	
 	private ZCashClientCaller clientCaller;
 	private StatusUpdateErrorReporter errorReporter;
@@ -110,14 +112,14 @@ public class MessagingPanel
 	
 	private JContactListPanel contactList;
 	
-	private JLabel conversationLabel;
-	private JTextPane conversationTextPane;
+	private ZcashJLabel conversationLabel;
+	private ZcashJTextPane conversationTextPane;
 	
-	private JTextArea    writeMessageTextArea;
-	private JButton      sendButton;
-	private JLabel       sendResultLabel;
-	private JProgressBar sendMessageProgressBar;
-	private JCheckBox    sendAnonymously;
+	private ZcashJTextArea    writeMessageTextArea;
+	private ZcashJButton      sendButton;
+	private ZcashJLabel       sendResultLabel;
+	private ZcashJProgressBar sendMessageProgressBar;
+	private ZcashJCheckBox    sendAnonymously;
 	
 	private Timer operationStatusTimer = null;
 	
@@ -134,7 +136,7 @@ public class MessagingPanel
 	// Storage of labels
 	private LabelStorage labelStorage;
 	
-	public MessagingPanel(JFrame parentFrame, SendCashPanel sendCashPanel, JTabbedPane parentTabs, 
+	public MessagingPanel(ZcashJFrame parentFrame, SendCashPanel sendCashPanel, ZcashJTabbedPane parentTabs, 
 			              ZCashClientCaller clientCaller, StatusUpdateErrorReporter errorReporter,
 			              LabelStorage labelStorage)
 		throws IOException, InterruptedException, WalletCallException
@@ -155,27 +157,27 @@ public class MessagingPanel
 		this.setLayout(new BorderLayout(0, 0));
 		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		
-		final JSplitPane textAndContactsPane = new JSplitPane();
+		final ZcashJSplitPane textAndContactsPane = new ZcashJSplitPane();
 		this.add(textAndContactsPane, BorderLayout.CENTER);
 		
 		this.contactList = new JContactListPanel(
 			this, this.parentFrame, this.messagingStorage, this.errorReporter);
 		textAndContactsPane.setRightComponent(this.contactList);
 		
-		JPanel conversationPanel = new JPanel(new BorderLayout(0, 0));
+		ZcashJPanel conversationPanel = new ZcashJPanel(new BorderLayout(0, 0));
 		conversationPanel.add(
-			new JScrollPane(
-				this.conversationTextPane = new JTextPane(),
+			new ZcashJScrollPane(
+				this.conversationTextPane = new ZcashJTextPane(),
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), 
 			BorderLayout.CENTER);
 		this.conversationTextPane.setEditable(false);
 		this.conversationTextPane.setContentType("text/html");
 		this.conversationTextPane.addHyperlinkListener(new GroupLinkHandler());
-		JPanel upperPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
-		upperPanel.add(this.conversationLabel = new JLabel(
+		ZcashJPanel upperPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		upperPanel.add(this.conversationLabel = new ZcashJLabel(
 			"<html><span style=\"font-size:1.2em;font-style:italic;\">Conversation ...</span>"));
-		upperPanel.add(new JLabel(
+		upperPanel.add(new ZcashJLabel(
     			"<html><span style=\"font-size:1.6em;font-style:italic;\">&nbsp;</span>"));
 		upperPanel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 3));
 		conversationPanel.add(upperPanel, BorderLayout.NORTH);		
@@ -189,19 +191,19 @@ public class MessagingPanel
 		});
 		
 		
-		JPanel writeAndSendPanel = new JPanel(new BorderLayout(0, 0));
+		ZcashJPanel writeAndSendPanel = new ZcashJPanel(new BorderLayout(0, 0));
 		this.add(writeAndSendPanel, BorderLayout.SOUTH);
 		
-		JPanel writePanel = new JPanel(new BorderLayout(0, 0));
-		this.writeMessageTextArea = new JTextArea(3, 50);
+		ZcashJPanel writePanel = new ZcashJPanel(new BorderLayout(0, 0));
+		this.writeMessageTextArea = new ZcashJTextArea(3, 50);
 		this.writeMessageTextArea.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
 		this.writeMessageTextArea.setLineWrap(true);
 		writePanel.add(
-			new JScrollPane(this.writeMessageTextArea,
-					        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-					        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), 
+			new ZcashJScrollPane(this.writeMessageTextArea,
+					        ZcashJScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+					        ZcashJScrollPane.HORIZONTAL_SCROLLBAR_NEVER), 
 			BorderLayout.CENTER);
-		JLabel sendLabel = new JLabel("Message to send:");
+		ZcashJLabel sendLabel = new ZcashJLabel("Message to send:");
 		MessagingIdentity ownIdentity = this.messagingStorage.getOwnIdentity();
 		if (ownIdentity != null)
 		{
@@ -209,36 +211,36 @@ public class MessagingPanel
 		}
 		sendLabel.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
 		writePanel.add(sendLabel, BorderLayout.NORTH);
-		writePanel.add(new JLabel(""), BorderLayout.EAST); // dummy
+		writePanel.add(new ZcashJLabel(""), BorderLayout.EAST); // dummy
 		writeAndSendPanel.add(writePanel, BorderLayout.CENTER);
 		
-		JPanel sendPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 4, 0));
-		JPanel sendButtonPanel = new JPanel();
+		ZcashJPanel sendPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 4, 0));
+		ZcashJPanel sendButtonPanel = new ZcashJPanel();
 		sendButtonPanel.setLayout(new BoxLayout(sendButtonPanel, BoxLayout.Y_AXIS));
-		JLabel filler = new JLabel(" ");
+		ZcashJLabel filler = new ZcashJLabel(" ");
 		filler.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
 		sendButtonPanel.add(filler); // filler
-		sendButton = new JButton("Send message  \u27A4\u27A4\u27A4");
-		JPanel tempPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		sendButton = new ZcashJButton("Send message  \u27A4\u27A4\u27A4");
+		ZcashJPanel tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		tempPanel.add(sendButton);
 		sendButtonPanel.add(tempPanel);
-		sendMessageProgressBar = new JProgressBar(0, 200);
+		sendMessageProgressBar = new ZcashJProgressBar(0, 200);
 		sendMessageProgressBar.setPreferredSize(
 			new Dimension(sendButton.getPreferredSize().width, 
 					      sendMessageProgressBar.getPreferredSize().height * 2 / 3));
-		tempPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		tempPanel.add(sendMessageProgressBar);
 		sendButtonPanel.add(tempPanel);
-		sendResultLabel = new JLabel(
+		sendResultLabel = new ZcashJLabel(
 				"<html><span style=\"font-size:0.8em;\">" +
 				"Send status: &nbsp;</span>");
-		tempPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		tempPanel.add(sendResultLabel);
 		sendButtonPanel.add(tempPanel);
 		
-		tempPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		tempPanel.add(this.sendAnonymously = 
-			new JCheckBox("<html><span style=\"font-size:0.8em;\">Send anonymously</span>"));
+			new ZcashJCheckBox("<html><span style=\"font-size:0.8em;\">Send anonymously</span>"));
 		sendButtonPanel.add(tempPanel);
 		
 		sendPanel.add(sendButtonPanel);
@@ -744,7 +746,7 @@ public class MessagingPanel
 				}
 			}
 			
-			JFileChooser fileChooser = new JFileChooser();
+			ZcashJFileChooser fileChooser = new ZcashJFileChooser();
 			fileChooser.setDialogTitle("Export messaging identity to JSON file ...");
 			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			fileChooser.setSelectedFile(
@@ -800,13 +802,13 @@ public class MessagingPanel
 	{
 		try
 		{
-			JFileChooser fileChooser = new JFileChooser();
+			ZcashJFileChooser fileChooser = new ZcashJFileChooser();
 			fileChooser.setDialogTitle("Import contact's messaging identity from file...");
-			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			fileChooser.setFileSelectionMode(ZcashJFileChooser.FILES_ONLY);
 			 
 			int result = fileChooser.showOpenDialog(this.parentFrame);
 			 
-			if (result != JFileChooser.APPROVE_OPTION) 
+			if (result != ZcashJFileChooser.APPROVE_OPTION) 
 			{
 			    return;
 			}

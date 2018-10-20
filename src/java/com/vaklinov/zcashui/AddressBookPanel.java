@@ -2,7 +2,6 @@
 // Taken from repository https://github.com/zlatinb/zcash-swing-wallet-ui under an MIT licemse
 package com.vaklinov.zcashui;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -27,15 +26,7 @@ import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EtchedBorder;
@@ -46,7 +37,15 @@ import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
-public class AddressBookPanel extends JPanel {
+import com.cabecinha84.zcashui.ZcashJButton;
+import com.cabecinha84.zcashui.ZcashJMenuItem;
+import com.cabecinha84.zcashui.ZcashJPanel;
+import com.cabecinha84.zcashui.ZcashJPopupMenu;
+import com.cabecinha84.zcashui.ZcashJScrollPane;
+import com.cabecinha84.zcashui.ZcashJTabbedPane;
+import com.cabecinha84.zcashui.ZcashJTable;
+
+public class AddressBookPanel extends ZcashJPanel {
     
     private static class AddressBookEntry {
         final String name,address;
@@ -63,35 +62,35 @@ public class AddressBookPanel extends JPanel {
 
     private final Set<String> names = new HashSet<>();
     
-    private JTable table;
+    private ZcashJTable table;
     
-    private JButton sendCashButton, deleteContactButton,copyToClipboardButton;
+    private ZcashJButton sendCashButton, deleteContactButton,copyToClipboardButton;
     
     private final SendCashPanel sendCashPanel;
-    private final JTabbedPane tabs;
+    private final ZcashJTabbedPane tabs;
     
     private LabelStorage labelStorage;
     
-    private JPanel buildButtonsPanel() {
-        JPanel panel = new JPanel();
+    private ZcashJPanel buildButtonsPanel() {
+        ZcashJPanel panel = new ZcashJPanel();
         panel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         panel.setLayout(new FlowLayout(FlowLayout.CENTER, 3, 3));
         
-        JButton newContactButton = new JButton(langUtil.getString("panel.address.book.new.contact.button.text"));
+        ZcashJButton newContactButton = new ZcashJButton(langUtil.getString("panel.address.book.new.contact.button.text"));
         newContactButton.addActionListener(new NewContactActionListener());
         panel.add(newContactButton);
                 
-        sendCashButton = new JButton(langUtil.getString("panel.address.book.send.zcash.button.text"));
+        sendCashButton = new ZcashJButton(langUtil.getString("panel.address.book.send.zcash.button.text"));
         sendCashButton.addActionListener(new SendCashActionListener());
         sendCashButton.setEnabled(false);
         panel.add(sendCashButton);
         
-        copyToClipboardButton = new JButton(langUtil.getString("panel.address.book.copy.clipboard.button.text"));
+        copyToClipboardButton = new ZcashJButton(langUtil.getString("panel.address.book.copy.clipboard.button.text"));
         copyToClipboardButton.setEnabled(false);
         copyToClipboardButton.addActionListener(new CopyToClipboardActionListener());
         panel.add(copyToClipboardButton);
         
-        deleteContactButton = new JButton(langUtil.getString("panel.address.book.delete.contact.button.text"));
+        deleteContactButton = new ZcashJButton(langUtil.getString("panel.address.book.delete.contact.button.text"));
         deleteContactButton.setEnabled(false);
         deleteContactButton.addActionListener(new DeleteAddressActionListener());
         panel.add(deleteContactButton);
@@ -99,8 +98,8 @@ public class AddressBookPanel extends JPanel {
         return panel;
     }
 
-    private JScrollPane buildTablePanel() {
-        table = new JTable(new AddressBookTableModel(),new DefaultTableColumnModel());
+    private ZcashJScrollPane buildTablePanel() {
+        table = new ZcashJTable(new AddressBookTableModel(),new DefaultTableColumnModel());
         TableColumn nameColumn = new TableColumn(0);
         TableColumn addressColumn = new TableColumn(1);
         table.addColumn(nameColumn);
@@ -114,11 +113,11 @@ public class AddressBookPanel extends JPanel {
 		Component comp = renderer.getTableCellRendererComponent(table, "123", false, false, 0, 0);
 		table.setRowHeight(new Double(comp.getPreferredSize().getHeight()).intValue() + 2);
         
-        JScrollPane scrollPane = new JScrollPane(table);
+        ZcashJScrollPane scrollPane = new ZcashJScrollPane(table);
         return scrollPane;
     }
 
-    public AddressBookPanel(SendCashPanel sendCashPanel, JTabbedPane tabs, LabelStorage labelStorage) 
+    public AddressBookPanel(SendCashPanel sendCashPanel, ZcashJTabbedPane tabs, LabelStorage labelStorage) 
     	throws IOException 
     {
     	this.labelStorage = labelStorage;
@@ -270,17 +269,17 @@ public class AddressBookPanel extends JPanel {
             table.changeSelection(row, column, false, false);
             AddressBookEntry entry = entries.get(row);
             
-            JPopupMenu menu = new JPopupMenu();
+            ZcashJPopupMenu menu = new ZcashJPopupMenu();
             
-            JMenuItem sendCash = new JMenuItem(langUtil.getString("panel.address.book.menuitem.sendcash.text", entry.name));
+            ZcashJMenuItem sendCash = new ZcashJMenuItem(langUtil.getString("panel.address.book.menuitem.sendcash.text", entry.name));
             sendCash.addActionListener(new SendCashActionListener());
             menu.add(sendCash);
             
-            JMenuItem copyAddress = new JMenuItem(langUtil.getString("panel.address.book.menuitem.copy.address.text"));
+            ZcashJMenuItem copyAddress = new ZcashJMenuItem(langUtil.getString("panel.address.book.menuitem.copy.address.text"));
             copyAddress.addActionListener(new CopyToClipboardActionListener());
             menu.add(copyAddress);
             
-            JMenuItem deleteEntry = new JMenuItem(langUtil.getString("panel.address.book.menuitem.delete.entry.text", entry.name));
+            ZcashJMenuItem deleteEntry = new ZcashJMenuItem(langUtil.getString("panel.address.book.menuitem.delete.entry.text", entry.name));
             deleteEntry.addActionListener(new DeleteAddressActionListener());
             menu.add(deleteEntry);
             
