@@ -51,25 +51,24 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.KeyStroke;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.vaklinov.zcashui.DataTable;
+import com.cabecinha84.zcashui.ZcashJButton;
+import com.cabecinha84.zcashui.ZcashJFrame;
+import com.cabecinha84.zcashui.ZcashJLabel;
+import com.cabecinha84.zcashui.ZcashJMenuItem;
+import com.cabecinha84.zcashui.ZcashJPanel;
+import com.cabecinha84.zcashui.ZcashJPopupMenu;
+import com.cabecinha84.zcashui.ZcashJScrollPane;
+import com.cabecinha84.zcashui.ZcashXUI;
+
 import com.vaklinov.zcashui.Log;
-import com.vaklinov.zcashui.SingleKeyImportDialog;
 import com.vaklinov.zcashui.StatusUpdateErrorReporter;
 
 
@@ -77,18 +76,18 @@ import com.vaklinov.zcashui.StatusUpdateErrorReporter;
  * Main panel for messaging
  */
 public class JContactListPanel
-	extends JPanel
+	extends ZcashJPanel
 {
 	private MessagingPanel   parent;
 	private MessagingStorage mesagingStorage;
 	private ContactList      list;
 	private StatusUpdateErrorReporter errorReporter;
-	private JFrame           parentFrame;
+	private ZcashJFrame           parentFrame;
 	
-	private JPopupMenu popupMenu;
+	private ZcashJPopupMenu popupMenu;
 	
 	public JContactListPanel(MessagingPanel parent, 
-			                 JFrame parentFrame,
+			                 ZcashJFrame parentFrame,
 			                 MessagingStorage messagingStorage, 
 			                 StatusUpdateErrorReporter errorReporter)
 		throws IOException
@@ -104,30 +103,30 @@ public class JContactListPanel
 		
 		list = new ContactList();
 		list.setIdentities(this.mesagingStorage.getContactIdentities(true));
-		this.add(new JScrollPane(list), BorderLayout.CENTER);
+		this.add(new ZcashJScrollPane(list), BorderLayout.CENTER);
 		
-		JPanel upperPanel = new JPanel(new BorderLayout(0, 0));
-		upperPanel.add(new JLabel(
+		ZcashJPanel upperPanel = new ZcashJPanel(new BorderLayout(0, 0));
+		upperPanel.add(new ZcashJLabel(
 			"<html><span style=\"font-size:1.2em;font-style:italic;\">Contact list: &nbsp;</span></html>"),
 			BorderLayout.WEST);
 		URL addIconUrl = this.getClass().getClassLoader().getResource("images/add12.png");
         ImageIcon addIcon = new ImageIcon(addIconUrl);
         URL removeIconUrl = this.getClass().getClassLoader().getResource("images/remove12.png");
         ImageIcon removeIcon = new ImageIcon(removeIconUrl);
-        JButton addButton = new JButton(addIcon);
+        ZcashJButton addButton = new ZcashJButton(addIcon);
         addButton.setToolTipText("Add contact...");
-        JButton removeButton = new JButton(removeIcon);
+        ZcashJButton removeButton = new ZcashJButton(removeIcon);
         removeButton.setToolTipText("Remove contact...");
-        JButton addGroupButton = new JButton(
+        ZcashJButton addGroupButton = new ZcashJButton(
         	"<html><span style=\"font-size:0.7em;\">Group</span></html>", addIcon);
         addGroupButton.setToolTipText("Add group...");
-        JPanel tempPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 3, 0));
+        ZcashJPanel tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 3, 0));
         tempPanel.add(removeButton);
         tempPanel.add(addButton);
         tempPanel.add(addGroupButton);
         upperPanel.add(tempPanel, BorderLayout.EAST);
         
-        upperPanel.add(new JLabel(
+        upperPanel.add(new ZcashJLabel(
     			"<html><span style=\"font-size:1.6em;font-style:italic;\">&nbsp;</span>"),
     			BorderLayout.CENTER);
 		upperPanel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 3));
@@ -228,10 +227,10 @@ public class JContactListPanel
 		
 		
 		// Actions of the popup menu
-		this.popupMenu = new JPopupMenu();
+		this.popupMenu = new ZcashJPopupMenu();
 		int accelaratorKeyMask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 		
-		JMenuItem showDetails = new JMenuItem("Show details...");
+		ZcashJMenuItem showDetails = new ZcashJMenuItem("Show details...");
         popupMenu.add(showDetails);
         showDetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, accelaratorKeyMask));
         showDetails.addActionListener(new ActionListener() 
@@ -249,7 +248,7 @@ public class JContactListPanel
 			}
 		});
         
-		JMenuItem removeContact = new JMenuItem("Remove...");
+		ZcashJMenuItem removeContact = new ZcashJMenuItem("Remove...");
         popupMenu.add(removeContact);
         removeContact.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, accelaratorKeyMask));
         removeContact.addActionListener(new ActionListener() 
@@ -261,7 +260,7 @@ public class JContactListPanel
 			}
 		});
 
-		JMenuItem sendContactDetails = new JMenuItem("Send contact details...");
+		ZcashJMenuItem sendContactDetails = new ZcashJMenuItem("Send contact details...");
         popupMenu.add(sendContactDetails);
         sendContactDetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, accelaratorKeyMask));
         sendContactDetails.addActionListener(new ActionListener() 
@@ -343,11 +342,13 @@ public class JContactListPanel
 	{
 		ImageIcon contactBlackIcon;
 		ImageIcon contactGroupBlackIcon;
-		JLabel    renderer;
+		ZcashJLabel    renderer;
+		private static Color backGroundColor = ZcashXUI.startup;
 		
 		public ContactList()
 		{
 			super();
+			this.setBackground(backGroundColor);
 			
 			this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			
@@ -356,7 +357,7 @@ public class JContactListPanel
 	        URL groupIconUrl = this.getClass().getClassLoader().getResource("images/contact-group-black.png");
 	        contactGroupBlackIcon = new ImageIcon(groupIconUrl);
 	        
-	        renderer = new JLabel();
+	        renderer = new ZcashJLabel();
 	        renderer.setOpaque(true);
 		}
 		

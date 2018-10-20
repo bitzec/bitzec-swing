@@ -37,42 +37,41 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JProgressBar;
-import javax.swing.JTextField;
 
+import com.cabecinha84.zcashui.ZcashJButton;
+import com.cabecinha84.zcashui.ZcashJDialog;
+import com.cabecinha84.zcashui.ZcashJFrame;
+import com.cabecinha84.zcashui.ZcashJLabel;
+import com.cabecinha84.zcashui.ZcashJPanel;
+import com.cabecinha84.zcashui.ZcashJProgressBar;
+import com.cabecinha84.zcashui.ZcashJTextField;
 
 /**
  * Dialog to enter a single private key to import
  */
 public class SingleKeyImportDialog
-	extends JDialog
+	extends ZcashJDialog
 {
 	protected boolean isOKPressed = false;
 	protected String  key    = null;
 	
-	protected JLabel     keyLabel = null;
-	protected JTextField keyField = null;
+	protected ZcashJLabel     keyLabel = null;
+	protected ZcashJTextField keyField = null;
 	
-	protected JLabel upperLabel;
-	protected JLabel lowerLabel;
+	protected ZcashJLabel upperLabel;
+	protected ZcashJLabel lowerLabel;
 	
-	protected JProgressBar progress = null;
+	protected ZcashJProgressBar progress = null;
 	
 	protected ZCashClientCaller caller;
 
 	private LanguageUtil langUtil;
 	
-	JButton okButon;
-	JButton cancelButon;
+	ZcashJButton okButon;
+	ZcashJButton cancelButon;
 		
-	public SingleKeyImportDialog(JFrame parent, ZCashClientCaller caller)
+	public SingleKeyImportDialog(ZcashJFrame parent, ZCashClientCaller caller)
 	{
 		super(parent);
 		this.caller = caller;
@@ -82,53 +81,53 @@ public class SingleKeyImportDialog
 		this.setModal(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
-		JPanel controlsPanel = new JPanel();
+		ZcashJPanel controlsPanel = new ZcashJPanel();
 		controlsPanel.setLayout(new BoxLayout(controlsPanel, BoxLayout.Y_AXIS));
 		controlsPanel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 
-		JPanel tempPanel = new JPanel(new BorderLayout(0, 0));
-		tempPanel.add(this.upperLabel = new JLabel(
+		ZcashJPanel tempPanel = new ZcashJPanel(new BorderLayout(0, 0));
+		tempPanel.add(this.upperLabel = new ZcashJLabel(
 				langUtil.getString("single.key.import.dialog.tmp.panel")),
 				BorderLayout.CENTER);
 		controlsPanel.add(tempPanel);
 		
-		JLabel dividerLabel = new JLabel("   ");
+		ZcashJLabel dividerLabel = new ZcashJLabel("   ");
 		dividerLabel.setFont(new Font("Helvetica", Font.PLAIN, 8));
 		controlsPanel.add(dividerLabel);
 		
-		tempPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
-		tempPanel.add(keyLabel = new JLabel(langUtil.getString("single.key.import.dialog.tmp.panel.key.label")));
-		tempPanel.add(keyField = new JTextField(60));
+		tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		tempPanel.add(keyLabel = new ZcashJLabel(langUtil.getString("single.key.import.dialog.tmp.panel.key.label")));
+		tempPanel.add(keyField = new ZcashJTextField(60));
 		controlsPanel.add(tempPanel);
 		
-		dividerLabel = new JLabel("   ");
+		dividerLabel = new ZcashJLabel("   ");
 		dividerLabel.setFont(new Font("Helvetica", Font.PLAIN, 8));
 		controlsPanel.add(dividerLabel);
 
-		tempPanel = new JPanel(new BorderLayout(0, 0));
-		tempPanel.add(this.lowerLabel = new JLabel(
+		tempPanel = new ZcashJPanel(new BorderLayout(0, 0));
+		tempPanel.add(this.lowerLabel = new ZcashJLabel(
 				langUtil.getString("single.key.import.dialog.tmp.panel.key.lower.label")),
 				BorderLayout.CENTER);
 		controlsPanel.add(tempPanel);
 		
-		dividerLabel = new JLabel("   ");
+		dividerLabel = new ZcashJLabel("   ");
 		dividerLabel.setFont(new Font("Helvetica", Font.PLAIN, 8));
 		controlsPanel.add(dividerLabel);
 		
-		tempPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
-		tempPanel.add(progress = new JProgressBar());
+		tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		tempPanel.add(progress = new ZcashJProgressBar());
 		controlsPanel.add(tempPanel);
 		
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
 		this.getContentPane().add(controlsPanel, BorderLayout.NORTH);
 
 		// Form buttons
-		JPanel buttonPanel = new JPanel();
+		ZcashJPanel buttonPanel = new ZcashJPanel();
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 3, 3));
-		okButon = new JButton(langUtil.getString("single.key.import.dialog.tmp.panel.ok.button.text"));
+		okButon = new ZcashJButton(langUtil.getString("single.key.import.dialog.tmp.panel.ok.button.text"));
 		buttonPanel.add(okButon);
-		buttonPanel.add(new JLabel("   "));
-		cancelButon = new JButton(langUtil.getString("single.key.import.dialog.tmp.panel.cancel.button.text"));
+		buttonPanel.add(new ZcashJLabel("   "));
+		cancelButon = new ZcashJButton(langUtil.getString("single.key.import.dialog.tmp.panel.cancel.button.text"));
 		buttonPanel.add(cancelButon);
 		this.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 

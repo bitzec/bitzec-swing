@@ -34,27 +34,15 @@ import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Set;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.Timer;
@@ -63,6 +51,13 @@ import javax.swing.border.EtchedBorder;
 import com.vaklinov.zcashui.OSUtil.OS_TYPE;
 import com.vaklinov.zcashui.ZCashClientCaller.WalletCallException;
 
+import com.cabecinha84.zcashui.ZcashJButton;
+import com.cabecinha84.zcashui.ZcashJFrame;
+import com.cabecinha84.zcashui.ZcashJLabel;
+import com.cabecinha84.zcashui.ZcashJPanel;
+import com.cabecinha84.zcashui.ZcashJScrollPane;
+import com.cabecinha84.zcashui.ZcashJTable;
+
 
 /**
  * Addresses panel - shows T/Z addresses and their balances.
@@ -70,11 +65,11 @@ import com.vaklinov.zcashui.ZCashClientCaller.WalletCallException;
 public class AddressesPanel
 		extends WalletTabPanel
 {
-	private JFrame parentFrame;
+	private ZcashJFrame parentFrame;
 	private ZCashClientCaller clientCaller;
 	private StatusUpdateErrorReporter errorReporter;
 
-	private JTable addressBalanceTable   = null;
+	private ZcashJTable addressBalanceTable   = null;
 	private JScrollPane addressBalanceTablePane  = null;
 
 	String[][] lastAddressBalanceData = null;
@@ -96,7 +91,7 @@ public class AddressesPanel
 	private ZCashInstallationObserver installationObserver;
 
 
-	public AddressesPanel(JFrame parentFrame, ZCashClientCaller clientCaller, StatusUpdateErrorReporter errorReporter, LabelStorage labelStorage,
+	public AddressesPanel(ZcashJFrame parentFrame, ZCashClientCaller clientCaller, StatusUpdateErrorReporter errorReporter, LabelStorage labelStorage,
 			              ZCashInstallationObserver installationObserver)
 			throws IOException, InterruptedException, WalletCallException
 	{
@@ -113,35 +108,35 @@ public class AddressesPanel
 		this.langUtil = LanguageUtil.instance();
 
 		// Build content
-		JPanel addressesPanel = this;
+		ZcashJPanel addressesPanel = this;
 		addressesPanel.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
 		addressesPanel.setLayout(new BorderLayout(0, 0));
 
 		// Build panel of buttons
-		JPanel buttonPanel = new JPanel();
+		ZcashJPanel buttonPanel = new ZcashJPanel();
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 3, 3));
 		buttonPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 
-		JButton newTAddressButton = new JButton(langUtil.getString("panel.address.button.new.address"));
+		ZcashJButton newTAddressButton = new ZcashJButton(langUtil.getString("panel.address.button.new.address"));
 		buttonPanel.add(newTAddressButton);
-		JButton newZAddressButton = new JButton(langUtil.getString("panel.address.button.new.z.address"));
+		ZcashJButton newZAddressButton = new ZcashJButton(langUtil.getString("panel.address.button.new.z.address"));
 		buttonPanel.add(newZAddressButton);
-		buttonPanel.add(new JLabel("           "));
-		JButton refreshButton = new JButton(langUtil.getString("panel.address.button.refresh"));
+		buttonPanel.add(new ZcashJLabel("           "));
+		ZcashJButton refreshButton = new ZcashJButton(langUtil.getString("panel.address.button.refresh"));
 		buttonPanel.add(refreshButton);
 
 		addressesPanel.add(buttonPanel, BorderLayout.SOUTH);
 
 		// Table of addresses
 		lastAddressBalanceData = getAddressBalanceDataFromWallet();
-		addressesPanel.add(addressBalanceTablePane = new JScrollPane(
+		addressesPanel.add(addressBalanceTablePane = new ZcashJScrollPane(
 						addressBalanceTable = this.createAddressBalanceTable(lastAddressBalanceData)),
 				BorderLayout.CENTER);
 
-		JPanel warningPanel = new JPanel();
+		ZcashJPanel warningPanel = new ZcashJPanel();
 		warningPanel.setLayout(new BorderLayout(3, 3));
 		warningPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
-		JLabel warningL = new JLabel(langUtil.getString("panel.address.label.warning"));
+		ZcashJLabel warningL = new ZcashJLabel(langUtil.getString("panel.address.label.warning"));
 		warningPanel.add(warningL, BorderLayout.NORTH);
 		addressesPanel.add(warningPanel, BorderLayout.NORTH);
 
@@ -257,7 +252,7 @@ public class AddressesPanel
 			if (bEncryptedWallet && isZAddress)
 			{
 				this.setCursor(oldCursor);
-				PasswordDialog pd = new PasswordDialog((JFrame)(this.getRootPane().getParent()));
+				PasswordDialog pd = new PasswordDialog((ZcashJFrame)(this.getRootPane().getParent()));
 				pd.setVisible(true);
 
 				if (!pd.isOKPressed())
@@ -341,7 +336,7 @@ public class AddressesPanel
 		{
 			Log.info("Updating table of addresses/balances I...");
 			this.remove(addressBalanceTablePane);
-			this.add(addressBalanceTablePane = new JScrollPane(
+			this.add(addressBalanceTablePane = new ZcashJScrollPane(
 							addressBalanceTable = this.createAddressBalanceTable(newAddressBalanceData)),
 					BorderLayout.CENTER);
 			lastAddressBalanceData = newAddressBalanceData;
@@ -369,7 +364,7 @@ public class AddressesPanel
 		{
 			Log.info("Updating table of addresses/balances A...");
 			this.remove(addressBalanceTablePane);
-			this.add(addressBalanceTablePane = new JScrollPane(
+			this.add(addressBalanceTablePane = new ZcashJScrollPane(
 							addressBalanceTable = this.createAddressBalanceTable(newAddressBalanceData)),
 					BorderLayout.CENTER);
 			lastAddressBalanceData = newAddressBalanceData;
@@ -379,7 +374,7 @@ public class AddressesPanel
 	}
 
 
-	private JTable createAddressBalanceTable(String rowData[][])
+	private ZcashJTable createAddressBalanceTable(String rowData[][])
 			throws WalletCallException, IOException, InterruptedException
 	{
 		// Create new row data - to make sure we avoid update problems
@@ -394,7 +389,7 @@ public class AddressesPanel
 		}
 		
 		String columnNames[] = langUtil.getString("panel.address.table.create.address.header").split(":");
-        JTable table = new AddressTable(rowDataNew, columnNames, this.clientCaller, this.labelStorage, this.installationObserver);
+        ZcashJTable table = new AddressTable(rowDataNew, columnNames, this.clientCaller, this.labelStorage, this.installationObserver);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
         table.getColumnModel().getColumn(0).setPreferredWidth(280);
         table.getColumnModel().getColumn(1).setPreferredWidth(160);
