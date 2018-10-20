@@ -578,7 +578,7 @@ public class ZCashUI
 
         	LanguageUtil langUtil = LanguageUtil.instance();
         	
-        	Log.info("Starting Zcash Swing Wallet ...");
+        	Log.info("Starting MyZcash Swing Wallet ...");
         	Log.info("OS: " + System.getProperty("os.name") + " = " + os);
         	Log.info("Current directory: " + new File(".").getCanonicalPath());
         	Log.info("Class path: " + System.getProperty("java.class.path"));

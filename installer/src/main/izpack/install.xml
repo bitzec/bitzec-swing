@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <installation version="5.0">
   <info>
-    <appname>ZcashSwingWalletUI</appname>
+    <appname>MyZcash</appname>
     <appversion>1.0.0</appversion>
-    <url>https://z.cash</url>
+    <url>https://myzcash.org</url>
     <authors>
         <author name="Ivan Vaklinov" email="ivan@vaklinov.com"/>
         <author name="Armand Ballaci" email="aballaci@gmail.com"/>
@@ -47,7 +47,7 @@
   </resources>
   <variables>
     <variable name="InstallerFrame.logfilePath" value="Default"/>
-    <variable name="WELCOME_TEXT" value="Zcash Swing Wallet Installation"/>
+    <variable name="WELCOME_TEXT" value="MyZcash Swing Wallet Installation"/>
     <variable name="WELCOME_VERSION" value="Version: 1.0.0"/>
     <variable name="WELCOME_BG_COLOR" value="#404B62"/>
     <variable name="WELCOME_TEXT_COLOR" value="#ffffff"/>
