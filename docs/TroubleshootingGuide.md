@@ -6,9 +6,9 @@ This document outlines possible solutions to several common problems that user m
 
 When wallet problems occur, the information about the errors that caused the issue is usually found in the log files written by the wallet itself and also by `zcashd`. The location of the wallet log files is:
 ```
-Linux:    ~/.ZCashSwingWalletUI/ZCashGUIWallet_xxxx_xx_debug.log 
-Windows:  %LOCALAPPDATA%/ZCashSwingWalletUI/ZCashGUIWallet_xxxx_xx_debug.log
-macOS:   ~/Library/Application Support/ZCashSwingWalletUI/ZCashGUIWallet_xxxx_xx_debug.log
+Linux:    ~/.MyZcash/MyZcashGUIWallet_xxxx_xx_debug.log 
+Windows:  %LOCALAPPDATA%/MyZcash/MyZcashGUIWallet_xxxx_xx_debug.log
+macOS:   ~/Library/Application Support/MyZcash/MyZcashGUIWallet_xxxx_xx_debug.log
 ```
 `zcashd` that is automatically started by the wallet, stores its logs at locations:
 ```

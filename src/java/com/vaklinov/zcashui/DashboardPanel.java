@@ -31,6 +31,8 @@ package com.vaklinov.zcashui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -42,6 +44,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.URI;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -52,11 +55,7 @@ import java.util.Date;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.Timer;
@@ -72,6 +71,13 @@ import com.vaklinov.zcashui.ZCashClientCaller.WalletBalance;
 import com.vaklinov.zcashui.ZCashClientCaller.WalletCallException;
 import com.vaklinov.zcashui.ZCashInstallationObserver.DAEMON_STATUS;
 import com.vaklinov.zcashui.ZCashInstallationObserver.DaemonInfo;
+
+import com.cabecinha84.zcashui.ZcashJFrame;
+import com.cabecinha84.zcashui.ZcashJLabel;
+import com.cabecinha84.zcashui.ZcashJPanel;
+import com.cabecinha84.zcashui.ZcashJScrollPane;
+import com.cabecinha84.zcashui.ZcashPresentationPanel;
+import com.cabecinha84.zcashui.ZcashXUI;
 
 
 /**
@@ -125,7 +131,7 @@ public class DashboardPanel
 	}
 
 	
-	private JFrame parentFrame;
+	private ZcashJFrame parentFrame;
 	private TransactionsDetailPanel detailsPabelForSelection = null;
 	
 	private ZCashInstallationObserver installationObserver;
@@ -134,32 +140,33 @@ public class DashboardPanel
 	private BackupTracker backupTracker;
 	private LabelStorage labelStorage;
 	
-	private JPanel upperLogoAndWarningPanel = null;
+	private ZcashJPanel upperLogoAndWarningPanel = null;
 	
-	private JLabel networkAndBlockchainLabel = null;
-	private JLabel blockchain100PercentLabel = null;
-	private JLabel networkConnectionsIconLabel = null;
+	private ZcashJLabel networkAndBlockchainLabel = null;
+	private ZcashJLabel blockchain100PercentLabel = null;
+	private ZcashJLabel networkConnectionsIconLabel = null;
 	
 	private DataGatheringThread<NetworkAndBlockchainInfo> netInfoGatheringThread = null;
-	private JPanel blockcahinWarningPanel = null;
-	private JLabel blockcahinWarningLabel = null;
+	private ZcashJPanel blockcahinWarningPanel = null;
+	private ZcashJLabel blockcahinWarningLabel = null;
 	private ExchangeRatePanel exchangeRatePanel = null;
 
 	private Boolean walletIsEncrypted   = null;
 	private Integer blockchainPercentage = null;
 	
 	private String OSInfo              = null;
-	private JLabel daemonStatusLabel   = null;
+	private ZcashJLabel daemonStatusLabel   = null;
 	private DataGatheringThread<DaemonInfo> daemonInfoGatheringThread = null;
 	
-	private JLabel walletBalanceLabel  = null;
+	private ZcashJLabel walletBalanceLabel  = null;
 	private DataGatheringThread<WalletBalance> walletBalanceGatheringThread = null;
 	
 	private DataGatheringThread<String[][]> transactionGatheringThread = null;
 	private LanguageUtil langUtil;
+	private String currency;
 
 
-	public DashboardPanel(JFrame parentFrame,
+	public DashboardPanel(ZcashJFrame parentFrame,
 			              ZCashInstallationObserver installationObserver,
 			              ZCashClientCaller clientCaller,
 			              StatusUpdateErrorReporter errorReporter,
@@ -179,61 +186,73 @@ public class DashboardPanel
 
 		this.langUtil = LanguageUtil.instance();
 		// Build content
-		JPanel dashboard = this;
+		ZcashJPanel dashboard = this;
 		dashboard.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
 		dashboard.setLayout(new BorderLayout(0, 0));
 
 		// Upper panel with wallet balance
-		upperLogoAndWarningPanel = new JPanel();
+		upperLogoAndWarningPanel = new ZcashJPanel();
 		upperLogoAndWarningPanel.setLayout(new BorderLayout(3, 3));
 
-		JPanel tempPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 14, 16));
-		JLabel logoLabel = new JLabel(new ImageIcon(
+		ZcashJPanel tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 14, 16));
+		ZcashJLabel logoLabel = new ZcashJLabel(new ImageIcon(
 				this.getClass().getClassLoader().getResource("images/ZCash-yellow.orange-logo-small.png")));
+		logoLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		logoLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://myzcash.org/"));
+                } catch (Exception ex) {
+                	Log.warning("Error oppening https://myzcash.org/ due to: {0} {1}",
+        					ex.getClass().getName(), ex.getMessage());
+                }
+            }
+        });
 		tempPanel.add(logoLabel);
-		JLabel zcLabel = new JLabel(langUtil.getString("panel.dashboard.main.label"));
+		ZcashJLabel zcLabel = new ZcashJLabel(langUtil.getString("panel.dashboard.main.label"));
 		tempPanel.add(zcLabel);
 		tempPanel.setToolTipText(langUtil.getString("panel.dashboard.tooltip"));
 		upperLogoAndWarningPanel.add(tempPanel, BorderLayout.WEST);
 		dashboard.add(upperLogoAndWarningPanel, BorderLayout.NORTH);
 
-		JPanel roundedLeftPanel = new JPanel();
+		ZcashJPanel roundedLeftPanel = new ZcashJPanel();
 		roundedLeftPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 0));
-		JPanel leftInsidePanel = new JPanel();
+		ZcashJPanel leftInsidePanel = new ZcashJPanel();
 		leftInsidePanel.setLayout(new BorderLayout(8, 8));
-		leftInsidePanel.add(walletBalanceLabel = new JLabel(), BorderLayout.NORTH);
+		leftInsidePanel.add(walletBalanceLabel = new ZcashJLabel(), BorderLayout.NORTH);
 		roundedLeftPanel.add(leftInsidePanel);
-		tempPanel = new JPanel(new BorderLayout(0, 0));
+		tempPanel = new ZcashJPanel(new BorderLayout(0, 0));
 		tempPanel.add(roundedLeftPanel, BorderLayout.NORTH);
 		tempPanel.add(this.exchangeRatePanel = new ExchangeRatePanel(errorReporter), BorderLayout.CENTER);
 		dashboard.add(tempPanel, BorderLayout.WEST);
         
 		// List of transactions 
-        tempPanel = new JPanel(new BorderLayout(0, 0));
+        tempPanel = new ZcashJPanel(new BorderLayout(0, 0));
         tempPanel.setBorder(BorderFactory.createEmptyBorder(0, 14, 8, 4));
         tempPanel.add(new LatestTransactionsPanel(), BorderLayout.CENTER);
 		dashboard.add(tempPanel, BorderLayout.CENTER);
 
 		// Lower panel with installation status
-		JPanel installationStatusPanel = new JPanel();
+		ZcashJPanel installationStatusPanel = new ZcashJPanel();
 		installationStatusPanel.setLayout(new BorderLayout(3, 3));
-		PresentationPanel daemonStatusPanel = new PresentationPanel();
-		daemonStatusPanel.add(daemonStatusLabel = new JLabel());
+		ZcashPresentationPanel daemonStatusPanel = new ZcashPresentationPanel();
+		daemonStatusPanel.add(daemonStatusLabel = new ZcashJLabel());
 		installationStatusPanel.add(daemonStatusPanel, BorderLayout.WEST);
 		
 		// Build the network and blockchain labels - could be better!
-		JPanel netandBCPanel = new JPanel(new BorderLayout(0, 0));
+		ZcashJPanel netandBCPanel = new ZcashJPanel(new BorderLayout(0, 0));
 		netandBCPanel.setOpaque(false);
-		netandBCPanel.add(networkAndBlockchainLabel = new JLabel(), BorderLayout.CENTER);
-		JPanel netandBCIconsPanel = new JPanel(new BorderLayout(0, 0));
+		netandBCPanel.add(networkAndBlockchainLabel = new ZcashJLabel(), BorderLayout.CENTER);
+		ZcashJPanel netandBCIconsPanel = new ZcashJPanel(new BorderLayout(0, 0));
 		netandBCIconsPanel.setOpaque(false);
-		this.blockchain100PercentLabel = new JLabel(" ");
+		this.blockchain100PercentLabel = new ZcashJLabel(" ");
 		netandBCIconsPanel.add(this.blockchain100PercentLabel, BorderLayout.NORTH);
-		this.networkConnectionsIconLabel = new JLabel(" ");
+		this.networkConnectionsIconLabel = new ZcashJLabel(" ");
 		this.networkConnectionsIconLabel.setIcon(this.connect_0_Icon);
 		netandBCIconsPanel.add(this.networkConnectionsIconLabel, BorderLayout.SOUTH);
 		netandBCPanel.add(netandBCIconsPanel, BorderLayout.EAST);
-		PresentationPanel networkAndBlockchainPanel = new PresentationPanel();
+		ZcashPresentationPanel networkAndBlockchainPanel = new ZcashPresentationPanel();
 		networkAndBlockchainPanel.add(netandBCPanel);
 		installationStatusPanel.add(networkAndBlockchainPanel, BorderLayout.EAST);		
 		
@@ -375,8 +394,7 @@ public class DashboardPanel
 		netAndBlockchainTimer.start();
 		this.timers.add(netAndBlockchainTimer);
 	}
-	
-	
+
 	public void setDetailsPanelForSelection(TransactionsDetailPanel detailsPanel)
 	{
 		this.detailsPabelForSelection = detailsPanel;
@@ -528,27 +546,31 @@ public class DashboardPanel
 		}
 		
 		// Set the correct number of connections (icon)
-		switch (numConnections)
-		{
-		case 8:
-		case 7:
+		if (numConnections > 8) {
 			this.networkConnectionsIconLabel.setIcon(connect_4_Icon);
-			break;
-		case 6:
-		case 5:
-			this.networkConnectionsIconLabel.setIcon(connect_3_Icon);
-			break;
-		case 4:
-		case 3:
-			this.networkConnectionsIconLabel.setIcon(connect_2_Icon);
-			break;
-		case 2:
-		case 1:
-			this.networkConnectionsIconLabel.setIcon(connect_1_Icon);
-			break;
-		case 0:
-		default:
-			this.networkConnectionsIconLabel.setIcon(connect_0_Icon);
+		} else {
+			switch (numConnections)
+			{
+			case 8:
+			case 7:
+				this.networkConnectionsIconLabel.setIcon(connect_4_Icon);
+				break;
+			case 6:
+			case 5:
+				this.networkConnectionsIconLabel.setIcon(connect_3_Icon);
+				break;
+			case 4:
+			case 3:
+				this.networkConnectionsIconLabel.setIcon(connect_2_Icon);
+				break;
+			case 2:
+			case 1:
+				this.networkConnectionsIconLabel.setIcon(connect_1_Icon);
+				break;
+			case 0:
+			default:
+				this.networkConnectionsIconLabel.setIcon(connect_0_Icon);
+			}
 		}
 		
 		// Set the blockchain synchronization icon
@@ -569,9 +591,9 @@ public class DashboardPanel
 			if (this.blockcahinWarningPanel == null)
 			{
 				// Create a new warning panel
-				JPanel tempPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
-		        PresentationPanel warningPanel = new PresentationPanel();
-		        this.blockcahinWarningLabel = new JLabel(warningText);
+				ZcashJPanel tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		        ZcashPresentationPanel warningPanel = new ZcashPresentationPanel();
+		        this.blockcahinWarningLabel = new ZcashJLabel(warningText);
 				warningPanel.add(this.blockcahinWarningLabel);
 				tempPanel.add(warningPanel);
 				this.blockcahinWarningPanel = tempPanel;
@@ -621,29 +643,29 @@ public class DashboardPanel
 		String color2 = privateBalance.equals(privateUCBalance)         ? "" : "color:#cc3300;";
 		String color3 = totalBalance.equals(totalUCBalance)             ? "" : "color:#cc3300;";
 		
-		Double usdBalance = (this.exchangeRatePanel != null) ? this.exchangeRatePanel.getUsdPrice() : null;
-		String usdBalanceStr = "";
-		if (usdBalance != null)
+		Double currencyBalance = (this.exchangeRatePanel != null) ? this.exchangeRatePanel.getCurrencyPrice() : null;
+		String currencyBalanceStr  = "";
+		if (currencyBalance  != null)
 		{
-			usdBalance = usdBalance * balance.totalUnconfirmedBalance;
-			DecimalFormat usdDF = new DecimalFormat("########0.00");
-			String formattedUSDVal = usdDF.format(usdBalance);
+			currencyBalance = currencyBalance * balance.totalUnconfirmedBalance;
+			DecimalFormat currencyDF = new DecimalFormat("########0.00");
+			String formattedCurrencyVal = currencyDF.format(currencyBalance);
 			
 			// make sure ZEC and USD are aligned
-			int diff = totalUCBalance.length() - formattedUSDVal.length();
+			int diff = totalUCBalance.length() - formattedCurrencyVal.length();
 			while (diff-- > 0)
 			{
-				formattedUSDVal += "&nbsp;";
+				formattedCurrencyVal += "&nbsp;";
 			}
 			
 			// TODO: Remove
 			//System.out.println("formattedUSDVal = [" + formattedUSDVal + "]");
-			usdBalanceStr = langUtil.getString("panel.dashboard.marketcap.usd.balance.string", color3, formattedUSDVal);
+			currencyBalanceStr = langUtil.getString("panel.dashboard.marketcap.currency.balance.string", color3, formattedCurrencyVal, ZcashXUI.currency);
 		}
 		
 		String text = langUtil.getString("panel.dashboard.marketcap.usd.balance.text",
 				color1, transparentUCBalance, color2, privateUCBalance,
-				color3, totalUCBalance, usdBalanceStr);
+				color3, totalUCBalance, currencyBalanceStr);
 
 		// TODO: Remove
 		//System.out.println("totalUCBalance = [" + totalUCBalance + "]");
@@ -778,15 +800,14 @@ public class DashboardPanel
 	
 	
 	// Specific panel class for showing the exchange rates and values in FIAT
-	class ExchangeRatePanel
-		extends JPanel
+	class ExchangeRatePanel extends ZcashJPanel
 	{
 		private DataGatheringThread<JsonObject> zcashDataGatheringThread = null;
 		
 		private DataTable table;
-		private JScrollPane tablePane;
+		private ZcashJScrollPane tablePane;
 		
-		private Double lastUsdPrice;
+		private Double lastCurrencyPrice;
 		
 		public ExchangeRatePanel(StatusUpdateErrorReporter errorReporter)
 		{			
@@ -847,7 +868,7 @@ public class DashboardPanel
 			d.setSize((d.getWidth() * 26) / 10, d.getHeight()); // TODO: better sizing
 			this.table.setPreferredScrollableViewportSize(d);
 			this.table.setFillsViewportHeight(false);
-            this.add(this.tablePane = new JScrollPane(this.table));
+            this.add(this.tablePane = new ZcashJScrollPane(this.table));
 		}
 		
 		
@@ -855,20 +876,31 @@ public class DashboardPanel
 		private Object[][] getExchangeDataInTableForm()
 		{
 			JsonObject data = this.zcashDataGatheringThread.getLastData();
+			JsonObject rates = new JsonObject();
+			JsonObject cmc = new JsonObject();
 			if (data == null)
 			{
 				data = new JsonObject();
+				rates = new JsonObject();
+				cmc = new JsonObject();
+			} else {
+			    Log.info(data.get("rates").toString());
+				rates = data.get("rates").asObject();
+				cmc = data.get("cmc").asObject();
 			}
-			
-			String usdPrice = data.getString("price_usd", "N/A");
+
+			//JsonObject rates = data.getJSONObject("rates");
+			//Log.info(rates.toString());
+			Double price = rates.getDouble("rate", 0);
 			try
 			{
-				Double usdPriceD = Double.parseDouble(usdPrice);
-				usdPrice = new DecimalFormat("########0.00").format(usdPriceD);
-				this.lastUsdPrice = usdPriceD;
+				String priceX = String.format("%.3f", price);
+				Double priceD = Double.parseDouble(priceX);
+				price = priceD;
+				this.lastCurrencyPrice = priceD;
 			} catch (NumberFormatException nfe) { /* Do nothing */ }
 			
-			String usdMarketCap = data.getString("market_cap_usd", "N/A");
+			String usdMarketCap = cmc.getString("market_cap_usd", "N/A");
 			try
 			{
 				Double usdMarketCapD = Double.parseDouble(usdMarketCap) / 1000000;
@@ -876,42 +908,66 @@ public class DashboardPanel
 			} catch (NumberFormatException nfe) { /* Do nothing */ }
 			
 			// Query the object for individual fields
+			String currencyMessage = langUtil.getString("panel.dashboard.marketcap.price.currency") + ZcashXUI.currency + ":";
 			String tableData[][] = new String[][]
 			{
-				{ langUtil.getString("panel.dashboard.marketcap.price.usd"),     usdPrice},
-				{ langUtil.getString("panel.dashboard.marketcap.price.btc"),     data.getString("price_btc",          "N/A") },
+				{ currencyMessage,     Double.toString(price)},
+				{ langUtil.getString("panel.dashboard.marketcap.price.btc"),     cmc.getString("price_btc",          "N/A") },
 				{ langUtil.getString("panel.dashboard.marketcap.capitalisation"), usdMarketCap },
-				{ langUtil.getString("panel.dashboard.marketcap.daily.change"), data.getString("percent_change_24h", "N/A") + "%"},
-				{ langUtil.getString("panel.dashboard.marketcap.weekly.change"), data.getString("percent_change_7d", "N/A") + "%"},
+				{ langUtil.getString("panel.dashboard.marketcap.daily.change"), cmc.getString("percent_change_24h", "N/A") + "%"},
+				{ langUtil.getString("panel.dashboard.marketcap.weekly.change"), cmc.getString("percent_change_7d", "N/A") + "%"},
 			};
 
 			return tableData;
 		}
 		
 		
-		private Double getUsdPrice()
+		private Double getCurrencyPrice()
 		{
-			return this.lastUsdPrice;
+			return this.lastCurrencyPrice;
 		}
-		
 				
 		// Obtains the ZEC exchange data as a JsonObject
 		private JsonObject getExchangeDataFromRemoteService()
 		{
 			JsonObject data = new JsonObject();
+			String currency = ZcashXUI.currency;
 			
 			try
 			{
 				URL u = new URL("https://api.coinmarketcap.com/v1/ticker/zcash");
 				Reader r = new InputStreamReader(u.openStream(), "UTF-8");
 				JsonArray ar = Json.parse(r).asArray();
-				data = ar.get(0).asObject();
+				data.add("cmc", ar.get(0).asObject());
 			} catch (Exception ioe)
 			{
 				Log.warning("Could not obtain ZEC exchange information from coinmarketcap.com due to: {0} {1}", 
 						    ioe.getClass().getName(), ioe.getMessage());
 			}
-			
+
+			try
+			{
+				URL u = new URL("https://rates.zec.zeltrez.io");
+				Reader r = new InputStreamReader(u.openStream(), "UTF-8");
+				JsonArray ar = Json.parse(r).asArray();
+				Log.info("Looking in https://rates.zec.zeltrez.io for currency: "+currency);
+				for (int i = 0; i < ar.size(); ++i) {
+					JsonObject obj = ar.get(i).asObject();
+					String id = obj.get("code").toString().replaceAll("\"", "");
+										if (id.equals(currency)) {
+						data.add("rates",obj);
+						break;
+					}
+					if(i+1 == ar.size()) {
+						Log.warning("Could not find the currency in https://rates.zec.zeltrez.io");
+					}
+				}
+			} catch (Exception ioe)
+			{
+				Log.warning("Could not obtain ZEC exchange information from rates.zec.zeltrez.io due to: {0} {1}", 
+						    ioe.getClass().getName(), ioe.getMessage());
+			}
+			Log.info(data.toString());
 			return data;
 		}
 	}
@@ -919,7 +975,7 @@ public class DashboardPanel
 	
 	// Specific panel class for the latest transactions
 	class LatestTransactionsPanel
-		extends JPanel
+		extends ZcashJPanel
 	{
 		LatestTransactionsList transactionList = null;
 		String[][] transactions = null;
@@ -927,12 +983,12 @@ public class DashboardPanel
 		public LatestTransactionsPanel()
 			throws InterruptedException, IOException, WalletCallException
 		{
-			final JPanel content = new JPanel();
+			final ZcashJPanel content = new ZcashJPanel();
 			content.setLayout(new BorderLayout(3,  3));
-			content.add(new JLabel(langUtil.getString("panel.dashboard.transactions.label")),
+			content.add(new ZcashJLabel(langUtil.getString("panel.dashboard.transactions.label")),
 					    BorderLayout.NORTH);
 			transactionList = new LatestTransactionsList();
-			JPanel tempPanel = new JPanel(new BorderLayout(0,  0));
+			ZcashJPanel tempPanel = new ZcashJPanel(new BorderLayout(0,  0));
 			tempPanel.add(transactionList, BorderLayout.NORTH);
 			content.add(tempPanel, BorderLayout.CENTER); 
 			
@@ -969,7 +1025,6 @@ public class DashboardPanel
 			{
 				super();
 				this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-				this.setBackground(new JPanel().getBackground());
 				
 				this.addMouseListener(new MouseAdapter()
 		        {
@@ -1054,7 +1109,7 @@ public class DashboardPanel
 		
 		
 		class SingleTransactionPanel
-			extends JPanel
+			extends ZcashJPanel
 		{			
 			// TODO: depends on the format of the gathering thread
 			public SingleTransactionPanel(String[] transactionFields)
@@ -1088,7 +1143,7 @@ public class DashboardPanel
 					}
 				}
 				
-				JLabel imgLabel = new JLabel();
+				ZcashJLabel imgLabel = new ZcashJLabel();
 				imgLabel.setIcon(inOutIcon);
 				this.add(imgLabel);
 				
@@ -1098,15 +1153,15 @@ public class DashboardPanel
 					? confirmedTXIcon : unConfirmedTXIcon;
 				ImageIcon pubPrivIcon = 
 						transactionFields[0].contains("Private") ? lockClosedIcon : lockOpenIcon;
-				JPanel iconsPanel = new JPanel(new BorderLayout(0, 1));
-				iconsPanel.add(new JLabel(pubPrivIcon), BorderLayout.SOUTH);
-				iconsPanel.add(new JLabel(confirmationIcon), BorderLayout.NORTH);
+				ZcashJPanel iconsPanel = new ZcashJPanel(new BorderLayout(0, 1));
+				iconsPanel.add(new ZcashJLabel(pubPrivIcon), BorderLayout.SOUTH);
+				iconsPanel.add(new ZcashJLabel(confirmationIcon), BorderLayout.NORTH);
 				this.add(iconsPanel);
 				
-				this.add(new JLabel("<html>&nbsp;</html>"));
+				this.add(new ZcashJLabel("<html>&nbsp;</html>"));
 				
 				// Set the transaction information
-				JLabel transactionInfo = new JLabel(
+				ZcashJLabel transactionInfo = new ZcashJLabel(
 						langUtil.getString("panel.dashboard.transactions.info",
 								transactionFields[0],
 								transactionFields[1],

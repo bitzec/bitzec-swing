@@ -45,13 +45,15 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.swing.JFileChooser;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
-import javax.swing.JTable;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableCellRenderer;
+
+import com.cabecinha84.zcashui.ZcashJFileChooser;
+import com.cabecinha84.zcashui.ZcashJMenuItem;
+import com.cabecinha84.zcashui.ZcashJPopupMenu;
+import com.cabecinha84.zcashui.ZcashJTable;
 
 
 
@@ -59,12 +61,12 @@ import javax.swing.table.TableCellRenderer;
  * Table to be used for transactions, addresses etc.
  */
 public class DataTable 
-	extends JTable 
+	extends ZcashJTable 
 {
 	protected int lastRow = -1;
 	protected int lastColumn = -1;
 	
-	protected JPopupMenu popupMenu;
+	protected ZcashJPopupMenu popupMenu;
 
 	private LanguageUtil langUtil = LanguageUtil.instance();
 	
@@ -77,10 +79,10 @@ public class DataTable
 		Component comp = renderer.getTableCellRendererComponent(this, "123", false, false, 0, 0);
 		this.setRowHeight(new Double(comp.getPreferredSize().getHeight()).intValue() + 2);
 		
-		popupMenu = new JPopupMenu();
+		popupMenu = new ZcashJPopupMenu();
 		int accelaratorKeyMask = Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask();
 		
-		JMenuItem copy = new JMenuItem(langUtil.getString("data.table.menu.item.copy"));
+		ZcashJMenuItem copy = new ZcashJMenuItem(langUtil.getString("data.table.menu.item.copy"));
         popupMenu.add(copy);
         copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, accelaratorKeyMask));
         copy.addActionListener(new ActionListener() 
@@ -102,7 +104,7 @@ public class DataTable
 		});
         
         
-		JMenuItem exportToCSV = new JMenuItem(langUtil.getString("data.table.menu.item.export"));
+		ZcashJMenuItem exportToCSV = new ZcashJMenuItem(langUtil.getString("data.table.menu.item.export"));
         popupMenu.add(exportToCSV);
         exportToCSV.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, accelaratorKeyMask));
         exportToCSV.addActionListener(new ActionListener() 
@@ -133,7 +135,7 @@ public class DataTable
         	{
                 if ((!e.isConsumed()) && e.isPopupTrigger())
                 {
-                    JTable table = (JTable)e.getSource();
+                    ZcashJTable table = (ZcashJTable)e.getSource();
                     lastColumn = table.columnAtPoint(e.getPoint());
                     lastRow = table.rowAtPoint(e.getPoint());
                     
@@ -190,7 +192,7 @@ public class DataTable
 	{
         final String ENCODING = "UTF-8";
 		
-		JFileChooser fileChooser = new JFileChooser();
+		ZcashJFileChooser fileChooser = new ZcashJFileChooser();
 		fileChooser.setDialogTitle(langUtil.getString("data.table.file.chooser.export.dialog.title"));
 		fileChooser.setFileFilter(new FileNameExtensionFilter("CSV Files (*.csv)", "csv"));
 		 

@@ -27,9 +27,9 @@
  * THE SOFTWARE.                                    
  *
 -->
-<project name="ZCashSwingWalletUI" basedir="../.." default="buildit">
+<project name="MyZcash" basedir="../.." default="buildit">
 	
-    <property name="zcash.swing.module.dir"     value="${basedir}/zcash-wallet-swing"/>
+    <property name="zcash.swing.module.dir"     value="${basedir}/myzcash-swing-wallet"/>
     <property name="src.dir"     value="src"/>
 	<property name="lib.dir"     value="lib"/>
 	<property name="deb.dir"  value="${zcash.swing.module.dir}/src/deb"/>
@@ -82,6 +82,7 @@
     	        <include name="images/**"/>
     	        <include name="keys/**"/>
 				<include name="messages/**"/>
+				<include name="ui/**"/>
     	    </fileset>
     	</copy>
     </target>
@@ -118,7 +119,7 @@
 	
     <target name="ubuntuPackage" depends="jar,copyothers">	
     	<mkdir dir="${ubuntu.package.dir}"/>
-	    <deb destfile="${ubuntu.package.dir}/zcash-desktop-gui-wallet_1.0.0_all.deb" 
+	    <deb destfile="${ubuntu.package.dir}/myzcash-swing-wallet_1.0.0_all.deb" 
 	    	 control="${deb.dir}/control"
 	    	 verbose="true">
 	    	
@@ -149,7 +150,7 @@
               <mapper type="perm" filemode="755" prefix="/usr/lib/zcash-gui-wallet/go-ipfs"/>
             </data>
             -->
-	      <data src="${deb.resource.dir}/zcash-desktop-gui-wallet" type="file">
+	      <data src="${deb.resource.dir}/myzcash-swing-wallet" type="file">
 	        <mapper type="perm" filemode="755" prefix="/usr/bin"/>
 	      </data>
 	      <data src="${deb.resource.dir}/ZCashWallet.desktop" type="file">
