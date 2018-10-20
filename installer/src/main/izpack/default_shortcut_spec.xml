@@ -3,15 +3,15 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://izpack.org/schema/shortcuts http://izpack.org/schema/5.0/izpack-shortcuts-5.0.xsd">
     <shortcuts>
-        <programGroup defaultName="ZcashWallets" location="applications"/>
+        <programGroup defaultName="MyZcash" location="applications"/>
         <lateShortcutInstall/>
         <skipIfNotSupported/>
         <shortcut
-                name = "Zcash Wallet"
-                target = "$INSTALL_PATH\zcashwallet.bat"
+                name = "MyZcash Swing Wallet"
+                target = "$INSTALL_PATH\myzcash.bat"
                 commandLine = ""
                 workingDirectory= "$INSTALL_PATH\app"
-                description="Zcash Wallet Launch"
+                description="MyZcash Swing Wallet Launch"
                 iconFile="$INSTALL_PATH\zcash.ico"
                 iconIndex="0"
                 initialState="normal"

@@ -9,7 +9,7 @@
     </parent>
 
   <artifactId>installer</artifactId>
-  <name>Zcash Wallet Installer</name>
+  <name>MyZcash Swing Wallet Installer</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
