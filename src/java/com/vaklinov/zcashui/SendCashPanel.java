@@ -475,7 +475,7 @@ public class SendCashPanel
 		if (!installationObserver.isOnTestNet())
 		{
 			if (!(destinationAddress.startsWith("zc") ||
-			    !(destinationAddress.startsWith("zs") ||  
+			      destinationAddress.startsWith("zs") ||  
 				  destinationAddress.startsWith("t1") ||
 				  destinationAddress.startsWith("t3")))
 			{

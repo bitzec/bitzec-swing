@@ -882,11 +882,19 @@ public class DashboardPanel
 			{
 				data = new JsonObject();
 				rates = new JsonObject();
-				cmc = new JsonObject();
+				cmc = new JsonObject(); 
 			} else {
-			    Log.info(data.get("rates").toString());
-				rates = data.get("rates").asObject();
-				cmc = data.get("cmc").asObject();
+				if (data.get("rates") == null) {
+					rates = new JsonObject();
+				} else {
+					Log.info(data.get("rates").toString());
+					rates = data.get("rates").asObject();
+				}
+				if (data.get("cmc") == null) {
+					cmc = new JsonObject();
+				} else {
+					cmc = data.get("cmc").asObject();
+				}
 			}
 
 			//JsonObject rates = data.getJSONObject("rates");
