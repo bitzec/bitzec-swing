@@ -8,6 +8,6 @@ Exec=myzcash-swing-wallet
 Terminal=false
 X-MultipleArgs=false
 Type=Application
-Icon=/usr/lib/zcash-gui-wallet/ZCash-icon.png
+Icon=/usr/lib/myzcash-swing-wallet/ZCash-icon.png
 Categories=GNOME;Application;
 StartupNotify=true
