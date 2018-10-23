@@ -29,7 +29,7 @@
 -->
 <project name="ZECmate" basedir="../.." default="buildit">
 	
-    <property name="zcash.swing.module.dir"     value="${basedir}/zecmate-swing-wallet"/>
+    <property name="zcash.swing.module.dir"     value="${basedir}/zecmate"/>
     <property name="src.dir"     value="src"/>
 	<property name="lib.dir"     value="lib"/>
 	<property name="deb.dir"  value="${zcash.swing.module.dir}/src/deb"/>
@@ -119,45 +119,45 @@
 	
     <target name="ubuntuPackage" depends="jar,copyothers">	
     	<mkdir dir="${ubuntu.package.dir}"/>
-	    <deb destfile="${ubuntu.package.dir}/zecmate-swing-wallet_1.0.0_all.deb" 
+	    <deb destfile="${ubuntu.package.dir}/zecmate-1.0.0.deb" 
 	    	 control="${deb.dir}/control"
 	    	 verbose="true">
 	    	
 	      <data src="${jar.dir}/${ant.project.name}.jar" type="file">
-	        <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate-swing-wallet"/>
+	        <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate"/>
 	      </data>
 	      <data src="${jar.dir}/bitcoinj-core-0.14.5.jar" type="file">
-	        <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate-swing-wallet"/>
+	        <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate"/>
 	      </data>
 	      <data src="${jar.dir}/bitcoinj-core-0.14.5_LICENSE.txt" type="file">
-	        <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate-swing-wallet"/>
+	        <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate"/>
 	      </data>
 		  <data src="${jar.dir}/sqlite-jdbc-3.21.0.jar" type="file">
-			 <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate-swing-wallet"/>
+			 <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate"/>
 		  </data>
 		  <data src="${jar.dir}/sqlite-jdbc-3.21.0_LICENSE.txt" type="file">
-			 <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate-swing-wallet"/>
+			 <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate"/>
 		  </data>
 
 			<!-- TODO: As of Nov 2017 the IPFS wallet integration is suspended.
             <data src="${jar.dir}/go-ipfs/ipfs" type="file">
-              <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate-swing-wallet/go-ipfs"/>
+              <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate/go-ipfs"/>
             </data>
             <data src="${jar.dir}/go-ipfs/LICENSE" type="file">
-              <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate-swing-wallet/go-ipfs"/>
+              <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate/go-ipfs"/>
             </data>
             <data src="${jar.dir}/go-ipfs/README.md" type="file">
-              <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate-swing-wallet/go-ipfs"/>
+              <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate/go-ipfs"/>
             </data>
             -->
-	      <data src="${deb.resource.dir}/zecmate-swing-wallet" type="file">
+	      <data src="${deb.resource.dir}/zecmate" type="file">
 	        <mapper type="perm" filemode="755" prefix="/usr/bin"/>
 	      </data>
 	      <data src="${deb.resource.dir}/ZECmateWallet.desktop" type="file">
 	        <mapper type="perm" filemode="755" prefix="/usr/share/applications"/>
 	      </data>
 	      <data src="${deb.resource.dir}/ZECmate.png" type="file">
-	        <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate-swing-wallet"/>
+	        <mapper type="perm" filemode="755" prefix="/usr/lib/zecmate"/>
 	      </data>	    	
 	    </deb>
 	</target>
