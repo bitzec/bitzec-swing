@@ -133,7 +133,7 @@ public class OSUtil
 	{
 		// TODO: this way of finding the dir is JAR name dependent - tricky, may not work
 		// if program is repackaged as different JAR!
-		final String JAR_NAME = "MyZcash.jar";
+		final String JAR_NAME = "ZECmate.jar";
 		String cp = System.getProperty("java.class.path");
 		if ((cp != null) && (cp.indexOf(File.pathSeparator) == -1) &&
 			(cp.endsWith(JAR_NAME)))
@@ -237,13 +237,13 @@ public class OSUtil
 	    
 	    if (os == OS_TYPE.MAC_OS)
 	    {
-	        dir = new File(userHome, "Library/Application Support/MyZcash");
+	        dir = new File(userHome, "Library/Application Support/ZECmate");
 	    } else if (os == OS_TYPE.WINDOWS)
 		{
-			dir = new File(System.getenv("LOCALAPPDATA") + "\\MyZcash");
+			dir = new File(System.getenv("LOCALAPPDATA") + "\\ZECmate");
 		} else
 	    {
-	        dir = new File(userHome.getCanonicalPath() + File.separator + ".MyZcash");
+	        dir = new File(userHome.getCanonicalPath() + File.separator + ".ZECmate");
 	    }
 	    
 		if (!dir.exists())

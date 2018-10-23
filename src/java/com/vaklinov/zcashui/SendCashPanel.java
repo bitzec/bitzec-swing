@@ -474,7 +474,8 @@ public class SendCashPanel
 		// ZClassic compatibility
 		if (!installationObserver.isOnTestNet())
 		{
-			if (!(destinationAddress.startsWith("zc") || 
+			if (!(destinationAddress.startsWith("zc") ||
+			      destinationAddress.startsWith("zs") ||  
 				  destinationAddress.startsWith("t1") ||
 				  destinationAddress.startsWith("t3")))
 			{
@@ -885,7 +886,7 @@ public class SendCashPanel
 		    	// Open block explorer
 				Log.info("Transaction ID for block explorer is: " + TXID);
 				// TODO: code duplication with transactions table
-				String urlPrefix = "https://zcash.blockexplorer.com/tx/";
+				String urlPrefix = "https://explorer.zec.zelcore.io/tx/";
 				if (installationObserver.isOnTestNet())
 				{
 					urlPrefix = "https://explorer.testnet.z.cash/tx/";

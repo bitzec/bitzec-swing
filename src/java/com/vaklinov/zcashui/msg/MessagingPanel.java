@@ -677,15 +677,15 @@ public class MessagingPanel
 				     String TAddress = null;
 				     for (int i = 0; i < 10; i++)
 				     {
-				    	 TAddress = this.clientCaller.createNewAddress(false);
+				    	 TAddress = this.clientCaller.createNewAddress(false, false);
 				    	 String balance = this.clientCaller.getBalanceForAddress(TAddress);
 				    	 if (Double.valueOf(balance) <= 0)
 				    	 {
 				    		 break;
 				    	 }
 				     }
-				    
-				     String ZAddress = this.clientCaller.createNewAddress(true);
+				    // Generate sapling addresses for messages
+				     String ZAddress = this.clientCaller.createNewAddress(true, true);
 				     
 					// Update the labels for the two addresses
 				    this.labelStorage.setLabel(TAddress, "Own Messaging ID T address");

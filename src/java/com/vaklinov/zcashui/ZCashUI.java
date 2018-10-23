@@ -139,7 +139,7 @@ public class ZCashUI
         
         ClassLoader cl = this.getClass().getClassLoader();
 
-        this.setIconImage(new ImageIcon(cl.getResource("images/ZCash-yellow.orange-logo.png")).getImage());
+        this.setIconImage(new ImageIcon(cl.getResource("images/ZECmate-logo.png")).getImage());
 
         Container contentPane = this.getContentPane();
         contentPane.setBackground(ZcashXUI.container);
@@ -623,7 +623,7 @@ public class ZCashUI
 
         	LanguageUtil langUtil = LanguageUtil.instance();
         	
-        	Log.info("Starting MyZcash Swing Wallet ...");
+        	Log.info("Starting ZECmate Swing Wallet ...");
         	Log.info("OS: " + System.getProperty("os.name") + " = " + os);
         	Log.info("Current directory: " + new File(".").getCanonicalPath());
         	Log.info("Class path: " + System.getProperty("java.class.path"));

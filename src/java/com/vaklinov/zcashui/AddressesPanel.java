@@ -121,6 +121,8 @@ public class AddressesPanel
 		buttonPanel.add(newTAddressButton);
 		ZcashJButton newZAddressButton = new ZcashJButton(langUtil.getString("panel.address.button.new.z.address"));
 		buttonPanel.add(newZAddressButton);
+		ZcashJButton newZAddressButtonSapling = new ZcashJButton(langUtil.getString("panel.address.button.new.sapling.address"));
+		buttonPanel.add(newZAddressButtonSapling);
 		buttonPanel.add(new ZcashJLabel("           "));
 		ZcashJButton refreshButton = new ZcashJButton(langUtil.getString("panel.address.button.refresh"));
 		buttonPanel.add(refreshButton);
@@ -209,7 +211,7 @@ public class AddressesPanel
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				createNewAddress(false);
+				createNewAddress(false, false);
 			}
 		});
 
@@ -217,7 +219,15 @@ public class AddressesPanel
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				createNewAddress(true);
+				createNewAddress(true, false);
+			}
+		});
+
+		newZAddressButtonSapling.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				createNewAddress(true, true);
 			}
 		});
 
@@ -240,7 +250,7 @@ public class AddressesPanel
 	}
 
 
-	private void createNewAddress(boolean isZAddress)
+	private void createNewAddress(boolean isZAddress, boolean isSapling)
 	{
 		Cursor oldCursor = this.getCursor();
 		try
@@ -270,7 +280,7 @@ public class AddressesPanel
 			double dBalance = 0;
 			do
 			{
-				address = this.clientCaller.createNewAddress(isZAddress);
+				address = this.clientCaller.createNewAddress(isZAddress, isSapling);
 				Log.info("Newly obtained address is: {0}", address);
 				String sBalance = this.clientCaller.getBalanceForAddress(address);
 				if (!Util.stringIsEmpty(sBalance))

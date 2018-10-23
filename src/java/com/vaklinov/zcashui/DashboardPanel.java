@@ -196,15 +196,15 @@ public class DashboardPanel
 
 		ZcashJPanel tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 14, 16));
 		ZcashJLabel logoLabel = new ZcashJLabel(new ImageIcon(
-				this.getClass().getClassLoader().getResource("images/ZCash-yellow.orange-logo-small.png")));
+				this.getClass().getClassLoader().getResource("images/ZECmate-logo-small.png")));
 		logoLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		logoLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                    Desktop.getDesktop().browse(new URI("https://myzcash.org/"));
+                    Desktop.getDesktop().browse(new URI("https://zecmate.com/"));
                 } catch (Exception ex) {
-                	Log.warning("Error oppening https://myzcash.org/ due to: {0} {1}",
+                	Log.warning("Error oppening https://zecmate.com/ due to: {0} {1}",
         					ex.getClass().getName(), ex.getMessage());
                 }
             }
@@ -882,11 +882,19 @@ public class DashboardPanel
 			{
 				data = new JsonObject();
 				rates = new JsonObject();
-				cmc = new JsonObject();
+				cmc = new JsonObject(); 
 			} else {
-			    Log.info(data.get("rates").toString());
-				rates = data.get("rates").asObject();
-				cmc = data.get("cmc").asObject();
+				if (data.get("rates") == null) {
+					rates = new JsonObject();
+				} else {
+					Log.info(data.get("rates").toString());
+					rates = data.get("rates").asObject();
+				}
+				if (data.get("cmc") == null) {
+					cmc = new JsonObject();
+				} else {
+					cmc = data.get("cmc").asObject();
+				}
 			}
 
 			//JsonObject rates = data.getJSONObject("rates");
