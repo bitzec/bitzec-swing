@@ -1,5 +1,5 @@
 # [ZECmate Swing Wallet](https://swing.zecmate.com/) 
-## Your best mate for Zcash [Zcash](https://z.cash/)
+## Your best mate for [Zcash](https://z.cash/)
 
 ZECmate Swing Wallet is a GUI destkop wallet for Zcash. This fully compatible sapling release is availalbe for macOS, Windows and Linux. Download the latest release from GitHub releases or head on to [ZECmate Swing Wallet website](https://swing.zecmate.com/) .
 
