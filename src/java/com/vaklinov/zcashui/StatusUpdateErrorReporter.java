@@ -68,7 +68,7 @@ public class StatusUpdateErrorReporter
 			lastReportedErrroTime = time;
 		}
 		
-		String settingsDirectory = ".MyZcash";
+		String settingsDirectory = ".ZECmate";
 		
 		try
 		{

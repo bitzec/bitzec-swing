@@ -60,17 +60,17 @@ import com.vaklinov.zcashui.Util;
  * Stores the information about messages, identities etc in a dir structure. 
  * The standard directories are:
  * 
- * ~/.MyZcash/messaging - root dir
- * ~/.MyZcash/messaging/messagingoptions.json - options
- * ~/.MyZcash/messaging/ownidentity.json - own identity
- * ~/.MyZcash/messaging/ownidentity.json.bak.1 - own identity most recent backup
- * ~/.MyZcash/messaging/ownidentity.json.bak.9 - own identity oldest backup
- * ~/.MyZcash/messaging/contact_XXXX - a single contact named 0000 to 9999
- * ~/.MyZcash/messaging/contact_XXXX/identity.json - contact's identity
- * ~/.MyZcash/messaging/contact_XXXX/sent - sent messages dir
- * ~/.MyZcash/messaging/contact_XXXX/received - received messages dir
- * ~/.MyZcash/messaging/ignored_contacts - dir where ignored msg identities reside
- * ~/.MyZcash/messaging/ignored_contacts/UUID.json - single ignored identity.
+ * ~/.ZECmate/messaging - root dir
+ * ~/.ZECmate/messaging/messagingoptions.json - options
+ * ~/.ZECmate/messaging/ownidentity.json - own identity
+ * ~/.ZECmate/messaging/ownidentity.json.bak.1 - own identity most recent backup
+ * ~/.ZECmate/messaging/ownidentity.json.bak.9 - own identity oldest backup
+ * ~/.ZECmate/messaging/contact_XXXX - a single contact named 0000 to 9999
+ * ~/.ZECmate/messaging/contact_XXXX/identity.json - contact's identity
+ * ~/.ZECmate/messaging/contact_XXXX/sent - sent messages dir
+ * ~/.ZECmate/messaging/contact_XXXX/received - received messages dir
+ * ~/.ZECmate/messaging/ignored_contacts - dir where ignored msg identities reside
+ * ~/.ZECmate/messaging/ignored_contacts/UUID.json - single ignored identity.
  * 
  * The sent/received directories have a substructure of type:
  * sent/XXXX/message_xxx.json - where XXXX is between 0000 and 9999, xxx is between 000 and 999 
@@ -658,7 +658,7 @@ public class MessagingStorage
 	
 	// Stores the details of a single contact
 	// Root dir may be like:
-	// ~/.MyZcash/messaging/contact_XXXX
+	// ~/.ZECmate/messaging/contact_XXXX
 	static class SingleContactStorage
 	{
 		final String IGNORED_GROUP_IDS = "ignored_group_ids.json";
@@ -868,7 +868,7 @@ public class MessagingStorage
 	
 	// Stores messages of one type - sent/received for one contact
 	// Root directory may be like:
-	// ~/.MyZcash/messaging/contact_XXXX/sent
+	// ~/.ZECmate/messaging/contact_XXXX/sent
 	static class SentOrReceivedMessagesStore
 	{
 		private File rootDir;

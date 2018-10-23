@@ -105,7 +105,7 @@ public class ZcashXUI {
 	
 	
 	public ZcashXUI() {
-		Log.info("Loading MyZcash");
+		Log.info("Loading ZECmate");
 		loadZcashXUIFile();
 		javax.swing.UIManager.put("ScrollBar.background", ZcashXUI.scrollbar);
     	javax.swing.UIManager.put("ScrollPane.background", ZcashXUI.scrollpane);
@@ -137,7 +137,7 @@ public class ZcashXUI {
 		javax.swing.UIManager.put("Panel.foreground",ZcashXUI.text);
 			
 		
-		Log.info("Finished loading MyZcash");
+		Log.info("Finished loading ZECmate");
 	}
 
 	private void loadZcashXUIFile() {

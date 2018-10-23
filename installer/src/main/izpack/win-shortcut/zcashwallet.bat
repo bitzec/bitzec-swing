@@ -1,3 +1,3 @@
 @ECHO OFF
 chdir app
-start javaw -jar myzcash-swing-wallet.jar
+start javaw -jar zecmate-swing-wallet.jar

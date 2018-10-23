@@ -1,8 +1,8 @@
-Package: myzcash-swing-wallet
+Package: zecmate-swing-wallet
 Version: 1.0.0
 Section: misc
 Priority: low
 Architecture: all
-Description: MyZcash Swing Wallet - Zcash Desktop GUI Wallet 
+Description: ZECmate Swing Wallet - Desktop GUI Wallet for Zcash
 Maintainer: tadeas.kmenta@zel.cash
 Depends: default-jdk, zcash

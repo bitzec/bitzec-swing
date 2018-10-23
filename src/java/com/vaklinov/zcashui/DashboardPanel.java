@@ -196,15 +196,15 @@ public class DashboardPanel
 
 		ZcashJPanel tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 14, 16));
 		ZcashJLabel logoLabel = new ZcashJLabel(new ImageIcon(
-				this.getClass().getClassLoader().getResource("images/zcash-black-small.png")));
+				this.getClass().getClassLoader().getResource("images/ZECmate-logo-small.png")));
 		logoLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		logoLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                    Desktop.getDesktop().browse(new URI("https://myzcash.org/"));
+                    Desktop.getDesktop().browse(new URI("https://zecmate.com/"));
                 } catch (Exception ex) {
-                	Log.warning("Error oppening https://myzcash.org/ due to: {0} {1}",
+                	Log.warning("Error oppening https://zecmate.com/ due to: {0} {1}",
         					ex.getClass().getName(), ex.getMessage());
                 }
             }

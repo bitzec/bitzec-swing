@@ -1,5 +1,5 @@
 // Code was originally written by developer - https://github.com/zlatinb
-// Taken from repository https://github.com/zlatinb/zcash-swing-wallet-ui under an MIT license
+// Taken from repository https://github.com/zlatinb/ZECmate-swing-wallet-ui under an MIT license
 package com.vaklinov.zcashui;
 
 import java.awt.BorderLayout;
@@ -49,7 +49,7 @@ public class StartupProgressDialog extends ZcashJFrame {
     {
         this.clientCaller = clientCaller;
         
-        URL iconUrl = this.getClass().getClassLoader().getResource("images/zcash-black.png");
+        URL iconUrl = this.getClass().getClassLoader().getResource("images/ZECmate-logo.png");
         imageIcon = new ImageIcon(iconUrl);
         imageLabel.setIcon(imageIcon);
         imageLabel.setBorder(BorderFactory.createEmptyBorder(16, 40, 8, 40));
