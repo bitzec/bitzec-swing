@@ -1,13 +1,9 @@
-# [Zcash](https://z.cash/) Desktop GUI Wallet
+# [ZECmate Swing Wallet](https://swing.zecmate.com/) 
+## Your best mate for Zcash [Zcash](https://z.cash/)
 
-## *Latest Releases:* **[Linux](https://github.com/ZECmate/ZECmate-swing-wallet/releases/tag/v1.1.1) [Windows](https://github.com/ZECmate/ZECmate-swing-wallet/releases/tag/v1.1.5)  [macOS](https://github.com/ZECmate/ZECmate-swing-wallet/releases/tag/v1.1.6)**
+ZECmate Swing Wallet is a GUI destkop wallet for Zcash. This fully compatible sapling release is availalbe for macOS, Windows and Linux. Download the latest release from GitHub releases or head on to [ZECmate Swing Wallet website](https://swing.zecmate.com/) .
 
-## Graphical user interface wrapper for the [Zcash](https://z.cash/) command line tools
-
-This program provides a Graphical User Interface (GUI) for the Zcash client tools that acts as a wrapper and 
-presents the information in a user-friendly manner.
-
-![Screenshot](https://github.com/ZECmate/ZECmate-swing-wallet/raw/master/docs/zcash-wallet-win.png "Main Window")
+![Screenshot](https://github.com/ZECmate/ZECmate-swing-wallet/raw/master/docs/zecmate.png "Main Window")
 
 **This wallet is targeted at advanced users who understand the implications of running a full Zcash node on**
 **the local machine, maintaining a full local copy of the blockchain, maintaining and backing up the**
@@ -27,11 +23,11 @@ presents the information in a user-friendly manner.
 **they are considered outdated after 18 weeks and stop working. So they need to be updated to a newer version before this term expires.**
 **Users need to ensure they use an up-to-date version of the wallet (e.g. update the wallet every two months or so).**
 
-#### Download Swing wallet at https://github.com/ZECmate/ZECmate-swing-wallet/releases
+#### Download ZECmate Swing wallet at https://github.com/ZECmate/ZECmate-swing-wallet/releases or from official website https://swing.zecmate.com
 
-## Building, installing and running the Wallet GUI
+## Building, installing and running the ZECmate Swing Wallet
 
-Before installing the Desktop GUI Wallet you need to have Zcash up and running. The following 
+Before installing the ZECmate Swing Wallet you need to have Zcash up and running. The following 
 [guide](https://github.com/zcash/zcash/blob/master/README.md) 
 explains how to set up [Zcash](https://z.cash/). 
 
@@ -81,7 +77,7 @@ The details of how to build it are described below (easy to follow).
    file `./build/jars/ZECmate.jar`. In addition the JAR file 
    `bitcoinj-core-0.14.5.jar` is also necessary to run the wallet. 
 
-3. Installing the built Zcash GUI wallet
+3. Installing the built ZECmate Swing Wallet
 
    3.1. If you have built Zcash from source code:
 
@@ -90,7 +86,7 @@ The details of how to build it are described below (easy to follow).
       user@ubuntu:~/build-dir/ZECmate-swing-wallet$ cp -R -v ./build/jars/* /home/user/zcash/src    
       ```
 
-4. Running the installed Zcash GUI wallet
+4. Running the installed ZECmate Swing Wallet
 
    It may be run from command line or started from another GUI tool (e.g. file manager). 
    Assuming you have already installed [Zcash](https://z.cash/) and the GUI Wallet `ZECmate.jar` in 
@@ -126,7 +122,7 @@ SOFTWARE.
 
 ### Known issues and limitations
 
-1. Issue: The Zcash Desktop GUI Wallet is not compatible with applications that modify the Zcash `wallet.dat` file. The wallet should not be used
+1. Issue: ZECmate Swing Wallet is not compatible with applications that modify the Zcash `wallet.dat` file. The wallet should not be used
 with such applications on the same PC. For instance some distributed exchange applications are known to create watch-only addresses in the
 `wallet.dat` file that cause the GUI wallet to display a wrong balance and/or display addresses that do not belong to the wallet. 
 1. Limitation: if two users exchange text messages via the messaging UI TAB and one of them has a system clock, substantially running slow or fast by more than 1 minute, it is possible that this user will see text messages appearing out of order. 

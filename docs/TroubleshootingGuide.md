@@ -1,4 +1,4 @@
-## [Zcash](https://z.cash/) Desktop GUI Wallet troubleshooting guide
+## [ZECmate Swing Wallet](https://swing.zecmate.com/) troubleshooting guide
 
 This document outlines possible solutions to several common problems that user might encounter while using the wallet.
 
@@ -34,7 +34,7 @@ zcashd -reindex
 ```
 For non-technical users here is some information on how to open a terminal on [Windows](https://www.lifewire.com/how-to-open-command-prompt-2618089) and [macOS](https://www.wikihow.com/Open-a-Terminal-Window-in-Mac). The full command on macOS is:
 ```
-/Applications/ZcashWallet.app/Contents/Java/zcashd -reindex
+/Applications/ZECmate.app/Contents/Java/zcashd -reindex
 ```
 On Windows you first have to locate `zcashd.exe`. It is in the `/app` sub-directory of the wallet installation.
 

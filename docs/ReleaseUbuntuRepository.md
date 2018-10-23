@@ -1,9 +1,10 @@
-## [Zcash](https://z.cash/) Desktop GUI Wallet APT repository for Debian/Ubuntu Linux
+## [ZECmate Swing Wallet](https://swing.zecmate.com/) APT repository for Debian/Ubuntu Linux
 
-This is a [Zcash](https://z.cash/) Desktop GUI Wallet made available through a package repository
-for Debian/Ubuntu (and similar) Linux systems.
+## ATTENTION - ZECmate is NOT available via package repositry YET. Work in Progress. Please download signed .deb package directly from releases or from https://swing.zecmate.com
 
-![Screenshot](zcashwallet.png "Main Window")
+ZECmate Swing Wallet is also available via package repository for Debian/Ubuntu (and similar) Linux systems.
+
+![Screenshot](zecmate.png "Main Window")
 
 **This wallet is targeted at advanced users who understand the implications of running a full Zcash node on**
 **the local machine, maintaining a full local copy of the blockchain, maintaining and backing up the**
@@ -14,13 +15,8 @@ for Debian/Ubuntu (and similar) Linux systems.
 **wallet.dat needs to be backed up regularly (not just once - e.g. after every 30-40**
 **outgoing transactions) and it must also be backed up after creating a new Z address.**
 
-**STABILITY WARNING: The GUI wallet is as yet considered experimental! It is known to exhibit occasional stability problems related to running a full Zcash node.**
-**Specifically if the locally running `zcashd` cannot start properly due to issues with the local blockchain, the GUI cannot start either!**
-**Users need to be prepared to fix such problems manually as described in the [troubleshooting guide](TroubleshootingGuide.md).**
-**Doing so requires command line skills.**
-
-### Installing the Zcash Desktop GUI Wallet on Linux
-*Zcash is needed to be installed, follow https://z.cash/download.html prior to installing this Swing wallet.*
+### Installing the ZECmate Swing Wallet on Linux
+*Zcash is needed to be installed, follow https://z.cash/download.html prior to installing this ZECmate Swing wallet.*
 
 To setup the APT repository and install packages, using a terminal run the following commands 
 ```
@@ -29,14 +25,14 @@ gpg --keyserver keyserver.ubuntu.com --recv 69FAF6DE41B8AC51
 gpg --export 69FAF6DE41B8AC51| sudo apt-key add -
 
 sudo apt-get update
-sudo apt-get install zcashswingwallet
+sudo apt-get install zecmate
 ```
    
-### Running the Zcash Desktop GUI Wallet on Linux
+### Running the ZECmate Swing Wallet on Linux
 
-To launch the Zcash Desktop GUI Wallet you can just search and click on it in the Ubuntu unity menu or alternatively, run the command `zcashswingwallet` from a terminal:
+To launch the ZECmate Swing Wallet you can just search and click on it in the Ubuntu unity menu or alternatively, run the command `zecmate` from a terminal:
 ```
-zcashswingwallet
+zecmate
 ```
 
 ### Disclaimer
