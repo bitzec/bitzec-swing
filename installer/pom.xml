@@ -5,18 +5,18 @@
     <parent>
         <groupId>zecmate.com</groupId>
         <artifactId>ZECmate</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
   <artifactId>installer</artifactId>
-  <name>ZECmate Swing Wallet Installer</name>
+  <name>ZECmate Swing Wallet</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <staging.dir>${project.build.directory}/staging</staging.dir>
-    <installer-output-filename>zcash-wallet-installer</installer-output-filename>
+    <installer-output-filename>zecmate-swing-wallet</installer-output-filename>
     <zcash.project.url>https://github.com</zcash.project.url>
-    <zcash.binaries.file.name.windows>ZECmate/ZCashBin/releases/download/initial/windows.zip</zcash.binaries.file.name.windows>
+    <zcash.binaries.file.name.windows>ZECmate/ZcashBinaries/releases/download/initial/windows.zip</zcash.binaries.file.name.windows>
     <izpack.version>5.0.6</izpack.version>
   </properties>
 
@@ -192,12 +192,12 @@
                                         <runtimeBits>64/32</runtimeBits>
                                     </jre>
                                     <versionInfo>
-                                        <fileVersion>1.0.0.0</fileVersion>
-                                        <txtFileVersion>1.0.0.0</txtFileVersion>
+                                        <fileVersion>1.0.1.0</fileVersion>
+                                        <txtFileVersion>1.0.1.0</txtFileVersion>
                                         <fileDescription>${project.name}</fileDescription>
                                         <copyright>C</copyright>
-                                        <productVersion>1.0.0.0</productVersion>
-                                        <txtProductVersion>1.0.0.0</txtProductVersion>
+                                        <productVersion>1.0.1.0</productVersion>
+                                        <txtProductVersion>1.0.1.0</txtProductVersion>
                                         <productName>${project.name}</productName>
                                         <internalName>${installer-output-filename}</internalName>
                                         <originalFilename>${installer-output-filename}.exe</originalFilename>
