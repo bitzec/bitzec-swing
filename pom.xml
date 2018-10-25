@@ -25,7 +25,7 @@
 
 
     <modules>
-        <module>zecmate-swing-wallet</module>
+        <module>zecmate</module>
         <module>installer</module>
     </modules>
 

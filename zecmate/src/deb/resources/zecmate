@@ -28,4 +28,4 @@
 #  THE SOFTWARE.                                    
 # 
 
-java -jar /usr/lib/zecmate-swing-wallet/ZECmate.jar
+java -jar /usr/lib/zecmate/ZECmate.jar

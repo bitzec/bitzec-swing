@@ -1,5 +1,5 @@
 // Code was originally written by developer - https://github.com/zlatinb
-// Taken from repository https://github.com/zlatinb/ZECmate-swing-wallet-ui under an MIT licemse
+// Taken from repository https://github.com/zlatinb/Zcash-swing-wallet-ui under an MIT licemse
 package com.vaklinov.zcashui;
 
 import java.awt.Component;
