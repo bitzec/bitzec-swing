@@ -106,6 +106,12 @@ The details of how to build it are described below (easy to follow).
     
    ``` 
 
+### Creating packages with Eclipse for Windows and macOS
+Inno Setup is required for windows.
+Create build folder and copy the content of EclipseExample into it and rename windowsExample.xml to build.xml 
+Create a dist folder in this build folder and copy the whole folder resources from src folder into it.
+Additionally in this build folder create a dist folder and copy your zcashd.exe, zcash-cli.exe into it if on windows. 
+If on macOS copy your zcashd and zcash-cli and check their permisson is 755. on macOS a change in build.xml are needed from .exe to .dmg.
 
 ### License
 This program is distributed under an [MIT License](https://github.com/ZECmate/ZECmate-swing-wallet/raw/master/LICENSE).
