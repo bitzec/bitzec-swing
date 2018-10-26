@@ -15,7 +15,7 @@ ZECmate Swing Wallet is a GUI destkop wallet for Zcash. This fully compatible sa
 **outgoing transactions) and it must also be backed up after creating a new Z address.**
 
 **STABILITY WARNING: The GUI wallet is as yet considered experimental! It is known to exhibit occasional stability problems related to running a full Zcash node.**
-**Specifically if the locally running `zcashd` cannot start properly due to issues with the local blockchain, the GUI cannot start either!**
+**Specifically if the locally running `bitzecd` cannot start properly due to issues with the local blockchain, the GUI cannot start either!**
 **Users need to be prepared to fix such problems manually as described in the [troubleshooting guide](docs/TroubleshootingGuide.md).**
 **Doing so requires command line skills.**
 
@@ -81,7 +81,7 @@ The details of how to build it are described below (easy to follow).
 
    3.1. If you have built Zcash from source code:
 
-     Assuming you have already built from source code [Zcash](https://z.cash/) in directory `/home/user/zcash/src` (for example - this is the typical build dir. for Zcash v1.1.0) which contains the command line tools `zcash-cli` and `zcashd` you need to take the created JAR files and copy them to directory `/home/user/zcash/src` (the same dir. that contains `zcash-cli` and `zcashd`). Example copy command:
+     Assuming you have already built from source code [Zcash](https://z.cash/) in directory `/home/user/zcash/src` (for example - this is the typical build dir. for Zcash v1.1.0) which contains the command line tools `bitzec-cli` and `bitzecd` you need to take the created JAR files and copy them to directory `/home/user/zcash/src` (the same dir. that contains `bitzec-cli` and `bitzecd`). Example copy command:
       ```
       user@ubuntu:~/build-dir/ZECmate-swing-wallet$ cp -R -v ./build/jars/* /home/user/zcash/src    
       ```
@@ -110,8 +110,8 @@ The details of how to build it are described below (easy to follow).
 Inno Setup is required for windows.
 Create build folder and copy the content of EclipseExample into it and rename windowsExample.xml to build.xml 
 Create a dist folder in this build folder and copy the whole folder resources from src folder into it.
-Additionally in this build folder create a dist folder and copy your zcashd.exe, zcash-cli.exe into it if on windows. 
-If on macOS copy your zcashd and zcash-cli and check their permisson is 755. on macOS a change in build.xml are needed from .exe to .dmg.
+Additionally in this build folder create a dist folder and copy your bitzecd.exe, bitzec-cli.exe into it if on windows. 
+If on macOS copy your bitzecd and bitzec-cli and check their permisson is 755. on macOS a change in build.xml are needed from .exe to .dmg.
 
 ### License
 This program is distributed under an [MIT License](https://github.com/ZECmate/ZECmate-swing-wallet/raw/master/LICENSE).
@@ -140,7 +140,7 @@ The latter needs to be disabled.
 1. Limitation: The list of transactions does not show all outgoing ones (specifically outgoing Z address 
 transactions). A corresponding issue [#1438](https://github.com/zcash/zcash/issues/1438) has been opened 
 for the Zcash developers. 
-1. Limitation: The CPU percentage shown to be taken by zcashd on Linux is the average for the entire lifetime 
+1. Limitation: The CPU percentage shown to be taken by bitzecd on Linux is the average for the entire lifetime 
 of the process. This is not very useful. This will be improved in future versions.
 1. Limitation: When using a natively compiled wallet version (e.g. `ZECmate.exe` for Windows) on a 
 very high resolution monitor with a specifically configured DPI scaling (enlargement) factor to make GUI 

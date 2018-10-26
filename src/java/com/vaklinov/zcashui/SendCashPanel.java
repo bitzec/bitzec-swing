@@ -470,7 +470,7 @@ public class SendCashPanel
 			return;
 		}
 		
-		// Prevent accidental sending to non-ZEC addresses (which zcashd supports) probably because of
+		// Prevent accidental sending to non-ZEC addresses (which bitzecd supports) probably because of
 		// ZClassic compatibility
 		if (!installationObserver.isOnTestNet())
 		{

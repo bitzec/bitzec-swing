@@ -229,7 +229,7 @@ public class CreateGroupDialog
 							CreateGroupDialog.this.getRootPane().getParent(), 
 						"An error occurred when importing private key for group phrase. Error message is:\n" +
 						e.getClass().getName() + ":\n" + e.getMessage() + "\n\n" +
-						"Please ensure that zcashd is running and the key is in the correct \n" + 
+						"Please ensure that bitzecd is running and the key is in the correct \n" + 
 						"form. You may try again later...\n", 
 						"Error in importing private key/group phrase", JOptionPane.ERROR_MESSAGE);
 				} finally

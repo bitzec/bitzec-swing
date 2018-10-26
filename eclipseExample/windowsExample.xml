@@ -111,8 +111,8 @@
 			<fx:fileset dir="dist" includes="ZECmate.jar"/>
 			<fx:fileset dir="dist" includes="libs/*"/>
 			<fx:fileset dir="dist" includes="resources/**"/>
-			<fx:fileset dir="dist" includes="zcashd.exe"/>
-			<fx:fileset dir="dist" includes="zcash-cli.exe"/>
+			<fx:fileset dir="dist" includes="bitzecd.exe"/>
+			<fx:fileset dir="dist" includes="bitzec-cli.exe"/>
 		</fx:resources>
 	
 		<fx:application id="fxApplication"

@@ -99,9 +99,9 @@
                                         <unzip src="${project.build.directory}/staging/zcash-win-binaries.zip"
                                                dest="${project.build.directory}/staging/zcash-win-binaries">
                                             <patternset>
-                                                <include name="**/zcash-cli.exe"/>
-                                                <include name="**/zcash-tx.exe"/>
-                                                <include name="**/zcashd.exe"/>
+                                                <include name="**/bitzec-cli.exe"/>
+                                                <include name="**/bitzec-tx.exe"/>
+                                                <include name="**/bitzecd.exe"/>
                                             </patternset>
                                             <mapper type="flatten"/>
                                         </unzip>
