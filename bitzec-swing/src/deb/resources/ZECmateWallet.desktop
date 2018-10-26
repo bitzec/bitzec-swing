@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
 Name=Bitzec Swing Wallet
-Comment=Bitzec Swing Wallet is a dekstop GUI full node wallet for Zcash
+Comment=Bitzec Swing Wallet is a dekstop GUI full node wallet for Bitzec
 GenericName=Bitzec
-Keywords=Zcash;Crypto-currency;Zcash;
+Keywords=Bitzec;Crypto-currency;Bitzec;
 Exec=bitzec
 Terminal=false
 X-MultipleArgs=false
