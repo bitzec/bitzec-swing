@@ -49,7 +49,7 @@ public class StartupProgressDialog extends ZcashJFrame {
     {
         this.clientCaller = clientCaller;
         
-        URL iconUrl = this.getClass().getClassLoader().getResource("images/ZECmate-logo.png");
+        URL iconUrl = this.getClass().getClassLoader().getResource("images/Bitzec-logo.png");
         imageIcon = new ImageIcon(iconUrl);
         imageLabel.setIcon(imageIcon);
         imageLabel.setBorder(BorderFactory.createEmptyBorder(16, 40, 8, 40));
@@ -86,7 +86,7 @@ public class StartupProgressDialog extends ZcashJFrame {
             keyFetcher.fetchIfMissing(this);
         }
         
-        Log.info("Splash: checking if zcashd is already running...");
+        Log.info("Splash: checking if bitzecd is already running...");
         boolean shouldStartZCashd = false;
         try {
             clientCaller.getDaemonRawRuntimeInfo();
@@ -101,13 +101,13 @@ public class StartupProgressDialog extends ZcashJFrame {
         }
         
         if (!shouldStartZCashd) {
-        	Log.info("Splash: zcashd already running...");
+        	Log.info("Splash: bitzecd already running...");
             // What if started by hand but taking long to initialize???
 //            doDispose();
 //            return;
         } else
         {
-        	Log.info("Splash: zcashd will be started...");
+        	Log.info("Splash: bitzecd will be started...");
         }
         
         final Process daemonProcess = 
@@ -149,7 +149,7 @@ public class StartupProgressDialog extends ZcashJFrame {
         if (daemonProcess != null) // Shutdown only if we started it
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
-            	Log.info("Stopping zcashd because we started it - now it is alive: " + 
+            	Log.info("Stopping bitzecd because we started it - now it is alive: " + 
                 		           StartupProgressDialog.this.isAlive(daemonProcess));
                 try 
                 {
@@ -159,7 +159,7 @@ public class StartupProgressDialog extends ZcashJFrame {
 	                while (!StartupProgressDialog.this.waitFor(daemonProcess, 3000))
 	                {
 	                	long end = System.currentTimeMillis();
-	                	Log.info("Waiting for " + ((end - start) / 1000) + " seconds for zcashd to exit...");
+	                	Log.info("Waiting for " + ((end - start) / 1000) + " seconds for bitzecd to exit...");
 	                	
 	                	if (end - start > 15 * 1000)
 	                	{
@@ -174,14 +174,14 @@ public class StartupProgressDialog extends ZcashJFrame {
 	                }
 	            
 	                if (StartupProgressDialog.this.isAlive(daemonProcess)) {
-	                	Log.info("zcashd is still alive although we tried to stop it. " +
+	                	Log.info("bitzecd is still alive although we tried to stop it. " +
 	                                           "Hopefully it will stop later!");
-	                        //System.out.println("zcashd is still alive, killing forcefully");
+	                        //System.out.println("bitzecd is still alive, killing forcefully");
 	                        //daemonProcess.destroyForcibly();
 	                    } else
-	                    	Log.info("zcashd shut down successfully");
+	                    	Log.info("bitzecd shut down successfully");
                 } catch (Exception bad) {
-                	Log.error("Couldn't stop zcashd!", bad);
+                	Log.error("Couldn't stop bitzecd!", bad);
                 }
             }
         });

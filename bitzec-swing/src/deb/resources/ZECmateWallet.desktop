@@ -1,13 +1,13 @@
 [Desktop Entry]
 Version=1.0
-Name=ZECmate Swing Wallet
-Comment=ZECmate Swing Wallet is a dekstop GUI full node wallet for Zcash
-GenericName=ZECmate
+Name=Bitzec Swing Wallet
+Comment=Bitzec Swing Wallet is a dekstop GUI full node wallet for Zcash
+GenericName=Bitzec
 Keywords=Zcash;Crypto-currency;Zcash;
-Exec=zecmate
+Exec=bitzec
 Terminal=false
 X-MultipleArgs=false
 Type=Application
-Icon=/usr/lib/zecmate/ZECmate.png
+Icon=/usr/lib/bitzec/Bitzec.png
 Categories=GNOME;Application;
 StartupNotify=true

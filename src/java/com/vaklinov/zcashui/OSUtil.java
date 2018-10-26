@@ -97,25 +97,25 @@ public class OSUtil
 	}
 	
 	
-	// Returns the name of the zcashd server - may vary depending on the OS.
+	// Returns the name of the bitzecd server - may vary depending on the OS.
 	public static String getZCashd()
 	{
-		String zcashd = "zcashd";
+		String bitzecd = "bitzecd";
 		
 		OS_TYPE os = getOSType();
 		if (os == OS_TYPE.WINDOWS)
 		{
-			zcashd += ".exe";
+			bitzecd += ".exe";
 		}
 		
-		return zcashd;
+		return bitzecd;
 	}
 	
 	
-	// Returns the name of the zcash-cli tool - may vary depending on the OS.
+	// Returns the name of the bitzec-cli tool - may vary depending on the OS.
 	public static String getZCashCli()
 	{
-		String zcashcli = "zcash-cli";
+		String zcashcli = "bitzec-cli";
 		
 		OS_TYPE os = getOSType();
 		if (os == OS_TYPE.WINDOWS)
@@ -133,7 +133,7 @@ public class OSUtil
 	{
 		// TODO: this way of finding the dir is JAR name dependent - tricky, may not work
 		// if program is repackaged as different JAR!
-		final String JAR_NAME = "ZECmate.jar";
+		final String JAR_NAME = "Bitzec.jar";
 		String cp = System.getProperty("java.class.path");
 		if ((cp != null) && (cp.indexOf(File.pathSeparator) == -1) &&
 			(cp.endsWith(JAR_NAME)))
@@ -237,13 +237,13 @@ public class OSUtil
 	    
 	    if (os == OS_TYPE.MAC_OS)
 	    {
-	        dir = new File(userHome, "Library/Application Support/ZECmate");
+	        dir = new File(userHome, "Library/Application Support/Bitzec");
 	    } else if (os == OS_TYPE.WINDOWS)
 		{
-			dir = new File(System.getenv("LOCALAPPDATA") + "\\ZECmate");
+			dir = new File(System.getenv("LOCALAPPDATA") + "\\Bitzec");
 		} else
 	    {
-	        dir = new File(userHome.getCanonicalPath() + File.separator + ".ZECmate");
+	        dir = new File(userHome.getCanonicalPath() + File.separator + ".Bitzec");
 	    }
 	    
 		if (!dir.exists())
@@ -280,7 +280,7 @@ public class OSUtil
 	}
 
 
-	// Can be used to find zcashd/zcash-cli if it is not found in the same place as the wallet JAR
+	// Can be used to find bitzecd/bitzec-cli if it is not found in the same place as the wallet JAR
 	// Null if not found
 	public static File findZCashCommand(String command)
 		throws IOException
