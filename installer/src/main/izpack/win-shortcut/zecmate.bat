@@ -1,3 +1,3 @@
 @ECHO OFF
 chdir app
-start javaw -jar bitzec.jar
+start javaw -jar zecmate.jar
