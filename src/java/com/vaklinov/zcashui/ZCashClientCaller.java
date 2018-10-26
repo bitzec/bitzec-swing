@@ -96,7 +96,7 @@ public class ZCashClientCaller
 
 
 	// Zcash client program and daemon
-	private File bitzeccli, bitzecd;
+	private File zcashcli, bitzecd;
 	
 	// Table caching the wallet transaction times - to speed up performance
 	// TXID -> UNIX time as string
@@ -117,14 +117,14 @@ public class ZCashClientCaller
 	{
 		// Detect daemon and client tools installation
 		File dir = new File(installDir);
-	    bitzeccli = new File(dir, OSUtil.getZCashCli());
+	    zcashcli = new File(dir, OSUtil.getZCashCli());
 
-		if (!bitzeccli.exists())
+		if (!zcashcli.exists())
 		{
-			bitzeccli = OSUtil.findZCashCommand(OSUtil.getZCashCli());
+			zcashcli = OSUtil.findZCashCommand(OSUtil.getZCashCli());
 		}
 
-		if ((bitzeccli == null) || (!bitzeccli.exists()))
+		if ((zcashcli == null) || (!zcashcli.exists()))
 		{
 			throw new IOException(
 				"The Zcash installation directory " + installDir + " needs to contain " +
@@ -140,7 +140,7 @@ public class ZCashClientCaller
 		if (bitzecd == null || (!bitzecd.exists()))
 		{
 		    throw new IOException(
-		    	"The Zcash command line utility " + bitzeccli.getCanonicalPath() + 
+		    	"The Zcash command line utility " + zcashcli.getCanonicalPath() + 
 		    	" was found, but bitzecd was not found!");
 		}
 	}
@@ -166,7 +166,7 @@ public class ZCashClientCaller
 		throws IOException,InterruptedException 
 	{
 	    CommandExecutor stopper = new CommandExecutor(
-	            new String[] { bitzeccli.getCanonicalPath(), "stop" });
+	            new String[] { zcashcli.getCanonicalPath(), "stop" });
 	    
 	    String result = stopper.execute();
 	    Log.info("Stop command issued: " + result);
@@ -177,7 +177,7 @@ public class ZCashClientCaller
 		throws IOException, InterruptedException, WalletCallException 
 	{
 	    CommandExecutor infoGetter = new CommandExecutor(
-	            new String[] { bitzeccli.getCanonicalPath(), "getinfo"} );
+	            new String[] { zcashcli.getCanonicalPath(), "getinfo"} );
 	    String info = infoGetter.execute();
 	    
 	    if (info.trim().toLowerCase(Locale.ROOT).startsWith("error: couldn't connect to server"))
@@ -595,7 +595,7 @@ public class ZCashClientCaller
 		
 		String[] sendCashParameters = new String[]
 	    {
-		    this.bitzeccli.getCanonicalPath(), "z_sendmany", wrapStringParameter(from),
+		    this.zcashcli.getCanonicalPath(), "z_sendmany", wrapStringParameter(from),
 		    wrapStringParameter(toManyArrayStr),
 		    // Default min confirmations for the input transactions is 1
 		    "1",
@@ -709,7 +709,7 @@ public class ZCashClientCaller
 		String toManyArrayStr =	toMany.toString(WriterConfig.MINIMAL);		
 		String[] sendCashParameters = new String[]
 	    {
-		    this.bitzeccli.getCanonicalPath(), "z_sendmany", wrapStringParameter(from),
+		    this.zcashcli.getCanonicalPath(), "z_sendmany", wrapStringParameter(from),
 		    wrapStringParameter(toManyArrayStr),
 		    // Default min confirmations for the input transactions is 1
 		    "1",
@@ -789,7 +789,7 @@ public class ZCashClientCaller
 		String toManyArrayStr =	toMany.toString();		
 		String[] sendCashParameters = new String[]
 	    {
-		    this.bitzeccli.getCanonicalPath(), "z_sendmany", wrapStringParameter(from),
+		    this.zcashcli.getCanonicalPath(), "z_sendmany", wrapStringParameter(from),
 		    wrapStringParameter(toManyArrayStr),
 		    // Default min confirmations for the input transactions is 1
 		    "1",
@@ -979,7 +979,7 @@ public class ZCashClientCaller
 	public synchronized boolean isWalletEncrypted()
    		throws WalletCallException, IOException, InterruptedException
     {
-		String[] params = new String[] { this.bitzeccli.getCanonicalPath(), "walletlock" };
+		String[] params = new String[] { this.zcashcli.getCanonicalPath(), "walletlock" };
 		CommandExecutor caller = new CommandExecutor(params);
     	String strResult = caller.execute();
 
@@ -1110,7 +1110,7 @@ public class ZCashClientCaller
 		// First try a Z key
 		String[] params = new String[] 
 		{ 
-			this.bitzeccli.getCanonicalPath(),
+			this.zcashcli.getCanonicalPath(),
 			"-rpcclienttimeout=5000",
 			"z_importkey", 
 			wrapStringParameter(key) 
@@ -1270,16 +1270,16 @@ public class ZCashClientCaller
 		String[] params;
 		if (command4 != null)
 		{
-			params = new String[] { this.bitzeccli.getCanonicalPath(), command1, command2, command3, command4 };
+			params = new String[] { this.zcashcli.getCanonicalPath(), command1, command2, command3, command4 };
 		} else if (command3 != null)
 		{
-			params = new String[] { this.bitzeccli.getCanonicalPath(), command1, command2, command3 };
+			params = new String[] { this.zcashcli.getCanonicalPath(), command1, command2, command3 };
 		} else if (command2 != null)
 		{
-			params = new String[] { this.bitzeccli.getCanonicalPath(), command1, command2 };
+			params = new String[] { this.zcashcli.getCanonicalPath(), command1, command2 };
 		} else
 		{
-			params = new String[] { this.bitzeccli.getCanonicalPath(), command1 };
+			params = new String[] { this.zcashcli.getCanonicalPath(), command1 };
 		}
 
 	    CommandExecutor caller = new CommandExecutor(params);

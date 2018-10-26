@@ -14,9 +14,9 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <staging.dir>${project.build.directory}/staging</staging.dir>
-    <installer-output-filename>bitzec-swing</installer-output-filename>
+    <installer-output-filename>bitzec-swing-wallet</installer-output-filename>
     <zcash.project.url>https://github.com</zcash.project.url>
-    <zcash.binaries.file.name.windows>Zcash/ZcashBinaries/releases/download/initial/windows.zip</zcash.binaries.file.name.windows>
+    <zcash.binaries.file.name.windows>Bitzec/ZcashBinaries/releases/download/initial/windows.zip</zcash.binaries.file.name.windows>
     <izpack.version>5.0.6</izpack.version>
   </properties>
 
@@ -100,7 +100,7 @@
                                                dest="${project.build.directory}/staging/zcash-win-binaries">
                                             <patternset>
                                                 <include name="**/bitzec-cli.exe"/>
-                                                <include name="**/bitzec-tx.exe"/>
+                                                <include name="**/zcash-tx.exe"/>
                                                 <include name="**/bitzecd.exe"/>
                                             </patternset>
                                             <mapper type="flatten"/>
