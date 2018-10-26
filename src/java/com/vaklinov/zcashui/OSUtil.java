@@ -115,15 +115,15 @@ public class OSUtil
 	// Returns the name of the bitzec-cli tool - may vary depending on the OS.
 	public static String getZCashCli()
 	{
-		String zcashcli = "bitzec-cli";
+		String bitzeccli = "bitzec-cli";
 		
 		OS_TYPE os = getOSType();
 		if (os == OS_TYPE.WINDOWS)
 		{
-			zcashcli += ".exe";
+			bitzeccli += ".exe";
 		}
 		
-		return zcashcli;
+		return bitzeccli;
 	}
 
 

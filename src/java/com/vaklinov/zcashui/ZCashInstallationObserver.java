@@ -78,19 +78,19 @@ public class ZCashInstallationObserver
 		}
 
 		File bitzecd = new File(dir, OSUtil.getZCashd());
-		File zcashcli = new File(dir, OSUtil.getZCashCli());
+		File bitzeccli = new File(dir, OSUtil.getZCashCli());
 
-		if ((!bitzecd.exists()) || (!zcashcli.exists()))
+		if ((!bitzecd.exists()) || (!bitzeccli.exists()))
 		{
 			bitzecd = OSUtil.findZCashCommand(OSUtil.getZCashd());
-			zcashcli = OSUtil.findZCashCommand(OSUtil.getZCashCli());
+			bitzeccli = OSUtil.findZCashCommand(OSUtil.getZCashCli());
 		}
 
 		Log.info("Using Zcash utilities: " +
 		                   "bitzecd: "    + ((bitzecd != null) ? bitzecd.getCanonicalPath() : "<MISSING>") + ", " +
-		                   "bitzec-cli: " + ((zcashcli != null) ? zcashcli.getCanonicalPath() : "<MISSING>"));
+		                   "bitzec-cli: " + ((bitzeccli != null) ? bitzeccli.getCanonicalPath() : "<MISSING>"));
 
-		if ((bitzecd == null) || (zcashcli == null) || (!bitzecd.exists()) || (!zcashcli.exists()))
+		if ((bitzecd == null) || (bitzeccli == null) || (!bitzecd.exists()) || (!bitzeccli.exists()))
 		{
 			throw new InstallationDetectionException(
 				"The Zcash GUI Wallet installation directory " + installDir + " needs\nto contain " +
