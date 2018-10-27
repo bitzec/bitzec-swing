@@ -3,15 +3,15 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://izpack.org/schema/shortcuts http://izpack.org/schema/5.0/izpack-shortcuts-5.0.xsd">
     <shortcuts>
-        <programGroup defaultName="ZECmate" location="applications"/>
+        <programGroup defaultName="Bitzec" location="applications"/>
         <lateShortcutInstall/>
         <skipIfNotSupported/>
         <shortcut
-                name = "ZECmate Swing Wallet"
+                name = "Bitzec Swing Wallet"
                 target = "$INSTALL_PATH\ZECmate.bat"
                 commandLine = ""
                 workingDirectory= "$INSTALL_PATH\app"
-                description="ZECmate Swing Wallet Launch"
+                description="Bitzec Swing Wallet Launch"
                 iconFile="$INSTALL_PATH\ZECmate.ico"
                 iconIndex="0"
                 initialState="normal"

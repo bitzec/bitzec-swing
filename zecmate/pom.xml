@@ -15,7 +15,7 @@
 
     <properties>
         <main.class>com.vaklinov.zcashui.ZCashUI</main.class>
-        <application.finalName>ZECmate</application.finalName>
+        <application.finalName>BitzecSwing</application.finalName>
     </properties>
 
     <dependencies>

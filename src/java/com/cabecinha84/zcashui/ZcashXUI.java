@@ -59,7 +59,7 @@ public class ZcashXUI {
 	public static final String DEFAULT_COLOR = "#ffffff";
 	public static final String DEFAULT_COLOR_BLACK = "#000000";
 	public static final String DEFAULT_CURRENCY = "USD";
-	
+
 	public static Color button;
 	public static Color buttonSelect;
 	public static Color checkbox;
@@ -102,10 +102,10 @@ public class ZcashXUI {
 	public static Color viewport;
 	public static String currency;
 
-	
-	
+
+
 	public ZcashXUI() {
-		Log.info("Loading ZECmate");
+		Log.info("Loading bitzec");
 		loadZcashXUIFile();
 		javax.swing.UIManager.put("ScrollBar.background", ZcashXUI.scrollbar);
     	javax.swing.UIManager.put("ScrollPane.background", ZcashXUI.scrollpane);
@@ -114,7 +114,7 @@ public class ZcashXUI {
 		javax.swing.UIManager.put("TabbedPane.focus", ZcashXUI.tabbedpane);
     	javax.swing.UIManager.put("Viewport.background", ZcashXUI.viewport);
     	javax.swing.UIManager.put("ToolTip.background", ZcashXUI.tooltip);
-    	
+
     	javax.swing.UIManager.put("Menu.selectionBackground", ZcashXUI.menuSelection);
     	javax.swing.UIManager.put("MenuItem.selectionBackground", ZcashXUI.menuitemSelection);
     	javax.swing.UIManager.put("MenuBar.selectionBackground", ZcashXUI.menuitemSelection);
@@ -135,14 +135,14 @@ public class ZcashXUI {
 		javax.swing.UIManager.put("Button.foreground",ZcashXUI.text);
 		javax.swing.UIManager.put("Panel.background",ZcashXUI.panel);
 		javax.swing.UIManager.put("Panel.foreground",ZcashXUI.text);
-			
-		
+
+
 		Log.info("Finished loading ZECmate");
 	}
 
 	private void loadZcashXUIFile() {
 		try {
-			
+
 			String settingsDir = OSUtil.getSettingsDirectory();
 			File zcashConf = new File(settingsDir + File.separator + "zcash_ui.properties");
 			if (!zcashConf.exists())
@@ -150,9 +150,9 @@ public class ZcashXUI {
 				Log.warning("Could not find file: {0} , will create a new one from default!", zcashConf.getAbsolutePath());
 				copy(getClass().getResourceAsStream("/ui/zcash_ui.properties"),zcashConf.getAbsolutePath());
 				zcashConf = new File(settingsDir + File.separator + "zcash_ui.properties");
-				
-			} 
-			
+
+			}
+
 			Log.info("File zcash_ui.properties found");
 			Properties confProps = new Properties();
 			FileInputStream fis = null;
@@ -162,47 +162,47 @@ public class ZcashXUI {
 				fis = new FileInputStream(zcashConf);
 				confProps.load(fis);
 				button = Color.decode(confProps.getProperty(BUTTON_PROPERTY_COLOR)!= null? confProps.getProperty(BUTTON_PROPERTY_COLOR).trim():DEFAULT_COLOR);
-				buttonSelect = Color.decode(confProps.getProperty(BUTTON_SELECT_PROPERTY_COLOR)!= null? confProps.getProperty(BUTTON_SELECT_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				checkbox = Color.decode(confProps.getProperty(CHECKBOX_PROPERTY_COLOR)!= null? confProps.getProperty(CHECKBOX_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
+				buttonSelect = Color.decode(confProps.getProperty(BUTTON_SELECT_PROPERTY_COLOR)!= null? confProps.getProperty(BUTTON_SELECT_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				checkbox = Color.decode(confProps.getProperty(CHECKBOX_PROPERTY_COLOR)!= null? confProps.getProperty(CHECKBOX_PROPERTY_COLOR).trim():DEFAULT_COLOR);
 				checkboxSelect = Color.decode(confProps.getProperty(CHECKBOX_SELECT_PROPERTY_COLOR)!= null? confProps.getProperty(CHECKBOX_SELECT_PROPERTY_COLOR).trim():DEFAULT_COLOR);
 				colorChooser = Color.decode(confProps.getProperty(COLORCHOOSER_PROPERTY_COLOR)!= null? confProps.getProperty(COLORCHOOSER_PROPERTY_COLOR).trim():DEFAULT_COLOR);
-				combobox = Color.decode(confProps.getProperty(COMBOBOX_PROPERTY_COLOR)!= null? confProps.getProperty(COMBOBOX_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				container = Color.decode(confProps.getProperty(CONTAINER_PROPERTY_COLOR)!= null? confProps.getProperty(CONTAINER_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				dialog = Color.decode(confProps.getProperty(DIALOG_PROPERTY_COLOR)!= null? confProps.getProperty(DIALOG_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				filechooser = Color.decode(confProps.getProperty(FILECHOOSER_PROPERTY_COLOR)!= null? confProps.getProperty(FILECHOOSER_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				frame = Color.decode(confProps.getProperty(FRAME_PROPERTY_COLOR)!= null? confProps.getProperty(FRAME_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				list = Color.decode(confProps.getProperty(LIST_PROPERTY_COLOR)!= null? confProps.getProperty(LIST_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				menu = Color.decode(confProps.getProperty(MENU_PROPERTY_COLOR)!= null? confProps.getProperty(MENU_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				menuSelection = Color.decode(confProps.getProperty(MENU_SELECTION_PROPERTY_COLOR)!= null? confProps.getProperty(MENU_SELECTION_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				menubar = Color.decode(confProps.getProperty(MENUBAR_PROPERTY_COLOR)!= null? confProps.getProperty(MENUBAR_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				menuitem = Color.decode(confProps.getProperty(MENUITEM_PROPERTY_COLOR)!= null? confProps.getProperty(MENUITEM_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				menuitemSelection = Color.decode(confProps.getProperty(MENUITEM_SELECTION_PROPERTY_COLOR)!= null? confProps.getProperty(MENUITEM_SELECTION_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				panel = Color.decode(confProps.getProperty(PANEL_PROPERTY_COLOR)!= null? confProps.getProperty(PANEL_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				passwordfield = Color.decode(confProps.getProperty(PASSWORDFIELD_PROPERTY_COLOR)!= null? confProps.getProperty(PASSWORDFIELD_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				popupmenu = Color.decode(confProps.getProperty(POPUPMENU_PROPERTY_COLOR)!= null? confProps.getProperty(POPUPMENU_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				presentationpanel = Color.decode(confProps.getProperty(PRESENTATIONPANEL_PROPERTY_COLOR)!= null? confProps.getProperty(PRESENTATIONPANEL_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				presentationpanelBorder = Color.decode(confProps.getProperty(PRESENTATIONPANEL_BORDER_PROPERTY_COLOR)!= null? confProps.getProperty(PRESENTATIONPANEL_BORDER_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				progressbar = Color.decode(confProps.getProperty(PROGRESSBAR_PROPERTY_COLOR)!= null? confProps.getProperty(PROGRESSBAR_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				progressbarForeground = Color.decode(confProps.getProperty(PROGRESSBAR_FOREGROUND_PROPERTY_COLOR)!= null? confProps.getProperty(PROGRESSBAR_FOREGROUND_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				radiobutton = Color.decode(confProps.getProperty(RADIOBUTTON_PROPERTY_COLOR)!= null? confProps.getProperty(RADIOBUTTON_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				scrollbar = Color.decode(confProps.getProperty(SCROLLBAR_PROPERTY_COLOR)!= null? confProps.getProperty(SCROLLBAR_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				scrollbarForeground = Color.decode(confProps.getProperty(SCROLLBAR_FOREGROUND_PROPERTY_COLOR)!= null? confProps.getProperty(SCROLLBAR_FOREGROUND_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				scrollbarThumb = Color.decode(confProps.getProperty(SCROLLBAR_THUMB_PROPERTY_COLOR)!= null? confProps.getProperty(SCROLLBAR_THUMB_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				scrollpane = Color.decode(confProps.getProperty(SCROLLPANE_PROPERTY_COLOR)!= null? confProps.getProperty(SCROLLPANE_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				splitpane = Color.decode(confProps.getProperty(SPLITPANE_PROPERTY_COLOR)!= null? confProps.getProperty(SPLITPANE_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				startup = Color.decode(confProps.getProperty(STARTUP_PROPERTY_COLOR)!= null? confProps.getProperty(STARTUP_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				tabbedpane = Color.decode(confProps.getProperty(TABBEDPANE_PROPERTY_COLOR)!= null? confProps.getProperty(TABBEDPANE_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				tabbedpaneUnselected = Color.decode(confProps.getProperty(TABBEDPANE_UNSELECTED_PROPERTY_COLOR)!= null? confProps.getProperty(TABBEDPANE_UNSELECTED_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				table = Color.decode(confProps.getProperty(TABLE_PROPERTY_COLOR)!= null? confProps.getProperty(TABLE_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				tableHeader = Color.decode(confProps.getProperty(TABLE_HEADER_PROPERTY_COLOR)!= null? confProps.getProperty(TABLE_HEADER_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				textarea = Color.decode(confProps.getProperty(TEXTAREA_PROPERTY_COLOR)!= null? confProps.getProperty(TEXTAREA_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				text = Color.decode(confProps.getProperty(TEXT_PROPERTY_COLOR)!= null? confProps.getProperty(TEXT_PROPERTY_COLOR).trim():DEFAULT_COLOR_BLACK); 
-				textfield = Color.decode(confProps.getProperty(TEXTFIELD_PROPERTY_COLOR)!= null? confProps.getProperty(TEXTFIELD_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				textpane = Color.decode(confProps.getProperty(TEXTPANE_PROPERTY_COLOR)!= null? confProps.getProperty(TEXTPANE_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				tooltip = Color.decode(confProps.getProperty(TOOLTIP_PROPERTY_COLOR)!= null? confProps.getProperty(TOOLTIP_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				viewport = Color.decode(confProps.getProperty(VIEWPORT_PROPERTY_COLOR)!= null? confProps.getProperty(VIEWPORT_PROPERTY_COLOR).trim():DEFAULT_COLOR); 
-				currency = confProps.getProperty(CURRENCY)!= null? confProps.getProperty(CURRENCY).toUpperCase().trim():DEFAULT_CURRENCY; 
-				
+				combobox = Color.decode(confProps.getProperty(COMBOBOX_PROPERTY_COLOR)!= null? confProps.getProperty(COMBOBOX_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				container = Color.decode(confProps.getProperty(CONTAINER_PROPERTY_COLOR)!= null? confProps.getProperty(CONTAINER_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				dialog = Color.decode(confProps.getProperty(DIALOG_PROPERTY_COLOR)!= null? confProps.getProperty(DIALOG_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				filechooser = Color.decode(confProps.getProperty(FILECHOOSER_PROPERTY_COLOR)!= null? confProps.getProperty(FILECHOOSER_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				frame = Color.decode(confProps.getProperty(FRAME_PROPERTY_COLOR)!= null? confProps.getProperty(FRAME_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				list = Color.decode(confProps.getProperty(LIST_PROPERTY_COLOR)!= null? confProps.getProperty(LIST_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				menu = Color.decode(confProps.getProperty(MENU_PROPERTY_COLOR)!= null? confProps.getProperty(MENU_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				menuSelection = Color.decode(confProps.getProperty(MENU_SELECTION_PROPERTY_COLOR)!= null? confProps.getProperty(MENU_SELECTION_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				menubar = Color.decode(confProps.getProperty(MENUBAR_PROPERTY_COLOR)!= null? confProps.getProperty(MENUBAR_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				menuitem = Color.decode(confProps.getProperty(MENUITEM_PROPERTY_COLOR)!= null? confProps.getProperty(MENUITEM_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				menuitemSelection = Color.decode(confProps.getProperty(MENUITEM_SELECTION_PROPERTY_COLOR)!= null? confProps.getProperty(MENUITEM_SELECTION_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				panel = Color.decode(confProps.getProperty(PANEL_PROPERTY_COLOR)!= null? confProps.getProperty(PANEL_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				passwordfield = Color.decode(confProps.getProperty(PASSWORDFIELD_PROPERTY_COLOR)!= null? confProps.getProperty(PASSWORDFIELD_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				popupmenu = Color.decode(confProps.getProperty(POPUPMENU_PROPERTY_COLOR)!= null? confProps.getProperty(POPUPMENU_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				presentationpanel = Color.decode(confProps.getProperty(PRESENTATIONPANEL_PROPERTY_COLOR)!= null? confProps.getProperty(PRESENTATIONPANEL_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				presentationpanelBorder = Color.decode(confProps.getProperty(PRESENTATIONPANEL_BORDER_PROPERTY_COLOR)!= null? confProps.getProperty(PRESENTATIONPANEL_BORDER_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				progressbar = Color.decode(confProps.getProperty(PROGRESSBAR_PROPERTY_COLOR)!= null? confProps.getProperty(PROGRESSBAR_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				progressbarForeground = Color.decode(confProps.getProperty(PROGRESSBAR_FOREGROUND_PROPERTY_COLOR)!= null? confProps.getProperty(PROGRESSBAR_FOREGROUND_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				radiobutton = Color.decode(confProps.getProperty(RADIOBUTTON_PROPERTY_COLOR)!= null? confProps.getProperty(RADIOBUTTON_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				scrollbar = Color.decode(confProps.getProperty(SCROLLBAR_PROPERTY_COLOR)!= null? confProps.getProperty(SCROLLBAR_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				scrollbarForeground = Color.decode(confProps.getProperty(SCROLLBAR_FOREGROUND_PROPERTY_COLOR)!= null? confProps.getProperty(SCROLLBAR_FOREGROUND_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				scrollbarThumb = Color.decode(confProps.getProperty(SCROLLBAR_THUMB_PROPERTY_COLOR)!= null? confProps.getProperty(SCROLLBAR_THUMB_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				scrollpane = Color.decode(confProps.getProperty(SCROLLPANE_PROPERTY_COLOR)!= null? confProps.getProperty(SCROLLPANE_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				splitpane = Color.decode(confProps.getProperty(SPLITPANE_PROPERTY_COLOR)!= null? confProps.getProperty(SPLITPANE_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				startup = Color.decode(confProps.getProperty(STARTUP_PROPERTY_COLOR)!= null? confProps.getProperty(STARTUP_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				tabbedpane = Color.decode(confProps.getProperty(TABBEDPANE_PROPERTY_COLOR)!= null? confProps.getProperty(TABBEDPANE_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				tabbedpaneUnselected = Color.decode(confProps.getProperty(TABBEDPANE_UNSELECTED_PROPERTY_COLOR)!= null? confProps.getProperty(TABBEDPANE_UNSELECTED_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				table = Color.decode(confProps.getProperty(TABLE_PROPERTY_COLOR)!= null? confProps.getProperty(TABLE_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				tableHeader = Color.decode(confProps.getProperty(TABLE_HEADER_PROPERTY_COLOR)!= null? confProps.getProperty(TABLE_HEADER_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				textarea = Color.decode(confProps.getProperty(TEXTAREA_PROPERTY_COLOR)!= null? confProps.getProperty(TEXTAREA_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				text = Color.decode(confProps.getProperty(TEXT_PROPERTY_COLOR)!= null? confProps.getProperty(TEXT_PROPERTY_COLOR).trim():DEFAULT_COLOR_BLACK);
+				textfield = Color.decode(confProps.getProperty(TEXTFIELD_PROPERTY_COLOR)!= null? confProps.getProperty(TEXTFIELD_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				textpane = Color.decode(confProps.getProperty(TEXTPANE_PROPERTY_COLOR)!= null? confProps.getProperty(TEXTPANE_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				tooltip = Color.decode(confProps.getProperty(TOOLTIP_PROPERTY_COLOR)!= null? confProps.getProperty(TOOLTIP_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				viewport = Color.decode(confProps.getProperty(VIEWPORT_PROPERTY_COLOR)!= null? confProps.getProperty(VIEWPORT_PROPERTY_COLOR).trim():DEFAULT_COLOR);
+				currency = confProps.getProperty(CURRENCY)!= null? confProps.getProperty(CURRENCY).toUpperCase().trim():DEFAULT_CURRENCY;
+
 			} finally
 			{
 				if (fis != null)
@@ -214,9 +214,9 @@ public class ZcashXUI {
 		catch(Exception e) {
 			Log.warning("Error obtaining properties from zcash_ui.properties file due to: {0} {1}",
 					e.getClass().getName(), e.getMessage());
-		}	
+		}
 	}
-	
+
 	private static void copy(InputStream source , String destination) {
 
 		Log.info("Copying ->" + source + "\n\tto ->" + destination);
