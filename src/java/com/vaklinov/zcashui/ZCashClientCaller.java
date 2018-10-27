@@ -620,7 +620,7 @@ public class ZCashClientCaller
                 sendCashParameters[2] + " " + sendCashParameters[3] + " " +
                 sendCashParameters[4] + " " + sendCashParameters[5] + ".");
 		
-		// Create caller to send cash
+		// Create caller to send crypto
 	    CommandExecutor caller = new CommandExecutor(sendCashParameters);
 	    String strResponse = caller.execute();
 
@@ -662,7 +662,7 @@ public class ZCashClientCaller
 			                                              String amount, String memo, String transactionFee)
 		throws WalletCallException, IOException, InterruptedException
 	{
-		Log.info("Starting operation send cash with return of change. Parameters are: from address: {0}, to address: {1}, " + 
+		Log.info("Starting operation send crypto with return of change. Parameters are: from address: {0}, to address: {1}, " + 
 	             "current balance: {2}, amount: {3}, memo: {4}, transaction fee: {5}",
 				 from, to, balance, amount, memo, transactionFee);
 		
@@ -744,7 +744,7 @@ public class ZCashClientCaller
                 sendCashParameters[2] + " " + sendCashParameters[3] + " " +
                 sendCashParameters[4] + " " + sendCashParameters[5] + ".");
 		
-		// Create caller to send cash
+		// Create caller to send crypto
 	    CommandExecutor caller = new CommandExecutor(sendCashParameters);
 	    String strResponse = caller.execute();
 
@@ -797,7 +797,7 @@ public class ZCashClientCaller
 		    new DecimalFormat("########0.00######", decSymbols).format(fee)
 		};
 				
-		// Create caller to send cash
+		// Create caller to send crypto
 	    CommandExecutor caller = new CommandExecutor(sendCashParameters);
 	    String strResponse = caller.execute();
 

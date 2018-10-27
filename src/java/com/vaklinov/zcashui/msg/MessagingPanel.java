@@ -1228,7 +1228,7 @@ public class MessagingPanel
 	        	"transaction is sufficient).", 
 		        "Z address to send/receive messages has insufficient balance...", JOptionPane.ERROR_MESSAGE);
 		        
-	            // Restore controls and move to the send cash tab etc.
+	            // Restore controls and move to the send crypto tab etc.
 		        this.sendButton.setEnabled(true);
 				this.writeMessageTextArea.setEnabled(true);
 				
@@ -1251,7 +1251,7 @@ public class MessagingPanel
 	        	"transactions (when you supply the BZCbalance to be used for messaging).", 
 		        "Z address to send/receive messages has insufficient confirmed balance...", JOptionPane.ERROR_MESSAGE);
 		        
-	            // Restore controls and move to the send cash tab etc.
+	            // Restore controls and move to the send crypto tab etc.
 		        this.sendButton.setEnabled(true);
 				this.writeMessageTextArea.setEnabled(true);
 				
