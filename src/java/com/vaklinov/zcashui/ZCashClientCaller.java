@@ -57,7 +57,7 @@ import com.vaklinov.zcashui.OSUtil.OS_TYPE;
 
 
 /**
- * Calls zcash-cli
+ * Calls bitzec-cli
  */
 public class ZCashClientCaller
 {
@@ -96,7 +96,7 @@ public class ZCashClientCaller
 
 
 	// Zcash client program and daemon
-	private File zcashcli, zcashd;
+	private File zcashcli, bitzecd;
 	
 	// Table caching the wallet transaction times - to speed up performance
 	// TXID -> UNIX time as string
@@ -128,20 +128,20 @@ public class ZCashClientCaller
 		{
 			throw new IOException(
 				"The Zcash installation directory " + installDir + " needs to contain " +
-				"the command line utilities zcashd and zcash-cli. zcash-cli is missing!");
+				"the command line utilities bitzecd and bitzec-cli. bitzec-cli is missing!");
 		}
 		
-		zcashd = new File(dir, OSUtil.getZCashd());
-		if (!zcashd.exists())
+		bitzecd = new File(dir, OSUtil.getZCashd());
+		if (!bitzecd.exists())
 		{
-		    zcashd = OSUtil.findZCashCommand(OSUtil.getZCashd());
+		    bitzecd = OSUtil.findZCashCommand(OSUtil.getZCashd());
 		}
 		
-		if (zcashd == null || (!zcashd.exists()))
+		if (bitzecd == null || (!bitzecd.exists()))
 		{
 		    throw new IOException(
 		    	"The Zcash command line utility " + zcashcli.getCanonicalPath() + 
-		    	" was found, but zcashd was not found!");
+		    	" was found, but bitzecd was not found!");
 		}
 	}
 
@@ -154,7 +154,7 @@ public class ZCashClientCaller
 	    CommandExecutor starter = new CommandExecutor(
 	        new String[] 
 	        {
-	        	zcashd.getCanonicalPath(), 
+	        	bitzecd.getCanonicalPath(), 
 	        	"-exportdir=" + wrapStringParameter(exportDir)
 	        });
 	    
@@ -367,7 +367,7 @@ public class ZCashClientCaller
 	}
 	
 
-	// ./src/zcash-cli listunspent only returns T addresses it seems
+	// ./src/bitzec-cli listunspent only returns T addresses it seems
 	public synchronized String[] getWalletPublicAddressesWithUnspentOutputs()
 		throws WalletCallException, IOException, InterruptedException
 	{
@@ -384,7 +384,7 @@ public class ZCashClientCaller
      }
 
 
-	// ./zcash-cli listreceivedbyaddress 0 true
+	// ./bitzec-cli listreceivedbyaddress 0 true
 	public synchronized String[] getWalletAllPublicAddresses()
 		throws WalletCallException, IOException, InterruptedException
 	{
@@ -641,18 +641,18 @@ public class ZCashClientCaller
 	
 	
 	/**
-	 * Sends ZEC from a source address to a destination address. The change is sent back to the source address.
+	 * Sends BZC from a source address to a destination address. The change is sent back to the source address.
 	 * The amount of change is calculated based on the existing confirmed balance for the address (parameter).
 	 * This may not be 100% accurate if the blockchain is not synchronized.
 	 * 
 	 * @param from source address (T/Z)
 	 * @param to destination address (T/Z)
 	 * @param balance current confirmed balance of the source address
-	 * @param amount ZEC amount to send
+	 * @param amount BZC amount to send
 	 * @param memo text memo to include in the transaction
 	 * @param transactionFee transaction see to include
 	 * 
-	 * @return a zcashd operation ID for the send operation
+	 * @return a bitzecd operation ID for the send operation
 	 * 
 	 * @throws WalletCallException
 	 * @throws IOException
@@ -974,7 +974,7 @@ public class ZCashClientCaller
 
 
     // Wallet locks check - an unencrypted wallet will give an error
-	// zcash-cli walletlock
+	// bitzec-cli walletlock
 	// error: {"code":-15,"message":"Error: running with an unencrypted wallet, but walletlock was called."}
 	public synchronized boolean isWalletEncrypted()
    		throws WalletCallException, IOException, InterruptedException
@@ -1032,11 +1032,11 @@ public class ZCashClientCaller
 	/**
 	 * Encrypts the wallet. Typical success/error use cases are:
 	 *
-	 * ./zcash-cli encryptwallet "1234"
+	 * ./bitzec-cli encryptwallet "1234"
 	 * wallet encrypted; Bitcoin server stopping, restart to run with encrypted wallet.
 	 * The keypool has been flushed, you need to make a new backup.
 	 *
-	 * ./zcash-cli encryptwallet "1234"
+	 * ./bitzec-cli encryptwallet "1234"
 	 * error: {"code":-15,"message":"Error: running with an encrypted wallet, but encryptwallet was called."}
 	 *
 	 * @param password

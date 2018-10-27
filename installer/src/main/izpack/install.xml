@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <installation version="5.0">
   <info>
-    <appname>ZECmate</appname>
+    <appname>Bitzec</appname>
     <appversion>1.0.1</appversion>
-    <url>https://zecmate.com</url>
+    <url>https://bitzec.com</url>
     <authors>
         <author name="Ivan Vaklinov" email="ivan@vaklinov.com"/>
         <author name="Armand Ballaci" email="aballaci@gmail.com"/>
@@ -30,7 +30,7 @@
     <res id="LicencePanel.licence" src="@{main.basedir}/../LICENSE"/>
     <res id="HTMLHelloPanel.welcome" src="welcome.html"/>
     <res id="HTMLInfoPanel.welcome" src="welcome.html"/>
-    <res id="ZcashLogo" src="images/ZECmate-logo.png"/>
+    <res id="ZcashLogo" src="images/Bitzec-logo.png"/>
 
     <res id="TargetPanel.dir.windows" src="TargetDirWindows.txt"/>
     <res id="packsLang.xml_eng" src="i18n/zcashPacksLang.xml_eng"/>
@@ -47,7 +47,7 @@
   </resources>
   <variables>
     <variable name="InstallerFrame.logfilePath" value="Default"/>
-    <variable name="WELCOME_TEXT" value="ZECmate Swing Wallet Installation"/>
+    <variable name="WELCOME_TEXT" value="Bitzec Swing Wallet Installation"/>
     <variable name="WELCOME_VERSION" value="Version: 1.0.1"/>
     <variable name="WELCOME_BG_COLOR" value="#404B62"/>
     <variable name="WELCOME_TEXT_COLOR" value="#ffffff"/>

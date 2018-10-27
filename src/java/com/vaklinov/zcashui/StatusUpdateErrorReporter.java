@@ -68,7 +68,7 @@ public class StatusUpdateErrorReporter
 			lastReportedErrroTime = time;
 		}
 		
-		String settingsDirectory = ".ZECmate";
+		String settingsDirectory = ".Bitzec";
 		
 		try
 		{

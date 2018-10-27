@@ -181,7 +181,7 @@ public class SendCashPanel
 		tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		tempPanel.add(destinationAmountField = new ZcashJTextField(13));
 		destinationAmountField.setHorizontalAlignment(SwingConstants.RIGHT);
-		tempPanel.add(new ZcashJLabel(" ZEC    "));
+		tempPanel.add(new ZcashJLabel(" BZC    "));
 		amountPanel.add(tempPanel, BorderLayout.SOUTH);
 
 		ZcashJPanel feePanel = new ZcashJPanel(new BorderLayout());
@@ -190,7 +190,7 @@ public class SendCashPanel
 		tempPanel.add(transactionFeeField = new ZcashJTextField(13));
 		transactionFeeField.setText("0.0001"); // Default value
 		transactionFeeField.setHorizontalAlignment(SwingConstants.RIGHT);		
-		tempPanel.add(new ZcashJLabel(" ZEC"));
+		tempPanel.add(new ZcashJLabel(" BZC"));
 		feePanel.add(tempPanel, BorderLayout.SOUTH);
 		
 		ZcashJPanel sendChangeBoxPanel = new ZcashJPanel(new BorderLayout());
@@ -470,7 +470,11 @@ public class SendCashPanel
 			return;
 		}
 		
+<<<<<<< HEAD
 		// Prevent accidental sending to non-ZEC addresses (which bitzecd supports) probably because of
+=======
+		// Prevent accidental sending to non-BZC addresses (which bitzecd supports) probably because of
+>>>>>>> parent of 9287f56... Revert "edit 1"
 		// ZClassic compatibility
 		if (!installationObserver.isOnTestNet())
 		{
@@ -911,7 +915,7 @@ public class SendCashPanel
 	}
 	
 	
-	// Checks if a number has more than 8 fractional digits. This is not normally allowed for ZEC
+	// Checks if a number has more than 8 fractional digits. This is not normally allowed for BZC
 	// Input must be a decimal number!
 	private boolean hasExcessiveFractionalDigits(String field)
 	{

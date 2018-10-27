@@ -77,25 +77,25 @@ public class ZCashInstallationObserver
 			    "a directory or is otherwise inaccessible to the wallet!");
 		}
 
-		File zcashd = new File(dir, OSUtil.getZCashd());
+		File bitzecd = new File(dir, OSUtil.getZCashd());
 		File zcashcli = new File(dir, OSUtil.getZCashCli());
 
-		if ((!zcashd.exists()) || (!zcashcli.exists()))
+		if ((!bitzecd.exists()) || (!zcashcli.exists()))
 		{
-			zcashd = OSUtil.findZCashCommand(OSUtil.getZCashd());
+			bitzecd = OSUtil.findZCashCommand(OSUtil.getZCashd());
 			zcashcli = OSUtil.findZCashCommand(OSUtil.getZCashCli());
 		}
 
 		Log.info("Using Zcash utilities: " +
-		                   "zcashd: "    + ((zcashd != null) ? zcashd.getCanonicalPath() : "<MISSING>") + ", " +
-		                   "zcash-cli: " + ((zcashcli != null) ? zcashcli.getCanonicalPath() : "<MISSING>"));
+		                   "bitzecd: "    + ((bitzecd != null) ? bitzecd.getCanonicalPath() : "<MISSING>") + ", " +
+		                   "bitzec-cli: " + ((zcashcli != null) ? zcashcli.getCanonicalPath() : "<MISSING>"));
 
-		if ((zcashd == null) || (zcashcli == null) || (!zcashd.exists()) || (!zcashcli.exists()))
+		if ((bitzecd == null) || (zcashcli == null) || (!bitzecd.exists()) || (!zcashcli.exists()))
 		{
 			throw new InstallationDetectionException(
 				"The Zcash GUI Wallet installation directory " + installDir + " needs\nto contain " +
-				"the command line utilities zcashd and zcash-cli. At least one of them is missing! \n" +
-				"Please place files ZECmate.jar, " + OSUtil.getZCashCli() + ", " + 
+				"the command line utilities bitzecd and bitzec-cli. At least one of them is missing! \n" +
+				"Please place files Bitzec.jar, " + OSUtil.getZCashCli() + ", " + 
 				OSUtil.getZCashd() + " in the same directory.");
 		}
 	}
@@ -119,7 +119,7 @@ public class ZCashInstallationObserver
 	private synchronized DaemonInfo getDaemonInfoForUNIXLikeOS()
 		throws IOException, InterruptedException
 	{
-		return getDaemonInfoForUNIXLikeOS("zcashd");
+		return getDaemonInfoForUNIXLikeOS("bitzecd");
 	}
 
 	// So far tested on macOS and Linux - expected to work on other UNIXes as well
@@ -196,7 +196,7 @@ public class ZCashInstallationObserver
 	private synchronized DaemonInfo getDaemonInfoForWindowsOS()
 		throws IOException, InterruptedException
 	{
-		return getDaemonInfoForWindowsOS("zcashd");
+		return getDaemonInfoForWindowsOS("bitzecd");
 	}
 	
 	public static synchronized DaemonInfo getDaemonInfoForWindowsOS(String daemonName)
@@ -243,7 +243,7 @@ public class ZCashInstallationObserver
 					{
 						info.status = DAEMON_STATUS.RUNNING;
 						foundZCash = true;
-						//System.out.println("zcashd process data is: " + line);
+						//System.out.println("bitzecd process data is: " + line);
 					}
 				} else if ((i >= 4) && foundZCash)
 				{

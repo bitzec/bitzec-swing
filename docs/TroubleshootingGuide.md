@@ -1,4 +1,4 @@
-## [ZECmate Swing Wallet](https://swing.zecmate.com/) troubleshooting guide
+## [Bitzec Swing Wallet](https://swing.bitzec.com/) troubleshooting guide
 
 This document outlines possible solutions to several common problems that user might encounter while using the wallet.
 
@@ -6,9 +6,9 @@ This document outlines possible solutions to several common problems that user m
 
 When wallet problems occur, the information about the errors that caused the issue is usually found in the log files written by the wallet itself and also by `bitzecd`. The location of the wallet log files is:
 ```
-Linux:    ~/.ZECmate/ZECmateGUIWallet_xxxx_xx_debug.log 
-Windows:  %LOCALAPPDATA%/ZECmate/ZECmateGUIWallet_xxxx_xx_debug.log
-macOS:   ~/Library/Application Support/ZECmate/ZECmateGUIWallet_xxxx_xx_debug.log
+Linux:    ~/.Bitzec/BitzecGUIWallet_xxxx_xx_debug.log 
+Windows:  %LOCALAPPDATA%/Bitzec/BitzecGUIWallet_xxxx_xx_debug.log
+macOS:   ~/Library/Application Support/Bitzec/BitzecGUIWallet_xxxx_xx_debug.log
 ```
 `bitzecd` that is automatically started by the wallet, stores its logs at locations:
 ```
@@ -34,7 +34,11 @@ bitzecd -reindex
 ```
 For non-technical users here is some information on how to open a terminal on [Windows](https://www.lifewire.com/how-to-open-command-prompt-2618089) and [macOS](https://www.wikihow.com/Open-a-Terminal-Window-in-Mac). The full command on macOS is:
 ```
+<<<<<<< HEAD
 /Applications/ZECmate.app/Contents/Java/bitzecd -reindex
+=======
+/Applications/Bitzec.app/Contents/Java/bitzecd -reindex
+>>>>>>> parent of 9287f56... Revert "edit 1"
 ```
 On Windows you first have to locate `bitzecd.exe`. It is in the `/app` sub-directory of the wallet installation.
 
