@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <installation version="5.0">
   <info>
-    <appname>ZECmate</appname>
-    <appversion>1.0.1</appversion>
-    <url>https://zecmate.com</url>
+    <appname>Bitzec</appname>
+    <appversion>1.1.1</appversion>
+    <url>https://bitzec.org</url>
     <authors>
         <author name="Ivan Vaklinov" email="ivan@vaklinov.com"/>
         <author name="Armand Ballaci" email="aballaci@gmail.com"/>
@@ -55,7 +55,7 @@
 
 
   <panels>
-    
+
     <!-- FIXME why doesn't HTMLHelloPanel work any more?  it is nice not to have the "Please read the following information" text ... -->
     <panel classname="HTMLInfoPanel" id="welcome"/>
 
@@ -102,7 +102,7 @@
         <os family="windows"/>
       </listener>
   </listeners>
-  
+
   <packs>
     <pack name="shortcuts_windows" id="win.short.pack" hidden="true" required="true">
         <description>Shortcut for Windows</description>
