@@ -30,7 +30,7 @@
     <res id="LicencePanel.licence" src="@{main.basedir}/../LICENSE"/>
     <res id="HTMLHelloPanel.welcome" src="welcome.html"/>
     <res id="HTMLInfoPanel.welcome" src="welcome.html"/>
-    <res id="ZcashLogo" src="images/ZECmate-logo.png"/>
+    <res id="ZcashLogo" src="images/Bitzec-logo.png"/>
 
     <res id="TargetPanel.dir.windows" src="TargetDirWindows.txt"/>
     <res id="packsLang.xml_eng" src="i18n/zcashPacksLang.xml_eng"/>

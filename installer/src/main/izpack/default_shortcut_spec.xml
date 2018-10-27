@@ -8,11 +8,11 @@
         <skipIfNotSupported/>
         <shortcut
                 name = "Bitzec Swing Wallet"
-                target = "$INSTALL_PATH\ZECmate.bat"
+                target = "$INSTALL_PATH\Bitzec.bat"
                 commandLine = ""
                 workingDirectory= "$INSTALL_PATH\app"
                 description="Bitzec Swing Wallet Launch"
-                iconFile="$INSTALL_PATH\ZECmate.ico"
+                iconFile="$INSTALL_PATH\Bitzec.ico"
                 iconIndex="0"
                 initialState="normal"
                 programGroup="yes"

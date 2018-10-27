@@ -139,7 +139,7 @@ public class ZCashUI
         
         ClassLoader cl = this.getClass().getClassLoader();
 
-        this.setIconImage(new ImageIcon(cl.getResource("images/ZECmate-logo.png")).getImage());
+        this.setIconImage(new ImageIcon(cl.getResource("images/Bitzec-logo.png")).getImage());
 
         Container contentPane = this.getContentPane();
         contentPane.setBackground(ZcashXUI.container);

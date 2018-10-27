@@ -16,7 +16,7 @@
     <staging.dir>${project.build.directory}/staging</staging.dir>
     <installer-output-filename>zecmate-swing-wallet</installer-output-filename>
     <zcash.project.url>https://github.com</zcash.project.url>
-    <zcash.binaries.file.name.windows>ZECmate/ZcashBinaries/releases/download/initial/windows.zip</zcash.binaries.file.name.windows>
+    <zcash.binaries.file.name.windows>Bitzec/ZcashBinaries/releases/download/initial/windows.zip</zcash.binaries.file.name.windows>
     <izpack.version>5.0.6</izpack.version>
   </properties>
 
