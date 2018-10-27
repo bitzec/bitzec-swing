@@ -196,7 +196,7 @@ public class DashboardPanel
 
 		ZcashJPanel tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 14, 16));
 		ZcashJLabel logoLabel = new ZcashJLabel(new ImageIcon(
-				this.getClass().getClassLoader().getResource("images/Bitzec-logo-small.png")));
+				this.getClass().getClassLoader().getResource("images/ZECmate-logo-small.png")));
 		logoLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		logoLabel.addMouseListener(new MouseAdapter() {
             @Override

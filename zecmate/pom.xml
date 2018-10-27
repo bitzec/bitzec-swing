@@ -154,7 +154,7 @@
                                     </mapper>
                                 </data>
                                 <data>
-                                    <src>${project.build.directory}/deb/Bitzec.desktop</src>
+                                    <src>${project.build.directory}/deb/ZECmate.desktop</src>
                                     <type>file</type>
                                     <mapper>
                                         <type>perm</type>
@@ -163,7 +163,7 @@
                                     </mapper>
                                 </data>
                                 <data>
-                                    <src>${project.build.directory}/deb/Bitzec.png</src>
+                                    <src>${project.build.directory}/deb/ZECmate.png</src>
                                     <type>file</type>
                                     <mapper>
                                         <type>perm</type>

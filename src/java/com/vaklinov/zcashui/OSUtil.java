@@ -237,13 +237,13 @@ public class OSUtil
 
 	    if (os == OS_TYPE.MAC_OS)
 	    {
-	        dir = new File(userHome, "Library/Application Support/Bitzec");
+	        dir = new File(userHome, "Library/Application Support/ZECmate");
 	    } else if (os == OS_TYPE.WINDOWS)
 		{
-			dir = new File(System.getenv("LOCALAPPDATA") + "\\Bitzec");
+			dir = new File(System.getenv("LOCALAPPDATA") + "\\ZECmate");
 		} else
 	    {
-	        dir = new File(userHome.getCanonicalPath() + File.separator + ".Bitzec");
+	        dir = new File(userHome.getCanonicalPath() + File.separator + ".ZECmate");
 	    }
 
 		if (!dir.exists())

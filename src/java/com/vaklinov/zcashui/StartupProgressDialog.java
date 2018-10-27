@@ -49,7 +49,7 @@ public class StartupProgressDialog extends ZcashJFrame {
     {
         this.clientCaller = clientCaller;
         
-        URL iconUrl = this.getClass().getClassLoader().getResource("images/Bitzec-logo.png");
+        URL iconUrl = this.getClass().getClassLoader().getResource("images/ZECmate-logo.png");
         imageIcon = new ImageIcon(iconUrl);
         imageLabel.setIcon(imageIcon);
         imageLabel.setBorder(BorderFactory.createEmptyBorder(16, 40, 8, 40));
