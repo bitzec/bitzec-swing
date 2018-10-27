@@ -34,10 +34,11 @@ Before installing the Bitzec-Swing Wallet you need to have Bitzec up and running
     git clone https://github.com/bitzec/bitzec-swing.git
    ```
     cd Bitzec-swing/
+   
    ```
-   Issue the build command:
+    Issue the build command:
    ```
-  ant -buildfile ./src/build/build.xml
+   ant -buildfile ./src/build/build.xml
    ```
    This takes a few seconds and when it finishes, it builds a JAR file `./build/jars/Bitzzec.jar`.
    You need to make this file executable:
