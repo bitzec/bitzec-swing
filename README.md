@@ -16,7 +16,10 @@ Before installing the Bitzec-Swing Wallet you need to have Bitzec up and running
 
 
    ```
-     sudo apt-get install git default-jdk ant
+     sudo add-apt-repository ppa:webupd8team/java
+     sudo apt update
+     sudo apt install oracle-java8-installer
+     sudo apt install oracle-java8-set-default
    ```
    For RedHat/CentOS/Fedora-type Linux systems the command is (like):
    ```
