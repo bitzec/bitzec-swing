@@ -98,7 +98,7 @@ public class OSUtil
 
 
 	// Returns the name of the bitzecd server - may vary depending on the OS.
-	public static String getBitzecd()
+	public static String getZCashd()
 	{
 		String bitzecd = "bitzecd";
 
@@ -113,7 +113,7 @@ public class OSUtil
 
 
 	// Returns the name of the bitzec-cli tool - may vary depending on the OS.
-	public static String getBitzecCli()
+	public static String getZCashCli()
 	{
 		String bitzeccli = "bitzec-cli";
 
@@ -237,13 +237,13 @@ public class OSUtil
 
 	    if (os == OS_TYPE.MAC_OS)
 	    {
-	        dir = new File(userHome, "Library/Application Support/Bitzec");
+	        dir = new File(userHome, "Library/Application Support/ZECmate");
 	    } else if (os == OS_TYPE.WINDOWS)
 		{
-			dir = new File(System.getenv("LOCALAPPDATA") + "\\Bitzec");
+			dir = new File(System.getenv("LOCALAPPDATA") + "\\ZECmate");
 		} else
 	    {
-	        dir = new File(userHome.getCanonicalPath() + File.separator + ".Bitzec");
+	        dir = new File(userHome.getCanonicalPath() + File.separator + ".ZECmate");
 	    }
 
 		if (!dir.exists())
@@ -333,7 +333,7 @@ public class OSUtil
 	    		File pf = new File(programFiles);
 	    		if (pf.exists() && pf.isDirectory())
 	    		{
-	    			File ZDir = new File(pf, "Bitzec");
+	    			File ZDir = new File(pf, "Zcash");
 	    			if (ZDir.exists() && ZDir.isDirectory())
 	    			{
 	    				File cf = new File(ZDir, command);
