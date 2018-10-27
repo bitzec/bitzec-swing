@@ -1,11 +1,11 @@
 /************************************************************************************************
- *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _
- *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |
- *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_
+ *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _   
+ *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |  
+ *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_ 
  *    / / |  __| | . ` | |    / _` / __| '_ \| | |_ | |  | | | |   \ \/  \/ / _` | | |/ _ \ __|
- *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_
+ *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_ 
  *  /_____|______|_| \_|\_____\__,_|___/_| |_|\_____|\____/|_____|   \/  \/ \__,_|_|_|\___|\__|
- *
+ *                                       
  * Copyright (c) 2016-2018 The ZEN Developers
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -14,10 +14,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -35,41 +35,41 @@ import com.cabecinha84.zcashui.ZcashJFrame;
 /**
  * Reporter for periodic errors. Will later have options to filter errors etc.
  */
-public class StatusUpdateErrorReporter
-{
+public class StatusUpdateErrorReporter 
+{	
 	private ZcashJFrame parent;
 	private long lastReportedErrroTime = 0;
-
+	
 	public StatusUpdateErrorReporter(ZcashJFrame parent)
 	{
 		this.parent = parent;
 	}
-
+	
 	public void reportError(Exception e)
 	{
 		reportError(e, true);
-	}
-
+	}	
+	
 	public void reportError(Exception e, boolean isDueToAutomaticUpdate)
 	{
 		Log.error("Unexpected error: ", e);
-
+		
 		// TODO: Error logging
 		long time = System.currentTimeMillis();
-
+		
 		// TODO: More complex filtering/tracking in the future
 		if (isDueToAutomaticUpdate && (time - lastReportedErrroTime) < (45 * 1000))
 		{
 			return;
 		}
-
+		
 		if (isDueToAutomaticUpdate)
 		{
 			lastReportedErrroTime = time;
 		}
-
-		String settingsDirectory = ".Bitzec";
-
+		
+		String settingsDirectory = ".ZECmate";
+		
 		try
 		{
 			settingsDirectory = OSUtil.getSettingsDirectory();
@@ -77,9 +77,9 @@ public class StatusUpdateErrorReporter
 		{
 			Log.error("Secondary error: ", e2);
 		}
-
+		
 		JOptionPane.showMessageDialog(
-			parent,
+			parent, 
 			LanguageUtil.instance().getString("status.update.error.reporter.panel.message",settingsDirectory, e.getMessage()),
 			LanguageUtil.instance().getString("status.update.error.reporter.panel.title"),
 			JOptionPane.ERROR_MESSAGE);
