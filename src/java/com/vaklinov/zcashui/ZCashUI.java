@@ -623,7 +623,7 @@ public class ZCashUI
 
         	LanguageUtil langUtil = LanguageUtil.instance();
         	
-        	Log.info("Starting ZECmate Swing Wallet ...");
+        	Log.info("Starting BitzecSwing Wallet ...");
         	Log.info("OS: " + System.getProperty("os.name") + " = " + os);
         	Log.info("Current directory: " + new File(".").getCanonicalPath());
         	Log.info("Class path: " + System.getProperty("java.class.path"));

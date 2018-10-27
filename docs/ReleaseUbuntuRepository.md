@@ -1,8 +1,8 @@
-## [ZECmate Swing Wallet](https://swing.zecmate.com/) APT repository for Debian/Ubuntu Linux
+## [BitzecSwing Wallet](https://swing.zecmate.com/) APT repository for Debian/Ubuntu Linux
 
-## ATTENTION - ZECmate is NOT available via package repositry YET. Work in Progress. Please download signed .deb package directly from releases or from https://swing.zecmate.com
+## ATTENTION - Bitzecis NOT available via package repositry YET. Work in Progress. Please download signed .deb package directly from releases or from https://swing.zecmate.com
 
-ZECmate Swing Wallet is also available via package repository for Debian/Ubuntu (and similar) Linux systems.
+BitzecSwing Wallet is also available via package repository for Debian/Ubuntu (and similar) Linux systems.
 
 ![Screenshot](zecmate.png "Main Window")
 
@@ -15,8 +15,8 @@ ZECmate Swing Wallet is also available via package repository for Debian/Ubuntu 
 **wallet.dat needs to be backed up regularly (not just once - e.g. after every 30-40**
 **outgoing transactions) and it must also be backed up after creating a new Z address.**
 
-### Installing the ZECmate Swing Wallet on Linux
-*Zcash is needed to be installed, follow https://z.cash/download.html prior to installing this ZECmate Swing wallet.*
+### Installing the BitzecSwing Wallet on Linux
+*Zcash is needed to be installed, follow https://z.cash/download.html prior to installing this BitzecSwing wallet.*
 
 To setup the APT repository and install packages, using a terminal run the following commands 
 ```
@@ -28,9 +28,9 @@ sudo apt-get update
 sudo apt-get install zecmate
 ```
    
-### Running the ZECmate Swing Wallet on Linux
+### Running the BitzecSwing Wallet on Linux
 
-To launch the ZECmate Swing Wallet you can just search and click on it in the Ubuntu unity menu or alternatively, run the command `zecmate` from a terminal:
+To launch the BitzecSwing Wallet you can just search and click on it in the Ubuntu unity menu or alternatively, run the command `zecmate` from a terminal:
 ```
 zecmate
 ```

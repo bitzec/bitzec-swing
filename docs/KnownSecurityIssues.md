@@ -1,4 +1,4 @@
-## [ZECmate Swing Wallet](https://swing.zecmate.com/) known security issues
+## [BitzecSwing Wallet](https://swing.zecmate.com/) known security issues
 
 This document describes various security-related vulnerabilities in the GUI wallet that have become known after release and users should be aware of them!
 

@@ -47,7 +47,7 @@
   </resources>
   <variables>
     <variable name="InstallerFrame.logfilePath" value="Default"/>
-    <variable name="WELCOME_TEXT" value="ZECmate Swing Wallet Installation"/>
+    <variable name="WELCOME_TEXT" value="BitzecSwing Wallet Installation"/>
     <variable name="WELCOME_VERSION" value="Version: 1.0.1"/>
     <variable name="WELCOME_BG_COLOR" value="#404B62"/>
     <variable name="WELCOME_TEXT_COLOR" value="#ffffff"/>

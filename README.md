@@ -1,7 +1,7 @@
-# [ZECmate Swing Wallet](https://swing.zecmate.com/)
+# [BitzecSwing Wallet](https://swing.zecmate.com/)
 ## Your best mate for [Zcash](https://z.cash/)
 
-ZECmate Swing Wallet is a GUI destkop wallet for Zcash. This fully compatible sapling release is availalbe for macOS, Windows and Linux. Download the latest release from GitHub releases or head on to [ZECmate Swing Wallet website](https://swing.zecmate.com/) .
+BitzecSwing Wallet is a GUI destkop wallet for Zcash. This fully compatible sapling release is availalbe for macOS, Windows and Linux. Download the latest release from GitHub releases or head on to [BitzecSwing Wallet website](https://swing.zecmate.com/) .
 
 ![Screenshot](https://github.com/ZECmate/ZECmate-swing-wallet/raw/master/docs/zecmate.png "Main Window")
 
@@ -23,11 +23,11 @@ ZECmate Swing Wallet is a GUI destkop wallet for Zcash. This fully compatible sa
 **they are considered outdated after 18 weeks and stop working. So they need to be updated to a newer version before this term expires.**
 **Users need to ensure they use an up-to-date version of the wallet (e.g. update the wallet every two months or so).**
 
-#### Download ZECmate Swing wallet at https://github.com/ZECmate/ZECmate-swing-wallet/releases or from official website https://swing.zecmate.com
+#### Download BitzecSwing wallet at https://github.com/ZECmate/ZECmate-swing-wallet/releases or from official website https://swing.zecmate.com
 
-## Building, installing and running the ZECmate Swing Wallet
+## Building, installing and running the BitzecSwing Wallet
 
-Before installing the ZECmate Swing Wallet you need to have Zcash up and running. The following
+Before installing the BitzecSwing Wallet you need to have Zcash up and running. The following
 [guide](https://github.com/zcash/zcash/blob/master/README.md)
 explains how to set up [Zcash](https://z.cash/).
 
@@ -86,7 +86,7 @@ The details of how to build it are described below (easy to follow).
       user@ubuntu:~/build-dir/ZECmate-swing-wallet$ cp -R -v ./build/jars/* /home/user/bitzec/src    
       ```
 
-4. Running the installed ZECmate Swing Wallet
+4. Running the installed BitzecSwing Wallet
 
    It may be run from command line or started from another GUI tool (e.g. file manager).
    Assuming you have already installed [Zcash](https://z.cash/) and the GUI Wallet `ZECmate.jar` in

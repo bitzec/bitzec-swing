@@ -1,10 +1,10 @@
 ;This file will be executed next to the application bundle image
-;I.e. current directory will contain folder ZECmate with application files
+;I.e. current directory will contain folder Bitzecwith application files
 [Setup]
 AppId={{fxApplication}}
 AppName=ZECmate
 AppVersion=1.0.1
-AppVerName=ZECmate 1.0.1
+AppVerName=Bitzec1.0.1
 AppPublisher=Zel Technologies GmbH
 AppComments=ZECmate
 AppCopyright=Copyright (C) 2018
@@ -54,7 +54,7 @@ Filename: "{app}\ZECmate.exe"; Description: "{cm:LaunchProgram,ZECmate}"; Flags:
 Filename: "{app}\ZECmate.exe"; Parameters: "-install -svcName ""ZECmate"" -svcDesc ""ZECmate"" -mainExe ""ZECmate.exe""  "; Check: returnFalse()
 
 [UninstallRun]
-Filename: "{app}\ZECmate.exe "; Parameters: "-uninstall -svcName ZECmate -stopOnUninstall"; Check: returnFalse()
+Filename: "{app}\ZECmate.exe "; Parameters: "-uninstall -svcName Bitzec-stopOnUninstall"; Check: returnFalse()
 
 [Code]
 function returnTrue(): Boolean;
