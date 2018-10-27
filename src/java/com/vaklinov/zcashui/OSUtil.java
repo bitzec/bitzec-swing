@@ -216,13 +216,13 @@ public class OSUtil
 
 		if (os == OS_TYPE.MAC_OS)
 		{
-			return new File(System.getProperty("user.home") + "/Library/Application Support/Zcash").getCanonicalPath();
+			return new File(System.getProperty("user.home") + "/Library/Application Support/Bitzec").getCanonicalPath();
 		} else if (os == OS_TYPE.WINDOWS)
 		{
-			return new File(System.getenv("APPDATA") + "\\Zcash").getCanonicalPath();
+			return new File(System.getenv("APPDATA") + "\\Bitzec").getCanonicalPath();
 		} else
 		{
-			return new File(System.getProperty("user.home") + "/.zcash").getCanonicalPath();
+			return new File(System.getProperty("user.home") + "/.bitzec").getCanonicalPath();
 		}
 	}
 

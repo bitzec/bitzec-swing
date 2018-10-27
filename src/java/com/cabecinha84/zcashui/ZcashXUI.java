@@ -137,7 +137,7 @@ public class ZcashXUI {
 		javax.swing.UIManager.put("Panel.foreground",ZcashXUI.text);
 
 
-		Log.info("Finished loading ZECmate");
+		Log.info("Finished loading bitzec");
 	}
 
 	private void loadZcashXUIFile() {

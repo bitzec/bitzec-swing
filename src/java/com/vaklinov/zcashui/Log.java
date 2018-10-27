@@ -1,11 +1,11 @@
 /************************************************************************************************
- *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _   
- *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |  
- *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_ 
+ *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _
+ *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |
+ *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_
  *    / / |  __| | . ` | |    / _` / __| '_ \| | |_ | |  | | | |   \ \/  \/ / _` | | |/ _ \ __|
- *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_ 
+ *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_
  *  /_____|______|_| \_|\_____\__,_|___/_| |_|\_____|\____/|_____|   \/  \/ \__,_|_|_|\___|\__|
- *                                       
+ *
  * Copyright (c) 2016-2018 The ZEN Developers
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -39,21 +39,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class Log 
+public class Log
 {
 	private static PrintStream fileOut;
-	
+
 	private static Set<String> oneTimeMessages = new HashSet<String>();
 
-	static 
+	static
 	{
 		try
 		{
 			// Initialize log to a file
 			String settingsDir = OSUtil.getSettingsDirectory();
 			Date today = new Date();
-			String logFile = settingsDir + File.separator + 
-			         "ZECmateGUIWallet_" +
+			String logFile = settingsDir + File.separator +
+			         "BitzecGUIWallet_" +
 			         (int)(today.getYear() + 1900) + "_" +
 			         (int)(today.getMonth() + 1) + "_" +
 			         "debug.log";
@@ -66,62 +66,62 @@ public class Log
 			ioe.printStackTrace();
 		}
 	}
-	
+
 	public static void debug(String message, Object ... args)
 	{
 		printMessage("DEBUG", message, null, args);
 	}
-	
-	
+
+
 	public static void trace(String message, Object ... args)
 	{
 		printMessage("TRACE", message, null, args);
 	}
-	
-	
+
+
 	public static void info(String message, Object ... args)
 	{
 		printMessage("INFO", message, null, args);
 	}
 
-	
+
 	public static void warning(String message, Object ... args)
 	{
 		warning(message, null, args);
 	}
 
-	
+
 	public static void warning(String message, Throwable t, Object ... args)
 	{
 		printMessage("WARNING", message, t, args);
 	}
-	
-	
+
+
 	public static void warningOneTime(String message, Object ... args)
 	{
 		printMessage(true, "WARNING", message, null, args);
 	}
-	
+
 
 	public static void error(String message, Object ... args)
 	{
 		error(message, null, args);
 	}
 
-	
+
 	public static void error(String message, Throwable t, Object ... args)
 	{
 		printMessage("ERROR", message, t, args);
 	}
 
-	
+
 	private static void printMessage(String messageClass, String message,
                                      Throwable t, Object ... args)
 	{
 		printMessage(false, messageClass, message, t, args);
 	}
-	
-	
+
+
 	private static void printMessage(boolean oneTimeOnly, String messageClass, String message,
 			                         Throwable t, Object ... args)
 	{
@@ -134,7 +134,7 @@ public class Log
 			}
 		}
 		message += " ";
-		
+
 		if (oneTimeOnly) // One time messages logged only once!
 		{
 			if (oneTimeMessages.contains(message))
@@ -145,13 +145,13 @@ public class Log
 				oneTimeMessages.add(message);
 			}
 		}
-		
+
 		String prefix =
 			"[" + Thread.currentThread().getName() + "] " +
 		    "[" + (new Date()).toString() + "] ";
-		
+
 		messageClass = "[" + messageClass + "] ";
-		
+
 		String throwable = "";
 		if (t != null)
 		{
@@ -160,11 +160,11 @@ public class Log
 			pr.println();  // One line extra before the exception.
 			t.printStackTrace(pr);
 			pr.close();
-			throwable = new String(car.toCharArray()); 
+			throwable = new String(car.toCharArray());
 		}
-			
+
 		System.out.println(prefix + messageClass + message + throwable);
-		
+
 		if (fileOut != null)
 		{
 			fileOut.println(prefix + messageClass + message + throwable);
