@@ -50,7 +50,7 @@ Before installing the Bitzec-Swing Wallet you need to have Bitzec up and running
    3.1. If you have built Bitzec from source code:
     copy the Bitzec.jar to  /home/user/bitzec/src` (the same dir. that contains `bitzec-cli` and `bitzecd`). Example copy command:
       ```
-    cp -R -v ./build/jars/* /home/user/bitzec/src    
+    cp -R -v ./build/jars/* ~/bitzec/src    
       ```
 
 4. Running the installed Bitzec Swing
