@@ -651,7 +651,7 @@ public class DashboardPanel
 			DecimalFormat currencyDF = new DecimalFormat("########0.00");
 			String formattedCurrencyVal = currencyDF.format(currencyBalance);
 			
-			// make sure ZEC and USD are aligned
+			// make sure BZCand USD are aligned
 			int diff = totalUCBalance.length() - formattedCurrencyVal.length();
 			while (diff-- > 0)
 			{
@@ -821,7 +821,7 @@ public class DashboardPanel
 						long start = System.currentTimeMillis();
 						JsonObject exchangeData = ExchangeRatePanel.this.getExchangeDataFromRemoteService();
 						long end = System.currentTimeMillis();
-						Log.info("Gathering of ZEC Exchange data done in " + (end - start) + "ms." );
+						Log.info("Gathering of BZCExchange data done in " + (end - start) + "ms." );
 							
 						return exchangeData;
 					}
@@ -935,7 +935,7 @@ public class DashboardPanel
 			return this.lastCurrencyPrice;
 		}
 				
-		// Obtains the ZEC exchange data as a JsonObject
+		// Obtains the BZCexchange data as a JsonObject
 		private JsonObject getExchangeDataFromRemoteService()
 		{
 			JsonObject data = new JsonObject();
@@ -949,7 +949,7 @@ public class DashboardPanel
 				data.add("cmc", ar.get(0).asObject());
 			} catch (Exception ioe)
 			{
-				Log.warning("Could not obtain ZEC exchange information from coinmarketcap.com due to: {0} {1}", 
+				Log.warning("Could not obtain BZCexchange information from coinmarketcap.com due to: {0} {1}", 
 						    ioe.getClass().getName(), ioe.getMessage());
 			}
 
@@ -972,7 +972,7 @@ public class DashboardPanel
 				}
 			} catch (Exception ioe)
 			{
-				Log.warning("Could not obtain ZEC exchange information from rates.zec.zeltrez.io due to: {0} {1}", 
+				Log.warning("Could not obtain BZCexchange information from rates.zec.zeltrez.io due to: {0} {1}", 
 						    ioe.getClass().getName(), ioe.getMessage());
 			}
 			Log.info(data.toString());

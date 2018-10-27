@@ -181,7 +181,7 @@ public class SendCashPanel
 		tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		tempPanel.add(destinationAmountField = new ZcashJTextField(13));
 		destinationAmountField.setHorizontalAlignment(SwingConstants.RIGHT);
-		tempPanel.add(new ZcashJLabel(" ZEC    "));
+		tempPanel.add(new ZcashJLabel(" BZC   "));
 		amountPanel.add(tempPanel, BorderLayout.SOUTH);
 
 		ZcashJPanel feePanel = new ZcashJPanel(new BorderLayout());
@@ -470,7 +470,7 @@ public class SendCashPanel
 			return;
 		}
 		
-		// Prevent accidental sending to non-ZEC addresses (which bitzecd supports) probably because of
+		// Prevent accidental sending to non-BZCaddresses (which bitzecd supports) probably because of
 		// ZClassic compatibility
 		if (!installationObserver.isOnTestNet())
 		{

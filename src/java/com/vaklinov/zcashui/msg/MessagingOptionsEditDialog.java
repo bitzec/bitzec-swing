@@ -106,7 +106,7 @@ public class MessagingOptionsEditDialog
 		
 		addFormField(detailsPanel, "Automatically add users to contact list:",   
 				     automaticallyAddUsers = new ZcashJCheckBox());
-		addFormField(detailsPanel, "ZEC amount to send with every message:",   amountTextField = new ZcashJTextField(12));
+		addFormField(detailsPanel, "BZCamount to send with every message:",   amountTextField = new ZcashJTextField(12));
 		addFormField(detailsPanel, "Transaction fee:",  transactionFeeTextField = new ZcashJTextField(12));
 		
 		DecimalFormatSymbols decSymbols = new DecimalFormatSymbols(Locale.ROOT);
@@ -218,7 +218,7 @@ public class MessagingOptionsEditDialog
 		ZcashJPanel tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 4, 2));
 		ZcashJLabel tempLabel = new ZcashJLabel(name, JLabel.RIGHT);
 		// TODO: hard sizing of labels may not scale!
-		final int width = new ZcashJLabel("ZEC amount to send with every message:").getPreferredSize().width + 30;
+		final int width = new ZcashJLabel("BZCamount to send with every message:").getPreferredSize().width + 30;
 		tempLabel.setPreferredSize(new Dimension(width, tempLabel.getPreferredSize().height));
 		tempPanel.add(tempLabel);
 		tempPanel.add(field);

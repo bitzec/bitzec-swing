@@ -551,7 +551,7 @@ public class ZcashYUIEditDialog
 			}
 			Arrays.sort(currencys);
 		} catch (Exception ioe) {
-			Log.warning("Could not obtain ZEC information from rates.zec.zeltrez.io due to: {0} {1}",
+			Log.warning("Could not obtain BZCinformation from rates.zec.zeltrez.io due to: {0} {1}",
 					ioe.getClass().getName(), ioe.getMessage());
 		}
 		return currencys;

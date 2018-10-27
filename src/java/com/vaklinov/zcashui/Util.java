@@ -113,7 +113,7 @@ public class Util
     	JsonObject jInfo = new JsonObject();
     	
     	// Error message here comes from Zcash 1.0.7+ and is like:
-    	//zcash-cli getinfo
+    	//bitzec-cli getinfo
     	//error code: -28
     	//error message:
     	//Loading block index...

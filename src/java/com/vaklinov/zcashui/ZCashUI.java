@@ -657,18 +657,18 @@ public class ZCashUI
 	            }
             }
             
-            // If zcashd is currently not running, do a startup of the daemon as a child process
+            // If bitzecd is currently not running, do a startup of the daemon as a child process
             // It may be started but not ready - then also show dialog
             ZCashInstallationObserver initialInstallationObserver = 
             	new ZCashInstallationObserver(OSUtil.getProgramDirectory());
-            DaemonInfo zcashdInfo = initialInstallationObserver.getDaemonInfo();
+            DaemonInfo bitzecdInfo = initialInstallationObserver.getDaemonInfo();
             initialInstallationObserver = null;
             
             ZCashClientCaller initialClientCaller = new ZCashClientCaller(OSUtil.getProgramDirectory());
             boolean daemonStartInProgress = false;
             try
             {
-            	if (zcashdInfo.status == DAEMON_STATUS.RUNNING)
+            	if (bitzecdInfo.status == DAEMON_STATUS.RUNNING)
             	{
             		NetworkAndBlockchainInfo info = initialClientCaller.getNetworkAndBlockchainInfo();
             		// If more than 20 minutes behind in the blockchain - startup in progress
@@ -684,7 +684,7 @@ public class ZCashUI
                 if ((wce.getMessage().indexOf("{\"code\":-28") != -1) || // Started but not ready
                 	(wce.getMessage().indexOf("error code: -28") != -1))
                 {
-                	Log.info("zcashd is currently starting...");
+                	Log.info("bitzecd is currently starting...");
                 	daemonStartInProgress = true;
                 }
             }
@@ -695,10 +695,10 @@ public class ZCashUI
             new ZcashXUI();
 
             StartupProgressDialog startupBar = null;
-            if ((zcashdInfo.status != DAEMON_STATUS.RUNNING) || (daemonStartInProgress))
+            if ((bitzecdInfo.status != DAEMON_STATUS.RUNNING) || (daemonStartInProgress))
             {
             	Log.info(
-            		"zcashd is not running at the moment or has not started/synchronized 100% - showing splash...");
+            		"bitzecd is not running at the moment or has not started/synchronized 100% - showing splash...");
 	            startupBar = new StartupProgressDialog(initialClientCaller);
 	            startupBar.setVisible(true);
 	            startupBar.waitForStartup();
@@ -800,7 +800,7 @@ public class ZCashUI
 			configOut.println("# Creation date: " + new Date().toString());
 			configOut.println("#############################################################################");
 			configOut.println("");
-			configOut.println("# The rpcuser/rpcpassword are used for the local call to zcashd");
+			configOut.println("# The rpcuser/rpcpassword are used for the local call to bitzecd");
 			configOut.println("rpcuser=User" + Math.abs(r.nextInt()));
 			configOut.println("rpcpassword=Pass" + Math.abs(r.nextInt()) + "" + 
 			                                       Math.abs(r.nextInt()) + "" + 
