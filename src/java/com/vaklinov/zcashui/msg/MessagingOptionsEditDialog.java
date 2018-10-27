@@ -94,7 +94,7 @@ public class MessagingOptionsEditDialog
 		tempPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 		infoLabel = new ZcashJLabel(
 				"<html><span style=\"font-size:0.93em;\">" +
-				"The options below pertain to messaging. It is possible to set the amount of BZC<br/>" +
+				"The options below pertain to messaging. It is possible to set the amount of ZEC<br/>" +
 				"to be sent with every messaging transaction and also the transaction fee. It is<br/>" + 
 			    "also possible to decide if users are to be automatically added to the contact list.<br/><br/>" +
 			    "</span>");
@@ -106,7 +106,7 @@ public class MessagingOptionsEditDialog
 		
 		addFormField(detailsPanel, "Automatically add users to contact list:",   
 				     automaticallyAddUsers = new ZcashJCheckBox());
-		addFormField(detailsPanel, "BZC amount to send with every message:",   amountTextField = new ZcashJTextField(12));
+		addFormField(detailsPanel, "ZEC amount to send with every message:",   amountTextField = new ZcashJTextField(12));
 		addFormField(detailsPanel, "Transaction fee:",  transactionFeeTextField = new ZcashJTextField(12));
 		
 		DecimalFormatSymbols decSymbols = new DecimalFormatSymbols(Locale.ROOT);
@@ -218,7 +218,7 @@ public class MessagingOptionsEditDialog
 		ZcashJPanel tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 4, 2));
 		ZcashJLabel tempLabel = new ZcashJLabel(name, JLabel.RIGHT);
 		// TODO: hard sizing of labels may not scale!
-		final int width = new ZcashJLabel("BZC amount to send with every message:").getPreferredSize().width + 30;
+		final int width = new ZcashJLabel("ZEC amount to send with every message:").getPreferredSize().width + 30;
 		tempLabel.setPreferredSize(new Dimension(width, tempLabel.getPreferredSize().height));
 		tempPanel.add(tempLabel);
 		tempPanel.add(field);

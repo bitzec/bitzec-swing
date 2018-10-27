@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>bitzec.com</groupId>
-    <artifactId>Bitzec</artifactId>
+    <groupId>zecmate.com</groupId>
+    <artifactId>ZECmate</artifactId>
     <version>1.0.1</version>
     <packaging>pom</packaging>
-    <name>Bitzec Swing Wallet</name>
+    <name>ZECmate Swing Wallet</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,7 +25,7 @@
 
 
     <modules>
-        <module>bitzec</module>
+        <module>zecmate</module>
         <module>installer</module>
     </modules>
 
