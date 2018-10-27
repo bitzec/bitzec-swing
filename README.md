@@ -1,7 +1,7 @@
 # [BitzecSwing Wallet]
 ##  
 
-BitzecSwing Wallet is a GUI destkop wallet for Zcash. This fully compatible sapling release is availalbe for macOS, Windows and Linux. Download the latest release from GitHub releases or head on to [BitzecSwing Wallet ]  .
+BitzecSwing Wallet is a GUI destkop wallet for Bitzec. This fully compatible sapling release is availalbe for macOS, Windows and Linux. Download the latest release from GitHub releases or head on to [BitzecSwing Wallet ]  .
 
 ![Screenshot](https://github.com/bitzec/bitzec-swing/blob/master/docs/zecmate.png "Main Window")
 
