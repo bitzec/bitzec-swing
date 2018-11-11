@@ -1,11 +1,11 @@
 /************************************************************************************************
- *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _   
- *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |  
- *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_ 
+ *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _
+ *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |
+ *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_
  *    / / |  __| | . ` | |    / _` / __| '_ \| | |_ | |  | | | |   \ \/  \/ / _` | | |/ _ \ __|
- *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_ 
+ *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_
  *  /_____|______|_| \_|\_____\__,_|___/_| |_|\_____|\____/|_____|   \/  \/ \__,_|_|_|\___|\__|
- *                                       
+ *
  * Copyright (c) 2016-2018 The ZEN Developers
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -65,10 +65,10 @@ import com.cabecinha84.zcashui.ZcashJScrollPane;
 /**
  * Table to be used for transactions - specifically.
  */
-public class TransactionTable 
-	extends DataTable 
-{	
-	public TransactionTable(final Object[][] rowData, final Object[] columnNames, 
+public class TransactionTable
+	extends DataTable
+{
+	public TransactionTable(final Object[][] rowData, final Object[] columnNames,
 			                final ZcashJFrame parent, final ZCashClientCaller caller,
 			                final ZCashInstallationObserver installationObserver)
 	{
@@ -78,11 +78,11 @@ public class TransactionTable
 		ZcashJMenuItem showDetails = new ZcashJMenuItem("Show details...");
 		showDetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, accelaratorKeyMask));
         popupMenu.add(showDetails);
-        
-        showDetails.addActionListener(new ActionListener() 
-        {	
+
+        showDetails.addActionListener(new ActionListener()
+        {
 			@Override
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e)
 			{
 				if ((lastRow >= 0) && (lastColumn >= 0))
 				{
@@ -90,11 +90,11 @@ public class TransactionTable
 					{
 						String txID = TransactionTable.this.getModel().getValueAt(lastRow, 6).toString();
 						txID = txID.replaceAll("\"", ""); // In case it has quotes
-						
+
 						Log.info("Transaction ID for detail dialog is: " + txID);
 						Map<String, String> details = caller.getRawTransactionDetails(txID);
 						String rawTrans = caller.getRawTransaction(txID);
-						
+
 						DetailsDialog dd = new DetailsDialog(parent, details);
 						dd.setVisible(true);
 					} catch (Exception ex)
@@ -108,16 +108,16 @@ public class TransactionTable
 				}
 			}
 		});
-        
-        
+
+
 		ZcashJMenuItem showInExplorer = new ZcashJMenuItem(langUtil.getString("transactions.table.show.in.explorer"));
 		showInExplorer.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, accelaratorKeyMask));
         popupMenu.add(showInExplorer);
-        
-        showInExplorer.addActionListener(new ActionListener() 
-        {	
+
+        showInExplorer.addActionListener(new ActionListener()
+        {
 			@Override
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e)
 			{
 				if ((lastRow >= 0) && (lastColumn >= 0))
 				{
@@ -125,15 +125,15 @@ public class TransactionTable
 					{
 						String txID = TransactionTable.this.getModel().getValueAt(lastRow, 6).toString();
 						txID = txID.replaceAll("\"", ""); // In case it has quotes
-						
+
 						Log.info("Transaction ID for block explorer is: " + txID);
 						// https://explorer.zcha.in/transactions/<ID>
-						String urlPrefix = "https://zcash.blockexplorer.com/tx/";
+						String urlPrefix = "http://35.204.174.237:3001/insight/tx/";
 						if (installationObserver.isOnTestNet())
 						{
 							urlPrefix = "https://explorer.testnet.z.cash/tx/";
 						}
-						
+
 						Desktop.getDesktop().browse(new URL(urlPrefix + txID).toURI());
 					} catch (Exception ex)
 					{
@@ -146,15 +146,15 @@ public class TransactionTable
 				}
 			}
 		});
-		
+
         ZcashJMenuItem showMemoField = new ZcashJMenuItem(langUtil.getString("transactions.table.memo.field"));
         showMemoField.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, accelaratorKeyMask));
 	    popupMenu.add(showMemoField);
-    
-        showMemoField.addActionListener(new ActionListener() 
-        {	
+
+        showMemoField.addActionListener(new ActionListener()
+        {
 			@Override
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e)
 			{
 				if ((lastRow >= 0) && (lastColumn >= 0))
 				{
@@ -163,7 +163,7 @@ public class TransactionTable
 					{
 						String txID = TransactionTable.this.getModel().getValueAt(lastRow, 6).toString();
 						txID = txID.replaceAll("\"", ""); // In case it has quotes
-						
+
 
 						String acc = TransactionTable.this.getModel().getValueAt(lastRow, 5).toString();
 						// TODO: better way to remove a label if it preceeds
@@ -171,9 +171,9 @@ public class TransactionTable
 						{
 							acc = acc.substring(acc.lastIndexOf(" - ") + 3);
 						}
-						
+
 						acc = acc.replaceAll("\"", ""); // In case it has quotes
-						
+
 						boolean isZAddress = Util.isZAddress(acc);
 						if (!isZAddress)
 						{
@@ -184,8 +184,8 @@ public class TransactionTable
 						            JOptionPane.ERROR_MESSAGE);
 						    return;
 						}
-						
-						
+
+
 						Log.info("Transaction ID for Memo field is: " + txID);
 						Log.info("Account for Memo field is: " + acc);
 						parent.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -193,15 +193,15 @@ public class TransactionTable
  						String MemoField = caller.getMemoField(acc, txID);
  						parent.setCursor(oldCursor);
  						Log.info("Memo field is: " + MemoField);
- 						
+
  						if (MemoField != null)
  						{
  							Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
  							clipboard.setContents(new StringSelection(MemoField), null);
- 							
+
  							MemoField = Util.blockWrapString(MemoField, 80);
  							JOptionPane.showMessageDialog(
- 								parent, 
+ 								parent,
  								langUtil.getString("transactions.table.memo.clipboard.text", MemoField),
 								langUtil.getString("transactions.table.memo.clipboard.title"),
 								JOptionPane.PLAIN_MESSAGE);
@@ -225,12 +225,12 @@ public class TransactionTable
 				}
 			}
         });
-		
+
 	} // End constructor
 
 
-	
-	
+
+
 	private static class DetailsDialog
 		extends ZcashJDialog
 	{
@@ -244,9 +244,9 @@ public class TransactionTable
 			this.setLocationRelativeTo(parent);
 			this.setModal(true);
 			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			
+
 			this.getContentPane().setLayout(new BorderLayout(0, 0));
-			
+
 			ZcashJPanel tempPanel = new ZcashJPanel(new BorderLayout(0, 0));
 			tempPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 			ZcashJLabel infoLabel = new ZcashJLabel(
@@ -254,7 +254,7 @@ public class TransactionTable
 			infoLabel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 			tempPanel.add(infoLabel, BorderLayout.CENTER);
 			this.getContentPane().add(tempPanel, BorderLayout.NORTH);
-			
+
 			String[] columns = langUtil.getString("transaction.table.details.dialog.column.names").split(":");
 			String[][] data = new String[details.size()][2];
 			int i = 0;
@@ -265,13 +265,13 @@ public class TransactionTable
 				{
 					maxPreferredWidht = ent.getValue().length() * 6;
 				}
-				
+
 				data[i][0] = ent.getKey();
 				data[i][1] = ent.getValue();
 				i++;
 			}
-			
-			Arrays.sort(data, new Comparator<String[]>() 
+
+			Arrays.sort(data, new Comparator<String[]>()
 			{
 			    public int compare(String[] o1, String[] o2)
 			    {
@@ -283,14 +283,14 @@ public class TransactionTable
 			    	return false;
 			    }
 			});
-			
+
 			DataTable table = new DataTable(data, columns);
 			table.getColumnModel().getColumn(0).setPreferredWidth(200);
 			table.getColumnModel().getColumn(1).setPreferredWidth(maxPreferredWidht);
 			table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 			ZcashJScrollPane tablePane = new ZcashJScrollPane(
 				table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-			
+
 			this.getContentPane().add(tablePane, BorderLayout.CENTER);
 
 			// Lower close button
@@ -311,7 +311,7 @@ public class TransactionTable
 			});
 
 		}
-		
-		
+
+
 	}
 }

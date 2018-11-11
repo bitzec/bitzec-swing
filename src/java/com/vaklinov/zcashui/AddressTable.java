@@ -206,7 +206,7 @@ public class AddressTable
 						
 						Log.info("Address for block explorer is: " + address);
 						
-						String urlPrefix = "https://zcash.blockexplorer.com/address/";
+						String urlPrefix = "http://35.204.174.237:3001/insight/address/";
 						if (AddressTable.this.installationObserver.isOnTestNet())
 						{
 							urlPrefix = "https://explorer.testnet.z.cash/address/";
