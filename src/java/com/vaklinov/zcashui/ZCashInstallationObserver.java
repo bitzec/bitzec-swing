@@ -95,7 +95,7 @@ public class ZCashInstallationObserver
 			throw new InstallationDetectionException(
 				"The Zcash GUI Wallet installation directory " + installDir + " needs\nto contain " +
 				"the command line utilities bitzecd and bitzec-cli. At least one of them is missing! \n" +
-				"Please place files Bitzec.jar, " + OSUtil.getZCashCli() + ", " + 
+				"Please place files Bitzec.jar, " + OSUtil.getZCashCli() + ", " +
 				OSUtil.getZCashd() + " in the same directory.");
 		}
 	}
@@ -294,7 +294,7 @@ public class ZCashInstallationObserver
 		}
 
 		String blockChainDir = OSUtil.getBlockchainDirectory();
-		File zcashConf = new File(blockChainDir + File.separator + "zcash.conf");
+		File zcashConf = new File(blockChainDir + File.separator + "bitzec.conf");
 		if (zcashConf.exists())
 		{
 			Properties confProps = new Properties();
