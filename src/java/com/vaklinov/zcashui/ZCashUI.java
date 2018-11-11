@@ -1,11 +1,11 @@
 /************************************************************************************************
- *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _   
- *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |  
- *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_ 
+ *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _
+ *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |
+ *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_
  *    / / |  __| | . ` | |    / _` / __| '_ \| | |_ | |  | | | |   \ \/  \/ / _` | | |/ _ \ __|
- *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_ 
+ *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_
  *  /_____|______|_| \_|\_____\__,_|___/_| |_|\_____|\____/|_____|   \/  \/ \__,_|_|_|\___|\__|
- *                                       
+ *
  * Copyright (c) 2016-2018 The ZEN Developers
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -136,7 +136,7 @@ public class ZCashUI
         {
         	progressDialog.setProgressText(langUtil.getString("main.frame.progressbar"));
         }
-        
+
         ClassLoader cl = this.getClass().getClassLoader();
 
         this.setIconImage(new ImageIcon(cl.getResource("images/ZECmate-logo.png")).getImage());
@@ -147,7 +147,7 @@ public class ZCashUI
         errorReporter = new StatusUpdateErrorReporter(this);
         installationObserver = new ZCashInstallationObserver(OSUtil.getProgramDirectory());
         clientCaller = new ZCashClientCaller(OSUtil.getProgramDirectory());
-        
+
         if (installationObserver.isOnTestNet())
         {
         	this.setTitle(this.getTitle() + langUtil.getString("main.frame.title.testnet"));
@@ -162,12 +162,12 @@ public class ZCashUI
 		LabelStorage labelStorage = new LabelStorage();
         tabs.addTab(langUtil.getString("main.frame.tab.overview.title"),
         		    new ImageIcon(cl.getResource("images/overview.png")),
-        		    dashboard = new DashboardPanel(this, installationObserver, clientCaller, 
+        		    dashboard = new DashboardPanel(this, installationObserver, clientCaller,
         		    		                       errorReporter, backupTracker, labelStorage));
         tabs.addTab(langUtil.getString("main.frame.tab.transactions.title"),
     		        new ImageIcon(cl.getResource("images/transactions.png")),
     		        transactionDetailsPanel = new TransactionsDetailPanel(
-    		        	this, tabs, installationObserver, clientCaller, 
+    		        	this, tabs, installationObserver, clientCaller,
     		    	    errorReporter, dashboard.getTransactionGatheringThread(), labelStorage));
         this.dashboard.setDetailsPanelForSelection(this.transactionDetailsPanel);
         tabs.addTab(langUtil.getString("main.frame.tab.own.address.title"),
@@ -185,8 +185,8 @@ public class ZCashUI
         contentPane.add(tabs);
 
         this.walletOps = new WalletOperations(
-            	this, tabs, dashboard, addresses, sendPanel, 
-            	installationObserver, clientCaller, errorReporter, backupTracker);        
+            	this, tabs, dashboard, addresses, sendPanel,
+            	installationObserver, clientCaller, errorReporter, backupTracker);
 
         // Build menu
         ZcashJMenuBar mb = new ZcashJMenuBar();
@@ -224,9 +224,9 @@ public class ZCashUI
         ZcashJMenu messaging = new ZcashJMenu(langUtil.getString("menu.label.messaging"));
         messaging.setMnemonic(KeyEvent.VK_S);
         messaging.add(menuItemOwnIdentity = new ZcashJMenuItem(langUtil.getString("menu.label.own.identity"), KeyEvent.VK_D));
-        menuItemOwnIdentity.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, accelaratorKeyMask));        
+        menuItemOwnIdentity.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, accelaratorKeyMask));
         messaging.add(menuItemExportOwnIdentity = new ZcashJMenuItem(langUtil.getString("menu.label.export.own.identity"), KeyEvent.VK_X));
-        menuItemExportOwnIdentity.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, accelaratorKeyMask));        
+        menuItemExportOwnIdentity.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, accelaratorKeyMask));
         messaging.add(menuItemAddMessagingGroup = new ZcashJMenuItem(langUtil.getString("menu.label.add.messaging.group"), KeyEvent.VK_G));
         menuItemAddMessagingGroup.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, accelaratorKeyMask));
         messaging.add(menuItemImportContactIdentity = new ZcashJMenuItem(langUtil.getString("menu.label.import.contact.identity"), KeyEvent.VK_Y));
@@ -235,14 +235,14 @@ public class ZCashUI
         menuItemRemoveContactIdentity.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, accelaratorKeyMask));
         messaging.add(menuItemMessagingOptions = new ZcashJMenuItem(langUtil.getString("menu.label.options"), KeyEvent.VK_O));
         menuItemMessagingOptions.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, accelaratorKeyMask));
-        
+
         ZcashJMenu shareFileVia = new ZcashJMenu(langUtil.getString("menu.label.share.file"));
         shareFileVia.setMnemonic(KeyEvent.VK_V);
         // TODO: uncomment this for IPFS integration
         //messaging.add(shareFileVia);
         shareFileVia.add(menuItemShareFileViaIPFS = new ZcashJMenuItem(langUtil.getString("menu.label.ipfs"), KeyEvent.VK_F));
         menuItemShareFileViaIPFS.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, accelaratorKeyMask));
-        
+
         mb.add(messaging);
 
         ActionListener languageSelectionAction = new ActionListener(  ) {
@@ -336,7 +336,7 @@ public class ZCashUI
                 }
             );
 
-        menuItemBackup.addActionListener(   
+        menuItemBackup.addActionListener(
         	new ActionListener()
             {
                 @Override
@@ -346,7 +346,7 @@ public class ZCashUI
                 }
             }
         );
-        
+
         /** Encrypt menu item is not initialized
         menuItemEncrypt.addActionListener(
             new ActionListener()
@@ -360,7 +360,7 @@ public class ZCashUI
         );
         */
 
-        menuItemExportKeys.addActionListener(   
+        menuItemExportKeys.addActionListener(
             new ActionListener()
             {
                 @Override
@@ -370,8 +370,8 @@ public class ZCashUI
                 }
             }
        );
-        
-       menuItemImportKeys.addActionListener(   
+
+       menuItemImportKeys.addActionListener(
             new ActionListener()
             {
                 @Override
@@ -381,8 +381,8 @@ public class ZCashUI
                 }
             }
        );
-       
-       menuItemShowPrivateKey.addActionListener(   
+
+       menuItemShowPrivateKey.addActionListener(
             new ActionListener()
             {
                 @Override
@@ -392,8 +392,8 @@ public class ZCashUI
                 }
             }
        );
-       
-       menuItemImportOnePrivateKey.addActionListener(   
+
+       menuItemImportOnePrivateKey.addActionListener(
            new ActionListener()
            {
                @Override
@@ -403,8 +403,8 @@ public class ZCashUI
                }
            }
        );
-       
-       menuItemOwnIdentity.addActionListener(   
+
+       menuItemOwnIdentity.addActionListener(
                new ActionListener()
                {
                    @Override
@@ -414,8 +414,8 @@ public class ZCashUI
                    }
                }
         );
-       
-       menuItemExportOwnIdentity.addActionListener(   
+
+       menuItemExportOwnIdentity.addActionListener(
                new ActionListener()
                {
                    @Override
@@ -426,7 +426,7 @@ public class ZCashUI
                }
         );
 
-       menuItemImportContactIdentity.addActionListener(   
+       menuItemImportContactIdentity.addActionListener(
                new ActionListener()
                {
                    @Override
@@ -436,8 +436,8 @@ public class ZCashUI
                    }
                }
         );
-              
-       menuItemAddMessagingGroup.addActionListener(   
+
+       menuItemAddMessagingGroup.addActionListener(
                new ActionListener()
                {
                    @Override
@@ -447,8 +447,8 @@ public class ZCashUI
                    }
                }
         );
-       
-       menuItemRemoveContactIdentity.addActionListener(   
+
+       menuItemRemoveContactIdentity.addActionListener(
                new ActionListener()
                {
                    @Override
@@ -458,8 +458,8 @@ public class ZCashUI
                    }
                }
         );
-       
-       menuItemMessagingOptions.addActionListener(   
+
+       menuItemMessagingOptions.addActionListener(
                new ActionListener()
                {
                    @Override
@@ -469,8 +469,8 @@ public class ZCashUI
                    }
                }
        );
-       
-       menuItemShareFileViaIPFS.addActionListener(   
+
+       menuItemShareFileViaIPFS.addActionListener(
                new ActionListener()
                {
                    @Override
@@ -516,21 +516,21 @@ public class ZCashUI
                     {
                         return;
                     };
-                    
-                    Object[] options = 
-                   	{ 
+
+                    Object[] options =
+                   	{
                    		langUtil.getString("main.frame.disclaimer.button.agree"),
                    		langUtil.getString("main.frame.disclaimer.button.disagree")
                    	};
-                    
+
                     int option = JOptionPane.showOptionDialog(
-                    		ZCashUI.this.getRootPane().getParent(), 
+                    		ZCashUI.this.getRootPane().getParent(),
                             langUtil.getString("main.frame.disclaimer.text"),
                             langUtil.getString("main.frame.disclaimer.title"),
-                            JOptionPane.DEFAULT_OPTION, 
+                            JOptionPane.DEFAULT_OPTION,
             			    JOptionPane.INFORMATION_MESSAGE,
-            			    null, 
-            			    options, 
+            			    null,
+            			    options,
             			    options[0]);
 
                     if (option == 0)
@@ -548,19 +548,19 @@ public class ZCashUI
                 }
             }
         });
-        
+
         // Finally dispose of the progress dialog
         if (progressDialog != null)
         {
         	progressDialog.doDispose();
         }
-        
+
         // Notify the messaging TAB that it is being selected - every time
         tabs.addChangeListener(
-            new ChangeListener() 
-            {	
+            new ChangeListener()
+            {
     			@Override
-    			public void stateChanged(ChangeEvent e) 
+    			public void stateChanged(ChangeEvent e)
     			{
     				ZcashJTabbedPane tabs = (ZcashJTabbedPane)e.getSource();
     				if (tabs.getSelectedIndex() == 5)
@@ -570,22 +570,22 @@ public class ZCashUI
     			}
     		}
         );
-  
-        
+
+
         this.validate();
 		this.repaint();
-		
-		
+
+
 		this.pack();
 		Dimension currentSize = this.getSize();
-		
+
 		OS_TYPE os = OSUtil.getOSType();
 		int width = 1040;
 		if (os == OS_TYPE.MAC_OS)
 		{
 			width += 100; // Needs to be wider on macOS
 		}
-		
+
 		this.setSize(new Dimension(width, currentSize.height));
         this.validate();
 		this.repaint();
@@ -596,13 +596,13 @@ public class ZCashUI
     	Log.info("Exiting ...");
 
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        
+
         this.dashboard.stopThreadsAndTimers();
         this.transactionDetailsPanel.stopThreadsAndTimers();
         this.addresses.stopThreadsAndTimers();
         this.sendPanel.stopThreadsAndTimers();
         this.messagingPanel.stopThreadsAndTimers();
-        
+
         ZCashUI.this.setVisible(false);
         ZCashUI.this.dispose();
 
@@ -615,14 +615,14 @@ public class ZCashUI
         try
         {
         	OS_TYPE os = OSUtil.getOSType();
-        	
+
         	if ((os == OS_TYPE.WINDOWS) || (os == OS_TYPE.MAC_OS))
         	{
         		possiblyCreateZCashConfigFile();
         	}
 
         	LanguageUtil langUtil = LanguageUtil.instance();
-        	
+
         	Log.info("Starting BitzecSwing Wallet ...");
         	Log.info("OS: " + System.getProperty("os.name") + " = " + os);
         	Log.info("Current directory: " + new File(".").getCanonicalPath());
@@ -634,7 +634,7 @@ public class ZCashUI
             {
             	// Custom Windows L&F and font settings
             	UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            	
+
             	// This font looks good but on Windows 7 it misses some chars like the stars...
             	//FontUIResource font = new FontUIResource("Lucida Sans Unicode", Font.PLAIN, 11);
             	//UIManager.put("Table.font", font);
@@ -644,7 +644,7 @@ public class ZCashUI
             	System.setProperty("apple.laf.useScreenMenuBar", "true");
             }
             else
-            {            
+            {
 	            for (LookAndFeelInfo ui : UIManager.getInstalledLookAndFeels())
 	            {
 	            	Log.info("Available look and feel: " + ui.getName() + " " + ui.getClassName());
@@ -656,14 +656,14 @@ public class ZCashUI
 	                };
 	            }
             }
-            
+
             // If bitzecd is currently not running, do a startup of the daemon as a child process
             // It may be started but not ready - then also show dialog
-            ZCashInstallationObserver initialInstallationObserver = 
+            ZCashInstallationObserver initialInstallationObserver =
             	new ZCashInstallationObserver(OSUtil.getProgramDirectory());
             DaemonInfo bitzecdInfo = initialInstallationObserver.getDaemonInfo();
             initialInstallationObserver = null;
-            
+
             ZCashClientCaller initialClientCaller = new ZCashClientCaller(OSUtil.getProgramDirectory());
             boolean daemonStartInProgress = false;
             try
@@ -674,7 +674,7 @@ public class ZCashUI
             		// If more than 20 minutes behind in the blockchain - startup in progress
             		if ((System.currentTimeMillis() - info.lastBlockDate.getTime()) > (20 * 60 * 1000))
             		{
-            			Log.info("Current blockchain synchronization date is "  + 
+            			Log.info("Current blockchain synchronization date is "  +
             		                       new Date(info.lastBlockDate.getTime()));
             			daemonStartInProgress = true;
             		}
@@ -704,7 +704,7 @@ public class ZCashUI
 	            startupBar.waitForStartup();
             }
             initialClientCaller = null;
-            
+
             // Main GUI is created here
             ZCashUI ui = new ZCashUI(startupBar);
             ui.setVisible(true);
@@ -763,14 +763,14 @@ public class ZCashUI
             System.exit(4);
         }
     }
-    
-    
+
+
      public static void possiblyCreateZCashConfigFile()
         throws IOException
     {
     	String blockchainDir = OSUtil.getBlockchainDirectory();
     	File dir = new File(blockchainDir);
-    	
+
 		if (!dir.exists())
 		{
 			if (!dir.mkdirs())
@@ -779,37 +779,28 @@ public class ZCashUI
 				throw new IOException("Could not create settings directory: " + dir.getCanonicalPath());
 			}
 		}
-		
-		File zcashConfigFile = new File(dir, "zcash.conf");
-		
+
+		File zcashConfigFile = new File(dir, "bitzec.conf");
+
 		if (!zcashConfigFile.exists())
 		{
-			Log.info("Zcash configuration file " + zcashConfigFile.getCanonicalPath() + 
+			Log.info("Zcash configuration file " + zcashConfigFile.getCanonicalPath() +
 					 " does not exist. It will be created with default settings.");
-			
+
 			Random r = new Random(System.currentTimeMillis());
-			
+
 			PrintStream configOut = new PrintStream(new FileOutputStream(zcashConfigFile));
-			
-			configOut.println("#############################################################################");
-			configOut.println("#                         Zcash configuration file                            #");
-			configOut.println("#############################################################################");
-			configOut.println("# This file has been automatically generated by the Zcash GUI wallet with #");
+
+
+      configOut.println("#the binary digit zero-knowledge electronic currency#");
+      configOut.println("gen=1");
+			configOut.println("genproclimit=2");
+			configOut.println("equihashsolver=tromp");
+			configOut.println("# This file has been automatically generated by the bitzec GUI wallet with #");
 			configOut.println("# default settings. It may be further cutsomized by hand only.              #");
 			configOut.println("#############################################################################");
-			configOut.println("# Creation date: " + new Date().toString());
-			configOut.println("#############################################################################");
-			configOut.println("");
-			configOut.println("# The rpcuser/rpcpassword are used for the local call to bitzecd");
-			configOut.println("rpcuser=User" + Math.abs(r.nextInt()));
-			configOut.println("rpcpassword=Pass" + Math.abs(r.nextInt()) + "" + 
-			                                       Math.abs(r.nextInt()) + "" + 
-					                               Math.abs(r.nextInt()));
-			configOut.println("");
-			configOut.println("# Well-known nodes to connect to - to speed up acquiring initial connections");
-			configOut.println("addnode=explorer.zcha.in"); 
-			configOut.println("addnode=zcash.blockexplorer.com");
-			configOut.println("addnode=explorer.zec.zeltrez.io");
+
+
 			configOut.close();
 		}
     }
@@ -823,5 +814,5 @@ public class ZCashUI
 	    };
 	    Runtime.getRuntime().addShutdownHook(new Thread(runner, "Window Prefs Hook"));
 	}
-    
+
 }
