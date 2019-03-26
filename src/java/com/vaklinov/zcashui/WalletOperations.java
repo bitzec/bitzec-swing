@@ -292,20 +292,11 @@ public class WalletOperations
 	{
 		// TODO: Will need corrections once encryption is re-enabled!!!
 		
-	    Object[] options = 
-		{ 
-        		langUtil.getString("button.option.yes"),
-        		langUtil.getString("button.option.no")
-        	};
-	    int option = JOptionPane.showOptionDialog(  
+	    int option = JOptionPane.showConfirmDialog(  
 		    this.parent,
 		    langUtil.getString("wallet.operations.dialog.import.private.keys.notice.text"),
 		    langUtil.getString("wallet.operations.dialog.import.private.keys.notice.title"),
-		    JOptionPane.YES_NO_OPTION,
-	        JOptionPane.QUESTION_MESSAGE,
-	        null,
-	        options,
-	        JOptionPane.NO_OPTION);
+		    JOptionPane.YES_NO_OPTION);
 		if (option == JOptionPane.NO_OPTION)
 		{
 		  	return;
@@ -470,19 +461,10 @@ public class WalletOperations
 
 			final File f = new File(fullPath);
 			if (f.exists()) {
-				Object[] options = 
-		        	{ 
-		        		langUtil.getString("button.option.yes"),
-		        		langUtil.getString("button.option.no")
-		        	};
-				int r = JOptionPane.showOptionDialog((Component) null,
+				int r = JOptionPane.showConfirmDialog((Component) null,
 						langUtil.getString("wallet.operations.dialog.delete.file.confirmation", f.getName()),
                         langUtil.getString("wallet.operations.dialog.delete.file.confirmation.title"),
-                        JOptionPane.YES_NO_OPTION,
-    			        JOptionPane.QUESTION_MESSAGE,
-    			        null,
-    			        options,
-    			        JOptionPane.NO_OPTION);
+                        JOptionPane.YES_NO_OPTION);
 				if (r == 1) {
 					return;
 				}

@@ -1,8 +1,8 @@
 Package: zecmate
-Version: 1.1.3
+Version: 1.0.1
 Section: misc
 Priority: low
 Architecture: all
-Description: BitzecSwing Wallet - Desktop GUI Wallet for Bitzec
+Description: BitzecSwing Wallet - Desktop GUI Wallet for Zcash
 Maintainer: tadeas.kmenta@zel.cash
 Depends: default-jdk, zcash
