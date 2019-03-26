@@ -90,16 +90,13 @@ public class DataTable
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				if ((lastRow >= 0) && (lastColumn >= 0))
-				{
-					String text = DataTable.this.getValueAt(lastRow, lastColumn).toString();
+				int row = DataTable.this.convertRowIndexToModel(DataTable.this.getSelectedRow());
+				int column = DataTable.this.convertColumnIndexToModel(DataTable.this.getSelectedColumn());
 				
-					Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-					clipboard.setContents(new StringSelection(text), null);
-				} else
-				{
-					// Log perhaps
-				}
+				String text = DataTable.this.getValueAt(row, column).toString();
+			
+				Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+				clipboard.setContents(new StringSelection(text), null);
 			}
 		});
         
