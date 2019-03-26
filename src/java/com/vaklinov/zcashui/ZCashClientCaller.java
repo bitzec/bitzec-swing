@@ -164,7 +164,7 @@ public class ZCashClientCaller
 			CommandExecutor starter = new CommandExecutor(
 	        	new String[] 
 	        	{
-	        		bitzecd.getCanonicalPath(), 
+	        		zcashd.getCanonicalPath(), 
 	        		"-exportdir=" + wrapStringParameter(exportDir)
 	    	});
 	    
