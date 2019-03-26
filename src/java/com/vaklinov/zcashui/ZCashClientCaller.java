@@ -146,7 +146,7 @@ public class ZCashClientCaller
 	}
 
 	
-	public synchronized Process startDaemon(boolean reindex) 
+	public synchronized Process startDaemon() 
 		throws IOException, InterruptedException 
 	{
 		String exportDir = OSUtil.getUserHomeDirectory().getCanonicalPath();
