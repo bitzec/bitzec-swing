@@ -48,14 +48,14 @@
   <variables>
     <variable name="InstallerFrame.logfilePath" value="Default"/>
     <variable name="WELCOME_TEXT" value="BitzecSwing Wallet Installation"/>
-    <variable name="WELCOME_VERSION" value="Version: 1.0.1"/>
+    <variable name="WELCOME_VERSION" value="Version: 1.1.4"/>
     <variable name="WELCOME_BG_COLOR" value="#404B62"/>
     <variable name="WELCOME_TEXT_COLOR" value="#ffffff"/>
   </variables>
 
 
   <panels>
-
+    
     <!-- FIXME why doesn't HTMLHelloPanel work any more?  it is nice not to have the "Please read the following information" text ... -->
     <panel classname="HTMLInfoPanel" id="welcome"/>
 
@@ -102,7 +102,7 @@
         <os family="windows"/>
       </listener>
   </listeners>
-
+  
   <packs>
     <pack name="shortcuts_windows" id="win.short.pack" hidden="true" required="true">
         <description>Shortcut for Windows</description>
