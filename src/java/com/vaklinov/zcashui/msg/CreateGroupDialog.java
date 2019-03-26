@@ -51,7 +51,6 @@ import com.cabecinha84.zcashui.ZcashJProgressBar;
 import com.cabecinha84.zcashui.ZcashJTextField;
 
 import com.vaklinov.zcashui.LabelStorage;
-import com.vaklinov.zcashui.LanguageUtil;
 import com.vaklinov.zcashui.Log;
 import com.vaklinov.zcashui.StatusUpdateErrorReporter;
 import com.vaklinov.zcashui.Util;
@@ -82,8 +81,6 @@ public class CreateGroupDialog
 	
 	protected ZcashJProgressBar progress = null;
 	
-	private static LanguageUtil langUtil = LanguageUtil.instance();
-
 	ZcashJButton okButon;
 	ZcashJButton cancelButon;
 	
@@ -105,7 +102,7 @@ public class CreateGroupDialog
 		this.caller = caller;
 		this.labelStorage = labelStorage;
 		
-		this.setTitle(langUtil.getString("create.group.dialog.title"));
+		this.setTitle("Add messaging group...");
 		this.setModal(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
@@ -114,7 +111,10 @@ public class CreateGroupDialog
 		controlsPanel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 
 		ZcashJPanel tempPanel = new ZcashJPanel(new BorderLayout(0, 0));
-		tempPanel.add(this.upperLabel = new ZcashJLabel(langUtil.getString("create.group.dialog.upperLabel")), BorderLayout.CENTER);
+		tempPanel.add(this.upperLabel = new ZcashJLabel(
+			"<html>Please enter a key phrase that identifies a messaging group. " + 
+		    "Such a key phrase is usually a #HashTag<br/>or similar item known to the " +
+			" group of people participating:</html>"), BorderLayout.CENTER);
 		controlsPanel.add(tempPanel);
 		
 		ZcashJLabel dividerLabel = new ZcashJLabel("   ");
@@ -131,7 +131,9 @@ public class CreateGroupDialog
 
 		tempPanel = new ZcashJPanel(new BorderLayout(0, 0));
 		tempPanel.add(this.lowerLabel = new ZcashJLabel(
-			langUtil.getString("create.group.dialog.lowerLabel")),
+			"<html>The group key phrase will be converted into a group Z address that " +
+		    "all participants share to receive <br/>messages. The addition of a messaging " + 
+			"group may take considerable time, so please be patient...</html>"), 
 			BorderLayout.CENTER);
 		controlsPanel.add(tempPanel);
 		
@@ -149,10 +151,10 @@ public class CreateGroupDialog
 		// Form buttons
 		ZcashJPanel buttonPanel = new ZcashJPanel();
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 3, 3));
-		okButon = new ZcashJButton(langUtil.getString("create.group.dialog.button.create"));
+		okButon = new ZcashJButton("Create group");
 		buttonPanel.add(okButon);
 		buttonPanel.add(new ZcashJLabel("   "));
-		cancelButon = new ZcashJButton(langUtil.getString("create.group.dialog.button.cancel"));
+		cancelButon = new ZcashJButton("Cancel");
 		buttonPanel.add(cancelButon);
 		this.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 
@@ -193,7 +195,7 @@ public class CreateGroupDialog
 		{
 			JOptionPane.showMessageDialog(
 				CreateGroupDialog.this.getParent(), 
-				langUtil.getString("create.group.dialog.error.empty.group.key"), langUtil.getString("create.group.dialog.error.empty"), 
+				"The group key phrase is empty. Please enter it into the text field.", "Empty...", 
 				JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -224,9 +226,12 @@ public class CreateGroupDialog
 					Log.error("An error occurred when importing private key for group phrase", e);
 					
 					JOptionPane.showMessageDialog(
-						CreateGroupDialog.this.getRootPane().getParent(), 
-						langUtil.getString("create.group.dialog.error.importing.privatekeys", e.getClass().getName(), e.getMessage()),
-						langUtil.getString("create.group.dialog.error.importing"), JOptionPane.ERROR_MESSAGE);
+							CreateGroupDialog.this.getRootPane().getParent(), 
+						"An error occurred when importing private key for group phrase. Error message is:\n" +
+						e.getClass().getName() + ":\n" + e.getMessage() + "\n\n" +
+						"Please ensure that bitzecd is running and the key is in the correct \n" + 
+						"form. You may try again later...\n", 
+						"Error in importing private key/group phrase", JOptionPane.ERROR_MESSAGE);
 				} finally
 				{
 					CreateGroupDialog.this.setVisible(false);
@@ -307,8 +312,14 @@ public class CreateGroupDialog
 			
 			JOptionPane.showMessageDialog(
 				CreateGroupDialog.this,  
-				langUtil.getString("create.group.dialog.group.added", keyPhrase, ZAddress),
-				langUtil.getString("create.group.dialog.group.added.successfully"),
+				"The messaging group with key phrase:\n" +
+				keyPhrase + "\n" +
+				"has been added successfully. All messages sent by individual users to the " +
+				"group will be sent to Z address:\n"
+				+ ZAddress + "\n\n" +
+				"IMPORTANT: Do NOT send any BZCto this address except in cases of messaging transactions. Any\n" +
+				"funds sent to this address may be spent by any user who has access to the group key phrase!",
+				"Group added successfully...",
 				JOptionPane.INFORMATION_MESSAGE);
 		} else
 		{
@@ -316,8 +327,10 @@ public class CreateGroupDialog
 			// TODO: Group was already added it seems - see if it can be made more reliable
 			JOptionPane.showMessageDialog(
 				CreateGroupDialog.this,  
-				langUtil.getString("create.group.dialog.group.already", keyPhrase),
-				langUtil.getString("create.group.dialog.group.already.exists"),
+				"The messaging group with key phrase:\n" +
+				keyPhrase + "\n" +
+				"already exists",
+				"Group already exists...",
 				JOptionPane.INFORMATION_MESSAGE);
 		}	
 		

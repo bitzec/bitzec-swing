@@ -8,7 +8,6 @@ import java.nio.channels.FileLock;
 
 import com.vaklinov.zcashui.Log;
 import com.vaklinov.zcashui.OSUtil;
-import com.vaklinov.zcashui.ZCashClientCaller;
 
 
 public class AppLock {
@@ -41,15 +40,6 @@ public class AppLock {
                 lock.release();
                 channel.close();
                 f.delete();
-                try {
-                	//if daemon is running for any reason we try to stop it here because wallet is closing.
-	                ZCashClientCaller initialClientCallerA = new ZCashClientCaller(OSUtil.getProgramDirectory());
-	                initialClientCallerA.stopDaemon();
-                }
-                catch (Exception ex) {
-                	Log.warning("Error stopping daemon due to: {0} {1}",
-        					ex.getClass().getName(), ex.getMessage());
-                }
             }
         } catch(IOException e) {
         	Log.warning("Error ounlocking wallet lock due to: {0} {1}",
