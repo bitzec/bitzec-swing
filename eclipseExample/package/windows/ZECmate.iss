@@ -3,8 +3,8 @@
 [Setup]
 AppId={{fxApplication}}
 AppName=ZECmate
-AppVersion=1.0.1
-AppVerName=Bitzec1.0.1
+AppVersion=1.1.3
+AppVerName=Bitzec1.1.3
 AppPublisher=Zel Technologies GmbH
 AppComments=ZECmate
 AppCopyright=Copyright (C) 2018
@@ -33,7 +33,7 @@ UninstallDisplayName=ZECmate
 WizardImageStretch=No
 WizardSmallImageFile=ZECmate-setup-icon.bmp   
 ArchitecturesInstallIn64BitMode=x64
-VersionInfoVersion=1.0.1
+VersionInfoVersion=1.1.3
 
 
 [Languages]

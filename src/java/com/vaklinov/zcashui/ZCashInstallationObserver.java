@@ -1,11 +1,11 @@
 /************************************************************************************************
- *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _
- *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |
- *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_
+ *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _   
+ *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |  
+ *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_ 
  *    / / |  __| | . ` | |    / _` / __| '_ \| | |_ | |  | | | |   \ \/  \/ / _` | | |/ _ \ __|
- *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_
+ *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_ 
  *  /_____|______|_| \_|\_____\__,_|___/_| |_|\_____|\____/|_____|   \/  \/ \__,_|_|_|\___|\__|
- *
+ *                                       
  * Copyright (c) 2016-2018 The ZEN Developers
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -61,7 +61,7 @@ public class ZCashInstallationObserver
 	}
 
 	private String args[];
-
+	
 	private Boolean isOnTestNet = null;
 
 	public ZCashInstallationObserver(String installDir)
@@ -77,35 +77,35 @@ public class ZCashInstallationObserver
 			    "a directory or is otherwise inaccessible to the wallet!");
 		}
 
-		File bitzecd = new File(dir, OSUtil.getZCashd());
-		File bitzeccli = new File(dir, OSUtil.getZCashCli());
+		File zcashd = new File(dir, OSUtil.getZCashd());
+		File zcashcli = new File(dir, OSUtil.getZCashCli());
 
-		if ((!bitzecd.exists()) || (!bitzeccli.exists()))
+		if ((!zcashd.exists()) || (!zcashcli.exists()))
 		{
-			bitzecd = OSUtil.findZCashCommand(OSUtil.getZCashd());
-			bitzeccli = OSUtil.findZCashCommand(OSUtil.getZCashCli());
+			zcashd = OSUtil.findZCashCommand(OSUtil.getZCashd());
+			zcashcli = OSUtil.findZCashCommand(OSUtil.getZCashCli());
 		}
 
 		Log.info("Using Zcash utilities: " +
-		                   "bitzecd: "    + ((bitzecd != null) ? bitzecd.getCanonicalPath() : "<MISSING>") + ", " +
-		                   "bitzec-cli: " + ((bitzeccli != null) ? bitzeccli.getCanonicalPath() : "<MISSING>"));
+		                   "zcashd: "    + ((zcashd != null) ? zcashd.getCanonicalPath() : "<MISSING>") + ", " +
+		                   "zcash-cli: " + ((zcashcli != null) ? zcashcli.getCanonicalPath() : "<MISSING>"));
 
-		if ((bitzecd == null) || (bitzeccli == null) || (!bitzecd.exists()) || (!bitzeccli.exists()))
+		if ((zcashd == null) || (zcashcli == null) || (!zcashd.exists()) || (!zcashcli.exists()))
 		{
 			throw new InstallationDetectionException(
 				"The Zcash GUI Wallet installation directory " + installDir + " needs\nto contain " +
-				"the command line utilities bitzecd and bitzec-cli. At least one of them is missing! \n" +
-				"Please place files Bitzec.jar, " + OSUtil.getZCashCli() + ", " +
+				"the command line utilities zcashd and zcash-cli. At least one of them is missing! \n" +
+				"Please place files ZECmate.jar, " + OSUtil.getZCashCli() + ", " + 
 				OSUtil.getZCashd() + " in the same directory.");
 		}
 	}
 
-
+	
 	public synchronized DaemonInfo getDaemonInfo()
 			throws IOException, InterruptedException
 	{
 		OS_TYPE os = OSUtil.getOSType();
-
+		
 		if (os == OS_TYPE.WINDOWS)
 		{
 			return getDaemonInfoForWindowsOS();
@@ -115,11 +115,11 @@ public class ZCashInstallationObserver
 		}
 	}
 
-
+	
 	private synchronized DaemonInfo getDaemonInfoForUNIXLikeOS()
 		throws IOException, InterruptedException
 	{
-		return getDaemonInfoForUNIXLikeOS("bitzecd");
+		return getDaemonInfoForUNIXLikeOS("zcashd");
 	}
 
 	// So far tested on macOS and Linux - expected to work on other UNIXes as well
@@ -192,13 +192,13 @@ public class ZCashInstallationObserver
 
 		return info;
 	}
-
+	
 	private synchronized DaemonInfo getDaemonInfoForWindowsOS()
 		throws IOException, InterruptedException
 	{
-		return getDaemonInfoForWindowsOS("bitzecd");
+		return getDaemonInfoForWindowsOS("zcashd");
 	}
-
+	
 	public static synchronized DaemonInfo getDaemonInfoForWindowsOS(String daemonName)
 		throws IOException, InterruptedException
 	{
@@ -226,12 +226,12 @@ public class ZCashInstallationObserver
 				{
 					break;
 				}
-
+				
 				if (token.startsWith("\""))
 				{
 					token = token.substring(1);
 				}
-
+				
 				if (token.endsWith("\""))
 				{
 					token = token.substring(0, token.length() - 1);
@@ -243,7 +243,7 @@ public class ZCashInstallationObserver
 					{
 						info.status = DAEMON_STATUS.RUNNING;
 						foundZCash = true;
-						//System.out.println("bitzecd process data is: " + line);
+						//System.out.println("zcashd process data is: " + line);
 					}
 				} else if ((i >= 4) && foundZCash)
 				{
@@ -255,7 +255,7 @@ public class ZCashInstallationObserver
 							size = size.substring(0, size.length() - 1);
 						}
 					} catch (NumberFormatException nfe) { /* TODO: Log or handle exception */ };
-				}
+				} 
 			} // End parsing row
 
 			if (foundZCash)
@@ -268,7 +268,7 @@ public class ZCashInstallationObserver
 					info.residentSizeMB = 0;
 					Log.error("Error: could not find the numeric memory size of " + daemonName + ": " + size);
 				};
-
+				
 				break;
 			}
 		}
@@ -282,9 +282,9 @@ public class ZCashInstallationObserver
 
 		return info;
 	}
-
-
-
+	
+	
+	
 	public boolean isOnTestNet()
 		throws IOException
 	{
@@ -292,9 +292,9 @@ public class ZCashInstallationObserver
 		{
 			return this.isOnTestNet.booleanValue();
 		}
-
+		
 		String blockChainDir = OSUtil.getBlockchainDirectory();
-		File zcashConf = new File(blockChainDir + File.separator + "bitzec.conf");
+		File zcashConf = new File(blockChainDir + File.separator + "zcash.conf");
 		if (zcashConf.exists())
 		{
 			Properties confProps = new Properties();
@@ -304,9 +304,9 @@ public class ZCashInstallationObserver
 				fis = new FileInputStream(zcashConf);
 				confProps.load(fis);
 				String testNetStr = confProps.getProperty("testnet");
-
+				
 				this.isOnTestNet = (testNetStr != null) && (testNetStr.trim().equalsIgnoreCase("1"));
-
+				
 				return this.isOnTestNet.booleanValue();
 			} finally
 			{
@@ -321,7 +321,7 @@ public class ZCashInstallationObserver
 			return false;
 		}
 	}
-
+	
 
 	public static class InstallationDetectionException
 		extends IOException
