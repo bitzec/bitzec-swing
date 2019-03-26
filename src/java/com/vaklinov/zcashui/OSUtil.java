@@ -1,11 +1,11 @@
 /************************************************************************************************
- *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _   
- *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |  
- *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_ 
+ *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _
+ *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |
+ *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_
  *    / / |  __| | . ` | |    / _` / __| '_ \| | |_ | |  | | | |   \ \/  \/ / _` | | |/ _ \ __|
- *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_ 
+ *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_
  *  /_____|______|_| \_|\_____\__,_|___/_| |_|\_____|\____/|_____|   \/  \/ \__,_|_|_|\___|\__|
- *                                       
+ *
  * Copyright (c) 2016-2018 The ZEN Developers
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -44,28 +44,28 @@ public class OSUtil
 	{
 		LINUX, WINDOWS, MAC_OS, FREE_BSD, OTHER_BSD, SOLARIS, AIX, OTHER_UNIX, OTHER_OS
 	};
-	
-	
+
+
 	public static boolean isUnixLike(OS_TYPE os)
 	{
-		return os == OS_TYPE.LINUX || os == OS_TYPE.MAC_OS || os == OS_TYPE.FREE_BSD || 
-			   os == OS_TYPE.OTHER_BSD || os == OS_TYPE.SOLARIS || os == OS_TYPE.AIX || 
+		return os == OS_TYPE.LINUX || os == OS_TYPE.MAC_OS || os == OS_TYPE.FREE_BSD ||
+			   os == OS_TYPE.OTHER_BSD || os == OS_TYPE.SOLARIS || os == OS_TYPE.AIX ||
 			   os == OS_TYPE.OTHER_UNIX;
 	}
-	
-	
+
+
 	public static boolean isHardUnix(OS_TYPE os)
 	{
-		return os == OS_TYPE.FREE_BSD || 
-			   os == OS_TYPE.OTHER_BSD || os == OS_TYPE.SOLARIS || 
+		return os == OS_TYPE.FREE_BSD ||
+			   os == OS_TYPE.OTHER_BSD || os == OS_TYPE.SOLARIS ||
 			   os == OS_TYPE.AIX || os == OS_TYPE.OTHER_UNIX;
 	}
-	
-	
+
+
 	public static OS_TYPE getOSType()
 	{
 		String name = System.getProperty("os.name").toLowerCase(Locale.ROOT);
-		
+
 		if (name.contains("linux"))
 		{
 			return OS_TYPE.LINUX;
@@ -95,35 +95,35 @@ public class OSUtil
 			return OS_TYPE.OTHER_OS;
 		}
 	}
-	
-	
-	// Returns the name of the zcashd server - may vary depending on the OS.
+
+
+	// Returns the name of the bitzecd server - may vary depending on the OS.
 	public static String getZCashd()
 	{
-		String zcashd = "zcashd";
-		
+		String bitzecd = "bitzecd";
+
 		OS_TYPE os = getOSType();
 		if (os == OS_TYPE.WINDOWS)
 		{
-			zcashd += ".exe";
+			bitzecd += ".exe";
 		}
-		
-		return zcashd;
+
+		return bitzecd;
 	}
-	
-	
-	// Returns the name of the zcash-cli tool - may vary depending on the OS.
+
+
+	// Returns the name of the bitzec-cli tool - may vary depending on the OS.
 	public static String getZCashCli()
 	{
-		String zcashcli = "zcash-cli";
-		
+		String bitzeccli = "bitzec-cli";
+
 		OS_TYPE os = getOSType();
 		if (os == OS_TYPE.WINDOWS)
 		{
-			zcashcli += ".exe";
+			bitzeccli += ".exe";
 		}
-		
-		return zcashcli;
+
+		return bitzeccli;
 	}
 
 
@@ -133,7 +133,7 @@ public class OSUtil
 	{
 		// TODO: this way of finding the dir is JAR name dependent - tricky, may not work
 		// if program is repackaged as different JAR!
-		final String JAR_NAME = "ZECmate.jar";
+		final String JAR_NAME = "Bitzec.jar";
 		String cp = System.getProperty("java.class.path");
 		if ((cp != null) && (cp.indexOf(File.pathSeparator) == -1) &&
 			(cp.endsWith(JAR_NAME)))
@@ -145,7 +145,7 @@ public class OSUtil
 				return pd.getCanonicalPath();
 			}
 		}
-		
+
 		// Try with a full class-path, now containing more libraries
 		// This too is very deployment specific
 		if (cp.indexOf(File.pathSeparator) != -1)
@@ -155,12 +155,12 @@ public class OSUtil
 			{
 				cp2 = cp2.substring(0, cp2.length() - 1);
 			}
-			
+
 			if (cp2.startsWith(File.pathSeparator))
 			{
 				cp2 = cp2.substring(1);
 			}
-			
+
 			final String CP_JARS = JAR_NAME + File.pathSeparator + "bitcoinj-core-0.14.5.jar" +
 					                          File.pathSeparator + "sqlite-jdbc-3.21.0.jar";
 			if (cp2.endsWith(CP_JARS))
@@ -175,13 +175,13 @@ public class OSUtil
 				{
 					startIndex = 0;
 				}
-				
+
 				if (cpStart.length() > startIndex)
 				{
 					File pd = new File(cpStart.substring(startIndex));
 					return pd.getCanonicalPath();
 				}
-			}			
+			}
 		}
 
 		// Current dir of the running JVM (expected)
@@ -200,8 +200,8 @@ public class OSUtil
 
 		return new File(".").getCanonicalPath();
 	}
-	
-	
+
+
 	public static File getUserHomeDirectory()
 		throws IOException
 	{
@@ -213,16 +213,16 @@ public class OSUtil
 		throws IOException
 	{
 		OS_TYPE os = getOSType();
-		
+
 		if (os == OS_TYPE.MAC_OS)
 		{
 			return new File(System.getProperty("user.home") + "/Library/Application Support/Zcash").getCanonicalPath();
 		} else if (os == OS_TYPE.WINDOWS)
 		{
-			return new File(System.getenv("APPDATA") + "\\Zcash").getCanonicalPath();
+			return new File(System.getenv("APPDATA") + "\\Bitzec").getCanonicalPath();
 		} else
 		{
-			return new File(System.getProperty("user.home") + "/.zcash").getCanonicalPath();
+			return new File(System.getProperty("user.home") + "/.bitzec").getCanonicalPath();
 		}
 	}
 
@@ -234,7 +234,7 @@ public class OSUtil
 	    File userHome = new File(System.getProperty("user.home"));
 	    File dir;
 	    OS_TYPE os = getOSType();
-	    
+
 	    if (os == OS_TYPE.MAC_OS)
 	    {
 	        dir = new File(userHome, "Library/Application Support/ZECmate");
@@ -245,7 +245,7 @@ public class OSUtil
 	    {
 	        dir = new File(userHome.getCanonicalPath() + File.separator + ".ZECmate");
 	    }
-	    
+
 		if (!dir.exists())
 		{
 			if (!dir.mkdirs())
@@ -262,11 +262,11 @@ public class OSUtil
 		throws IOException, InterruptedException
 	{
 		OS_TYPE os = getOSType();
-		
+
 		if (os == OS_TYPE.MAC_OS)
 		{
 			CommandExecutor uname = new CommandExecutor(new String[] { "uname", "-sr" });
-		    return uname.execute() + "; " + 
+		    return uname.execute() + "; " +
 		           System.getProperty("os.name") + " " + System.getProperty("os.version");
 		} else if (os == OS_TYPE.WINDOWS)
 		{
@@ -280,13 +280,13 @@ public class OSUtil
 	}
 
 
-	// Can be used to find zcashd/zcash-cli if it is not found in the same place as the wallet JAR
+	// Can be used to find bitzecd/bitzec-cli if it is not found in the same place as the wallet JAR
 	// Null if not found
 	public static File findZCashCommand(String command)
 		throws IOException
 	{
 	    File f;
-	    
+
 	    // Try with system property zcash.location.dir - may be specified by caller
 	    String ZCashLocationDir = System.getProperty("zcash.location.dir");
 	    if ((ZCashLocationDir != null) && (ZCashLocationDir.trim().length() > 0))
@@ -297,9 +297,9 @@ public class OSUtil
 	            return f.getCanonicalFile();
 	        }
 	    }
-	    
+
 	    OS_TYPE os = getOSType();
-	    
+
 	    if (isUnixLike(os))
 	    {
 	    	// The following search directories apply to UNIX-like systems only
@@ -314,7 +314,7 @@ public class OSUtil
 				"/opt/local/zcash/bin/",
 				"/opt/zcash/bin/"
 			};
-	
+
 			for (String d : dirs)
 			{
 				f = new File(d + command);
@@ -323,7 +323,7 @@ public class OSUtil
 					return f;
 				}
 			}
-			
+
 	    } else if (os == OS_TYPE.WINDOWS)
 	    {
 	    	// A probable Windows directory is a Zcash dir in Program Files
@@ -345,17 +345,17 @@ public class OSUtil
 	    		}
 	    	}
 	    }
-		
+
 		// Try in the current directory
 		f = new File("." + File.separator + command);
 		if (f.exists() && f.isFile())
 		{
 			return f.getCanonicalFile();
 		}
-			
+
 
 		// TODO: Try to find it with which/PATH
-		
+
 		return null;
 	}
 }

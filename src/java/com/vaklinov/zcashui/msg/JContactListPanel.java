@@ -68,7 +68,6 @@ import com.cabecinha84.zcashui.ZcashJPopupMenu;
 import com.cabecinha84.zcashui.ZcashJScrollPane;
 import com.cabecinha84.zcashui.ZcashXUI;
 
-import com.vaklinov.zcashui.LanguageUtil;
 import com.vaklinov.zcashui.Log;
 import com.vaklinov.zcashui.StatusUpdateErrorReporter;
 
@@ -86,8 +85,6 @@ public class JContactListPanel
 	private ZcashJFrame           parentFrame;
 	
 	private ZcashJPopupMenu popupMenu;
-
-	private static LanguageUtil langUtil = LanguageUtil.instance();
 	
 	public JContactListPanel(MessagingPanel parent, 
 			                 ZcashJFrame parentFrame,
@@ -117,12 +114,12 @@ public class JContactListPanel
         URL removeIconUrl = this.getClass().getClassLoader().getResource("images/remove12.png");
         ImageIcon removeIcon = new ImageIcon(removeIconUrl);
         ZcashJButton addButton = new ZcashJButton(addIcon);
-        addButton.setToolTipText(langUtil.getString("contact.list.add.contact"));
+        addButton.setToolTipText("Add contact...");
         ZcashJButton removeButton = new ZcashJButton(removeIcon);
-        removeButton.setToolTipText(langUtil.getString("contact.list.remove.contact"));
+        removeButton.setToolTipText("Remove contact...");
         ZcashJButton addGroupButton = new ZcashJButton(
-        	langUtil.getString("contact.list.button.group"), addIcon);
-        addGroupButton.setToolTipText(langUtil.getString("contact.list.add.group"));
+        	"<html><span style=\"font-size:0.7em;\">Group</span></html>", addIcon);
+        addGroupButton.setToolTipText("Add group...");
         ZcashJPanel tempPanel = new ZcashJPanel(new FlowLayout(FlowLayout.LEFT, 3, 0));
         tempPanel.add(removeButton);
         tempPanel.add(addButton);
@@ -233,7 +230,7 @@ public class JContactListPanel
 		this.popupMenu = new ZcashJPopupMenu();
 		int accelaratorKeyMask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 		
-		ZcashJMenuItem showDetails = new ZcashJMenuItem(langUtil.getString("contact.list.show.details"));
+		ZcashJMenuItem showDetails = new ZcashJMenuItem("Show details...");
         popupMenu.add(showDetails);
         showDetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, accelaratorKeyMask));
         showDetails.addActionListener(new ActionListener() 
@@ -251,7 +248,7 @@ public class JContactListPanel
 			}
 		});
         
-		ZcashJMenuItem removeContact = new ZcashJMenuItem(langUtil.getString("contact.list.remove"));
+		ZcashJMenuItem removeContact = new ZcashJMenuItem("Remove...");
         popupMenu.add(removeContact);
         removeContact.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, accelaratorKeyMask));
         removeContact.addActionListener(new ActionListener() 
@@ -263,7 +260,7 @@ public class JContactListPanel
 			}
 		});
 
-		ZcashJMenuItem sendContactDetails = new ZcashJMenuItem(langUtil.getString("contact.list.send.contact.details"));
+		ZcashJMenuItem sendContactDetails = new ZcashJMenuItem("Send contact details...");
         popupMenu.add(sendContactDetails);
         sendContactDetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, accelaratorKeyMask));
         sendContactDetails.addActionListener(new ActionListener() 
@@ -287,27 +284,21 @@ public class JContactListPanel
 			{
 		        JOptionPane.showMessageDialog(
 			        this.parentFrame,
-			         langUtil.getString("contact.list.no.messaging.contact.message"),
-					 langUtil.getString("contact.list.no.messaging.contact"), JOptionPane.ERROR_MESSAGE);					
+			        "No messaging contact is selected in the contact list (on the right side of the UI).\n" +
+			        "In order to send contact details you need to select a contact first!",
+				    "No messaging contact is selected...", JOptionPane.ERROR_MESSAGE);					
 				return;
 			}
 			
 			if (id.isAnonymous())
 			{
-		        Object[] options = 
-		        	{ 
-		        		langUtil.getString("button.option.yes"),
-		        		langUtil.getString("button.option.no")
-		        	};
-				int reply = JOptionPane.showOptionDialog(
+		        int reply = JOptionPane.showConfirmDialog(
 			        this.parentFrame, 
-			        langUtil.getString("contact.list.confirm.anonymous", id.getDiplayString()),
-					langUtil.getString("contact.list.are.you.sure"), 
-					JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE,
-					null,
-					options,
-					JOptionPane.NO_OPTION);
+			        "The contact: " + id.getDiplayString() + "\n" +
+			        "is anonymous. Sending your contact details to them will reveal your messaging\n" +
+			        "identity! Are you sure you want to send your contact details to them?", 
+			        "Are you sure you want to send your contact details", 
+			        JOptionPane.YES_NO_OPTION);
 			        
 			    if (reply == JOptionPane.NO_OPTION) 
 			    {
@@ -352,7 +343,7 @@ public class JContactListPanel
 		ImageIcon contactBlackIcon;
 		ImageIcon contactGroupBlackIcon;
 		ZcashJLabel    renderer;
-		private Color backGroundColor = ZcashXUI.startup;
+		private static Color backGroundColor = ZcashXUI.startup;
 		
 		public ContactList()
 		{
