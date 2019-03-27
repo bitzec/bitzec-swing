@@ -48,6 +48,7 @@ public class ProvingKeyFetcher {
     private static final String SHA256SS = "2f0ebbcbb9bb0bcffe95a397e7eba89c29eb4dde6191c339db88570e3f3fb0e4";
     private static final String pathURLSS = "https://z.cash/downloads/sapling-output.params";
 
+    private static final int SPROUT_
     // TODO: add backups
     private LanguageUtil langUtil;
 
