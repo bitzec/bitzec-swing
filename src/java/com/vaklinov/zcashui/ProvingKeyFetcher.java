@@ -40,7 +40,7 @@ public class ProvingKeyFetcher {
     private static final String SHA256SS = "8e48ffd23abb3a5fd9c5589204f32d9c31285a04b78096ba40a79b75677efc13";
     private static final String pathURLSS = "https://z.cash/downloads/sapling-spend.params";
 
-    private static final int VERIFYING_KEY_SIZE = (1449;
+    private static final int VERIFYING_KEY_SIZE = 1449;
     private static final String SHA256SS = "4bd498dae0aacfd8e98dc306338d017d9c08dd0918ead18172bd0aec2fc5df82";
     private static final String pathURLSS = "https://z.cash/downloads/sprout-verifying.key";
 
