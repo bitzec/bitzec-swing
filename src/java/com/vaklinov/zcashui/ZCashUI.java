@@ -666,16 +666,16 @@ public class ZCashUI
 
             // If bitzecd is currently not running, do a startup of the daemon as a child process
             // It may be started but not ready - then also show dialog
-            ZCashInstallationObserver initialInstallationObserver =
+            initialInstallationObserver = 
             	new ZCashInstallationObserver(OSUtil.getProgramDirectory());
-            DaemonInfo bitzecdInfo = initialInstallationObserver.getDaemonInfo();
+            zcashdInfo = initialInstallationObserver.getDaemonInfo();
             initialInstallationObserver = null;
-
-            ZCashClientCaller initialClientCaller = new ZCashClientCaller(OSUtil.getProgramDirectory());
+            
+            initialClientCaller = new ZCashClientCaller(OSUtil.getProgramDirectory());
             boolean daemonStartInProgress = false;
             try
             {
-            	if (bitzecdInfo.status == DAEMON_STATUS.RUNNING)
+            	if (zcashdInfo.status == DAEMON_STATUS.RUNNING)
             	{
             		NetworkAndBlockchainInfo info = initialClientCaller.getNetworkAndBlockchainInfo();
             		// If more than 20 minutes behind in the blockchain - startup in progress
