@@ -1,11 +1,11 @@
 /************************************************************************************************
- *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _   
- *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |  
- *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_ 
+ *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _
+ *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |
+ *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_
  *    / / |  __| | . ` | |    / _` / __| '_ \| | |_ | |  | | | |   \ \/  \/ / _` | | |/ _ \ __|
- *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_ 
+ *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_
  *  /_____|______|_| \_|\_____\__,_|___/_| |_|\_____|\____/|_____|   \/  \/ \__,_|_|_|\___|\__|
- *                                       
+ *
  * Copyright (c) 2016-2018 The ZEN Developers
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -114,11 +114,11 @@ public class DashboardPanel
 			DashboardPanel.class.getClassLoader().getResource("images/connect3_16.png"));
 	private static ImageIcon connect_4_Icon = new ImageIcon(
 			DashboardPanel.class.getClassLoader().getResource("images/connect4_16.png"));
-	
+
 	// Confirmation symbols
 	private static String confirmedSymbol    = "\u2690";
 	private static String notConfirmedSymbol = "\u2691";
-	
+
 	static
 	{
 		// Windows does not support the flag symbol (Windows 7 by default)
@@ -131,22 +131,22 @@ public class DashboardPanel
 		}
 	}
 
-	
+
 	private ZcashJFrame parentFrame;
 	private TransactionsDetailPanel detailsPabelForSelection = null;
-	
+
 	private ZCashInstallationObserver installationObserver;
 	private ZCashClientCaller clientCaller;
 	private StatusUpdateErrorReporter errorReporter;
 	private BackupTracker backupTracker;
 	private LabelStorage labelStorage;
-	
+
 	private ZcashJPanel upperLogoAndWarningPanel = null;
-	
+
 	private ZcashJLabel networkAndBlockchainLabel = null;
 	private ZcashJLabel blockchain100PercentLabel = null;
 	private ZcashJLabel networkConnectionsIconLabel = null;
-	
+
 	private DataGatheringThread<NetworkAndBlockchainInfo> netInfoGatheringThread = null;
 	private ZcashJPanel blockcahinWarningPanel = null;
 	private ZcashJLabel blockcahinWarningLabel = null;
@@ -154,14 +154,14 @@ public class DashboardPanel
 
 	private Boolean walletIsEncrypted   = null;
 	private Integer blockchainPercentage = null;
-	
+
 	private String OSInfo              = null;
 	private ZcashJLabel daemonStatusLabel   = null;
 	private DataGatheringThread<DaemonInfo> daemonInfoGatheringThread = null;
-	
+
 	private ZcashJLabel walletBalanceLabel  = null;
 	private DataGatheringThread<WalletBalance> walletBalanceGatheringThread = null;
-	
+
 	private DataGatheringThread<String[][]> transactionGatheringThread = null;
 	private LanguageUtil langUtil;
 	private String currency;
@@ -181,7 +181,7 @@ public class DashboardPanel
 		this.errorReporter = errorReporter;
 		this.backupTracker = backupTracker;
 		this.labelStorage = labelStorage;
-		
+
 		this.timers = new ArrayList<Timer>();
 		this.threads = new ArrayList<DataGatheringThread<?>>();
 
@@ -227,8 +227,8 @@ public class DashboardPanel
 		tempPanel.add(roundedLeftPanel, BorderLayout.NORTH);
 		tempPanel.add(this.exchangeRatePanel = new ExchangeRatePanel(errorReporter), BorderLayout.CENTER);
 		dashboard.add(tempPanel, BorderLayout.WEST);
-        
-		// List of transactions 
+
+		// List of transactions
         tempPanel = new ZcashJPanel(new BorderLayout(0, 0));
         tempPanel.setBorder(BorderFactory.createEmptyBorder(0, 14, 8, 4));
         tempPanel.add(new LatestTransactionsPanel(), BorderLayout.CENTER);
@@ -240,7 +240,7 @@ public class DashboardPanel
 		ZcashPresentationPanel daemonStatusPanel = new ZcashPresentationPanel();
 		daemonStatusPanel.add(daemonStatusLabel = new ZcashJLabel());
 		installationStatusPanel.add(daemonStatusPanel, BorderLayout.WEST);
-		
+
 		// Build the network and blockchain labels - could be better!
 		ZcashJPanel netandBCPanel = new ZcashJPanel(new BorderLayout(0, 0));
 		netandBCPanel.setOpaque(false);
@@ -255,13 +255,13 @@ public class DashboardPanel
 		netandBCPanel.add(netandBCIconsPanel, BorderLayout.EAST);
 		ZcashPresentationPanel networkAndBlockchainPanel = new ZcashPresentationPanel();
 		networkAndBlockchainPanel.add(netandBCPanel);
-		installationStatusPanel.add(networkAndBlockchainPanel, BorderLayout.EAST);		
-		
+		installationStatusPanel.add(networkAndBlockchainPanel, BorderLayout.EAST);
+
 		dashboard.add(installationStatusPanel, BorderLayout.SOUTH);
 
 		// Thread and timer to update the daemon status
 		this.daemonInfoGatheringThread = new DataGatheringThread<DaemonInfo>(
-			new DataGatheringThread.DataGatherer<DaemonInfo>() 
+			new DataGatheringThread.DataGatherer<DaemonInfo>()
 			{
 				public DaemonInfo gatherData()
 					throws Exception
@@ -270,13 +270,13 @@ public class DashboardPanel
 					DaemonInfo daemonInfo = DashboardPanel.this.installationObserver.getDaemonInfo();
 					long end = System.currentTimeMillis();
 					Log.info("Gathering of dashboard daemon status data done in " + (end - start) + "ms." );
-					
+
 					return daemonInfo;
 				}
-			}, 
+			},
 			this.errorReporter, 2000, true);
 		this.threads.add(this.daemonInfoGatheringThread);
-		
+
 		ActionListener alDeamonStatus = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e)
@@ -294,10 +294,10 @@ public class DashboardPanel
 		Timer t = new Timer(1000, alDeamonStatus);
 		t.start();
 		this.timers.add(t);
-		
+
 		// Thread and timer to update the wallet balance
 		this.walletBalanceGatheringThread = new DataGatheringThread<WalletBalance>(
-			new DataGatheringThread.DataGatherer<WalletBalance>() 
+			new DataGatheringThread.DataGatherer<WalletBalance>()
 			{
 				public WalletBalance gatherData()
 					throws Exception
@@ -305,22 +305,22 @@ public class DashboardPanel
 					long start = System.currentTimeMillis();
 					WalletBalance balance = DashboardPanel.this.clientCaller.getWalletInfo();
 					long end = System.currentTimeMillis();
-					
+
 					// TODO: move this call to a dedicated one-off gathering thread - this is the wrong place
 					// it works but a better design is needed.
 					if (DashboardPanel.this.walletIsEncrypted == null)
 					{
 					    DashboardPanel.this.walletIsEncrypted = DashboardPanel.this.clientCaller.isWalletEncrypted();
 					}
-					
+
 					Log.info("Gathering of dashboard wallet balance data done in " + (end - start) + "ms." );
-					
+
 					return balance;
 				}
-			}, 
+			},
 			this.errorReporter, 8000, true);
 		this.threads.add(this.walletBalanceGatheringThread);
-		
+
 		ActionListener alWalletBalance = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e)
@@ -342,7 +342,7 @@ public class DashboardPanel
 
 		// Thread and timer to update the transactions table
 		this.transactionGatheringThread = new DataGatheringThread<String[][]>(
-			new DataGatheringThread.DataGatherer<String[][]>() 
+			new DataGatheringThread.DataGatherer<String[][]>()
 			{
 				public String[][] gatherData()
 					throws Exception
@@ -351,16 +351,16 @@ public class DashboardPanel
 					String[][] data = DashboardPanel.this.getTransactionsDataFromWallet();
 					long end = System.currentTimeMillis();
 					Log.info("Gathering of dashboard wallet transactions table data done in " + (end - start) + "ms." );
-					
+
 					return data;
 				}
-			}, 
+			},
 			this.errorReporter, 20000);
 		this.threads.add(this.transactionGatheringThread);
-		
+
 		// Thread and timer to update the network and blockchain details
 		this.netInfoGatheringThread = new DataGatheringThread<NetworkAndBlockchainInfo>(
-			new DataGatheringThread.DataGatherer<NetworkAndBlockchainInfo>() 
+			new DataGatheringThread.DataGatherer<NetworkAndBlockchainInfo>()
 			{
 				public NetworkAndBlockchainInfo gatherData()
 					throws Exception
@@ -369,13 +369,13 @@ public class DashboardPanel
 					NetworkAndBlockchainInfo data =  DashboardPanel.this.clientCaller.getNetworkAndBlockchainInfo();
 					long end = System.currentTimeMillis();
 					Log.info("Gathering of network and blockchain info data done in " + (end - start) + "ms." );
-					
+
 					return data;
 				}
-			}, 
+			},
 			this.errorReporter, 10000, true);
 		this.threads.add(this.netInfoGatheringThread);
-		
+
 		ActionListener alNetAndBlockchain = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e)
@@ -400,53 +400,53 @@ public class DashboardPanel
 	{
 		this.detailsPabelForSelection = detailsPanel;
 	}
-	
-	
+
+
 	// May be null!
 	public Integer getBlockchainPercentage()
 	{
 		return this.blockchainPercentage;
 	}
-	
-	
+
+
 	public DataGatheringThread<String[][]> getTransactionGatheringThread()
 	{
 		return this.transactionGatheringThread;
 	}
-	
+
 
 	private void updateDaemonStatusLabel()
 		throws IOException, InterruptedException, WalletCallException
 	{
 		DaemonInfo daemonInfo = this.daemonInfoGatheringThread.getLastData();
-		
+
 		// It is possible there has been no gathering initially
 		if (daemonInfo == null)
 		{
 			return;
 		}
-		
+
 		String daemonStatus = langUtil.getString("panel.dashboard.deamon.status.running");
 		if (daemonInfo.status != DAEMON_STATUS.RUNNING)
 		{
 			daemonStatus = langUtil.getString("panel.dashboard.deamon.status.not.running");
 		}
-		
+
 		String runtimeInfo = "";
-		
+
 		// If the virtual size/CPU are 0 - do not show them
 		String virtual = "";
 		if (daemonInfo.virtualSizeMB > 0)
 		{
 			virtual = langUtil.getString("panel.dashboard.deamon.info.virtual", daemonInfo.virtualSizeMB);
 		}
-		
+
 		String cpuPercentage = "";
 		if (daemonInfo.cpuPercentage > 0)
 		{
 			cpuPercentage = langUtil.getString("panel.dashboard.deamon.info.cpu", daemonInfo.cpuPercentage);
 		}
-		
+
 		if (daemonInfo.status == DAEMON_STATUS.RUNNING)
 		{
 			runtimeInfo = langUtil.getString("panel.dashboard.deamon.runtime.info",
@@ -459,12 +459,12 @@ public class DashboardPanel
 		{
 			walletDAT = new File(OSUtil.getBlockchainDirectory() + "/testnet3" + "/wallet.dat");
 		}
-		
+
 		if (this.OSInfo == null)
 		{
 			this.OSInfo = OSUtil.getSystemInfo();
 		}
-		
+
 		String walletEncryption = "";
 		// TODO: Use a one-off data gathering thread - better design
 		if (this.walletIsEncrypted != null)
@@ -477,7 +477,7 @@ public class DashboardPanel
 			walletEncryption =langUtil.getString("panel.dashboard.deamon.status.walletencrypted.text", encryptionText);
 
 		}
-		
+
 		String text =langUtil.getString("panel.dashboard.deamon.status.text",
 				daemonStatus, runtimeInfo, walletDAT.getCanonicalPath(),
 				walletEncryption, OSUtil.getProgramDirectory(),	OSUtil.getBlockchainDirectory(),
@@ -486,25 +486,25 @@ public class DashboardPanel
 		this.daemonStatusLabel.setText(text);
 	}
 
-	
+
 	private void updateNetworkAndBlockchainLabel()
 		throws IOException, InterruptedException
 	{
 		NetworkAndBlockchainInfo info = this.netInfoGatheringThread.getLastData();
-			
+
 		// It is possible there has been no gathering initially
 		if (info == null)
 		{
 			return;
 		}
-		
+
 		// TODO: Get the start date right after Zcash release - from first block!!!
 		final Date startDate = new Date("06 Nov 2016 02:00:00 GMT");
 		final Date nowDate = new Date(System.currentTimeMillis());
-		
+
 		long fullTime = nowDate.getTime() - startDate.getTime();
 		long remainingTime = nowDate.getTime() - info.lastBlockDate.getTime();
-		
+
 		String percentage = "100";
 		if (remainingTime > 30 * 60 * 1000) // After 30 min we report 100% anyway
 		{
@@ -516,36 +516,36 @@ public class DashboardPanel
 			{
 				dPercentage = 100d;
 			}
-			
+
 			DecimalFormat df = new DecimalFormat("##0.##");
 			percentage = df.format(dPercentage);
-			
+
 			// Also set a member that may be queried
 			this.blockchainPercentage = new Integer((int)dPercentage);
 		} else
 		{
 			this.blockchainPercentage = 100;
 		}
-		
+
 		// Just in case early on the call returns some junk date
 		if (info.lastBlockDate.before(startDate))
 		{
 			// TODO: write log that we fix minimum date! - this condition should not occur
 			info.lastBlockDate = startDate;
 		}
-				
+
 		String text =langUtil.getString("panel.dashboard.network.blockchain.label",
 				percentage, info.lastBlockDate.toLocaleString(), info.numConnections );
 
 		this.networkAndBlockchainLabel.setText(text);
-		
+
 		// Connections check (typically not an open node with more than 8)
 		int numConnections = info.numConnections;
 		if (numConnections > 8)
 		{
 			numConnections = 8;
 		}
-		
+
 		// Set the correct number of connections (icon)
 		if (numConnections > 8) {
 			this.networkConnectionsIconLabel.setIcon(connect_4_Icon);
@@ -573,16 +573,16 @@ public class DashboardPanel
 				this.networkConnectionsIconLabel.setIcon(connect_0_Icon);
 			}
 		}
-		
+
 		// Set the blockchain synchronization icon
 		if (this.blockchainPercentage < 100)
 		{
-			this.blockchain100PercentLabel.setIcon(null);	
+			this.blockchain100PercentLabel.setIcon(null);
 		} else
 		{
 			this.blockchain100PercentLabel.setIcon(this.confirmedTXIcon);
 		}
-		
+
 		// Possibly show a blockchain synchronization warning
 		if (this.blockchainPercentage < 100)
 		{
@@ -616,26 +616,26 @@ public class DashboardPanel
 			}
 		}
 	}
-	
+
 
 	private void updateWalletStatusLabel()
 		throws WalletCallException, IOException, InterruptedException
 	{
 		WalletBalance balance = this.walletBalanceGatheringThread.getLastData();
-		
+
 		// It is possible there has been no gathering initially
 		if (balance == null)
 		{
 			return;
 		}
-		
+
 		// Format double numbers - else sometimes we get exponential notation 1E-4 ZEC
 		DecimalFormat df = new DecimalFormat("########0.00######");
-		
+
 		String transparentBalance = df.format(balance.transparentBalance);
 		String privateBalance = df.format(balance.privateBalance);
 		String totalBalance = df.format(balance.totalBalance);
-		
+
 		String transparentUCBalance = df.format(balance.transparentUnconfirmedBalance);
 		String privateUCBalance = df.format(balance.privateUnconfirmedBalance);
 		String totalUCBalance = df.format(balance.totalUnconfirmedBalance);
@@ -643,7 +643,7 @@ public class DashboardPanel
 		String color1 = transparentBalance.equals(transparentUCBalance) ? "" : "color:#cc3300;";
 		String color2 = privateBalance.equals(privateUCBalance)         ? "" : "color:#cc3300;";
 		String color3 = totalBalance.equals(totalUCBalance)             ? "" : "color:#cc3300;";
-		
+
 		Double currencyBalance = (this.exchangeRatePanel != null) ? this.exchangeRatePanel.getCurrencyPrice() : null;
 		String formattedCurrencyVal = "N/A";
 		if (currencyBalance  != null)
@@ -651,17 +651,17 @@ public class DashboardPanel
 			currencyBalance = currencyBalance * balance.totalUnconfirmedBalance;
 			DecimalFormat currencyDF = new DecimalFormat("########0.00");
 			formattedCurrencyVal = currencyDF.format(currencyBalance);
-			
+
 			// make sure ZEC and currency are aligned
 			int diff = totalUCBalance.length() - formattedCurrencyVal.length();
 			while (diff-- > 0)
 			{
 				formattedCurrencyVal += "&nbsp;";
 			}
-			
+
 		}
 		String currencyBalanceStr = langUtil.getString("panel.dashboard.marketcap.currency.balance.string", color3, formattedCurrencyVal, ZcashXUI.currency);
-		
+
 		String text = langUtil.getString("panel.dashboard.marketcap.usd.balance.text",
 				color1, transparentUCBalance, color2, privateUCBalance,
 				color3, totalUCBalance, currencyBalanceStr);
@@ -670,9 +670,9 @@ public class DashboardPanel
 		//System.out.println("totalUCBalance = [" + totalUCBalance + "]");
 		//System.out.println("usdBalanceStr = [" + usdBalanceStr + "]");
 		//System.out.println("FULL TEXT: " + text);
-		
+
 		this.walletBalanceLabel.setText(text);
-				
+
 		String toolTip = null;
 		if ((!transparentBalance.equals(transparentUCBalance)) ||
 		    (!privateBalance.equals(privateUCBalance))         ||
@@ -680,15 +680,15 @@ public class DashboardPanel
 		{
 			toolTip = langUtil.getString("panel.dashboard.balance.tooltip", transparentBalance, privateBalance, totalBalance);
 		}
-		
+
 		this.walletBalanceLabel.setToolTipText(toolTip);
-		
+
 		if (this.parentFrame.isVisible())
 		{
 			this.backupTracker.handleWalletBalanceUpdate(balance.totalBalance);
 		}
 	}
-	
+
 
 	private String[][] getTransactionsDataFromWallet()
 		throws WalletCallException, IOException, InterruptedException
@@ -710,7 +710,7 @@ public class DashboardPanel
 		{
 			allTransactions[i++] = t;
 		}
-		
+
 		// Sort transactions by date
 		Arrays.sort(allTransactions, new Comparator<String[]>() {
 			public int compare(String[] o1, String[] o2)
@@ -736,9 +736,9 @@ public class DashboardPanel
 				}
 			}
 		});
-		
+
 		DecimalFormat df = new DecimalFormat("########0.00######");
-		
+
 		// Change the direction and date etc. attributes for presentation purposes
 		for (String[] trans : allTransactions)
 		{
@@ -762,7 +762,7 @@ public class DashboardPanel
 			{
 				trans[4] = new Date(Long.valueOf(trans[4]).longValue() * 1000L).toLocaleString();
 			}
-			
+
 			// Amount
 			try
 			{
@@ -774,21 +774,21 @@ public class DashboardPanel
 				trans[3] = df.format(amount);
 			} catch (NumberFormatException nfe)
 			{
-				Log.error("Error occurred while formatting amount: " + trans[3] + 
+				Log.error("Error occurred while formatting amount: " + trans[3] +
 						           " - " + nfe.getMessage() + "!");
 			}
-			
+
 			// Confirmed?
 			try
 			{
-				boolean isConfirmed = !trans[2].trim().equals("0"); 
-				
+				boolean isConfirmed = !trans[2].trim().equals("0");
+
 				trans[2] = isConfirmed ?
 						(langUtil.getString("panel.dashboard.table.transactions.confirmed.yes") + confirmedSymbol) :
 						(langUtil.getString("panel.dashboard.table.transactions.confirmed.no") + notConfirmedSymbol);
 			} catch (NumberFormatException nfe)
 			{
-				Log.error("Error occurred while formatting confirmations: " + trans[2] + 
+				Log.error("Error occurred while formatting confirmations: " + trans[2] +
 						           " - " + nfe.getMessage() + "!");
 			}
 		}
@@ -796,23 +796,23 @@ public class DashboardPanel
 
 		return allTransactions;
 	}
-	
-	
+
+
 	// Specific panel class for showing the exchange rates and values in FIAT
 	class ExchangeRatePanel extends ZcashJPanel
 	{
 		private DataGatheringThread<JsonObject> zcashDataGatheringThread = null;
-		
+
 		private DataTable table;
 		private ZcashJScrollPane tablePane;
-		
+
 		private Double lastCurrencyPrice;
-		
+
 		public ExchangeRatePanel(StatusUpdateErrorReporter errorReporter)
-		{			
+		{
 			// Start the thread to gather the exchange data
 			this.zcashDataGatheringThread = new DataGatheringThread<JsonObject>(
-				new DataGatheringThread.DataGatherer<JsonObject>() 
+				new DataGatheringThread.DataGatherer<JsonObject>()
 				{
 					public JsonObject gatherData()
 						throws Exception
@@ -821,22 +821,22 @@ public class DashboardPanel
 						JsonObject exchangeData = ExchangeRatePanel.this.getExchangeDataFromRemoteService();
 						long end = System.currentTimeMillis();
 						Log.info("Gathering of ZEC Exchange data done in " + (end - start) + "ms." );
-							
+
 						return exchangeData;
 					}
-				}, 
+				},
 				errorReporter, 60000, true);
-			
+
 			this.setLayout(new FlowLayout(FlowLayout.LEFT, 3, 18));
 			this.recreateExchangeTable();
-			
+
 			// Start the timer to update the table
 			ActionListener alExchange = new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
 					try
-					{					
+					{
 						ExchangeRatePanel.this.recreateExchangeTable();
 					} catch (Exception ex)
 					{
@@ -849,16 +849,16 @@ public class DashboardPanel
 			t.setInitialDelay(1000);
 			t.start();
 		}
-		
-		
+
+
 		private void recreateExchangeTable()
 		{
 			if (this.table != null)
 			{
 				this.remove(this.tablePane);
 			}
-						
-			this.table = new DataTable(getExchangeDataInTableForm(), 
+
+			this.table = new DataTable(getExchangeDataInTableForm(),
 	                                   new String[] {
 														langUtil.getString("panel.dashboard.marketcap.column.exchange.info"),
 											   			langUtil.getString("panel.dashboard.marketcap.column.exchange.value")
@@ -869,8 +869,8 @@ public class DashboardPanel
 			this.table.setFillsViewportHeight(false);
             this.add(this.tablePane = new ZcashJScrollPane(this.table));
 		}
-		
-		
+
+
 		// Forms the exchange data for a table
 		private Object[][] getExchangeDataInTableForm()
 		{
@@ -881,7 +881,7 @@ public class DashboardPanel
 			{
 				data = new JsonObject();
 				rates = new JsonObject();
-				cmc = new JsonObject(); 
+				cmc = new JsonObject();
 			} else {
 				if (data.get("rates") == null) {
 					rates = new JsonObject();
@@ -911,14 +911,14 @@ public class DashboardPanel
 					this.lastCurrencyPrice = priceD;
 				} catch (NumberFormatException nfe) { /* Do nothing */ }
 			}
-			
+
 			String usdMarketCap = cmc.getString("market_cap_usd", "N/A");
 			try
 			{
 				Double usdMarketCapD = Double.parseDouble(usdMarketCap) / 1000000;
 				usdMarketCap = new DecimalFormat("########0.000").format(usdMarketCapD) + " million";
 			} catch (NumberFormatException nfe) { /* Do nothing */ }
-			
+
 			// Query the object for individual fields
 			String currencyMessage = langUtil.getString("panel.dashboard.marketcap.price.currency") + ZcashXUI.currency + ":";
 			String tableData[][] = new String[][]
@@ -932,28 +932,28 @@ public class DashboardPanel
 
 			return tableData;
 		}
-		
-		
+
+
 		private Double getCurrencyPrice()
 		{
 			return this.lastCurrencyPrice;
 		}
-				
+
 		// Obtains the ZEC exchange data as a JsonObject
 		private JsonObject getExchangeDataFromRemoteService()
 		{
 			JsonObject data = new JsonObject();
 			String currency = ZcashXUI.currency;
-			
+
 			try
 			{
-				URL u = new URL("https://api.coinmarketcap.com/v1/ticker/zcash");
+				URL u = new URL("https://api.coinpaprika.com/v1/ticker/bzc-bitzec");
 				HttpURLConnection huc = (HttpURLConnection) u.openConnection();
 				huc.setConnectTimeout(2019);
 				int responseCode = huc.getResponseCode();
 
  				if (responseCode != HttpURLConnection.HTTP_OK) {
-					Log.warning("https://api.coinmarketcap.com/v1/ticker/zcash");
+					Log.warning("https://api.coinpaprika.com/v1/ticker/bzc-bitzec");
 				}
 				else {
 					Reader r = new InputStreamReader(u.openStream(), "UTF-8");
@@ -993,22 +993,22 @@ public class DashboardPanel
 				}
 			} catch (Exception ioe)
 			{
-				Log.warning("Could not obtain ZEC exchange information from rates.zecmate.com due to: {0} {1}", 
+				Log.warning("Could not obtain ZEC exchange information from rates.zecmate.com due to: {0} {1}",
 						    ioe.getClass().getName(), ioe.getMessage());
 			}
 			Log.info(data.toString());
 			return data;
 		}
 	}
-	
-	
+
+
 	// Specific panel class for the latest transactions
 	class LatestTransactionsPanel
 		extends ZcashJPanel
 	{
 		LatestTransactionsList transactionList = null;
 		String[][] transactions = null;
-		
+
 		public LatestTransactionsPanel()
 			throws InterruptedException, IOException, WalletCallException
 		{
@@ -1019,16 +1019,16 @@ public class DashboardPanel
 			transactionList = new LatestTransactionsList();
 			ZcashJPanel tempPanel = new ZcashJPanel(new BorderLayout(0,  0));
 			tempPanel.add(transactionList, BorderLayout.NORTH);
-			content.add(tempPanel, BorderLayout.CENTER); 
-			
+			content.add(tempPanel, BorderLayout.CENTER);
+
 			// Pre-fill transaction list once
 			this.transactions = getTransactionsDataFromWallet();
 			transactionList.updateTransactions(this.transactions);
-			
-			ActionListener al = new ActionListener() 
+
+			ActionListener al = new ActionListener()
 			{
 				@Override
-				public void actionPerformed(ActionEvent e) 
+				public void actionPerformed(ActionEvent e)
 				{
 					LatestTransactionsPanel.this.transactions = transactionGatheringThread.getLastData();
 					if (LatestTransactionsPanel.this.transactions != null)
@@ -1037,16 +1037,16 @@ public class DashboardPanel
 					}
 				}
 			};
-			
+
 			Timer latestTransactionsTimer =  new Timer(8000, al);
 			latestTransactionsTimer.setInitialDelay(8000);
 			latestTransactionsTimer.start();
-						
+
 			this.setLayout(new GridLayout(1, 1));
 			this.add(content);
 		}
-		
-		
+
+
 		class LatestTransactionsList
 			extends JList<String[]>
 		{
@@ -1054,15 +1054,15 @@ public class DashboardPanel
 			{
 				super();
 				this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-				
+
 				this.addMouseListener(new MouseAdapter()
 		        {
 		        	public void mousePressed(MouseEvent e)
 		        	{
-		                if ((!e.isConsumed()) && (e.isPopupTrigger() || (e.getClickCount() == 2))) 
+		                if ((!e.isConsumed()) && (e.isPopupTrigger() || (e.getClickCount() == 2)))
 		                {
 		                	LatestTransactionsList list = (LatestTransactionsList)e.getSource();
-		                    
+
 		                	// Select also via the right mouse button - seems not to work well
 		                    /*{
 		                        if (SwingUtilities.isRightMouseButton(e))
@@ -1074,7 +1074,7 @@ public class DashboardPanel
 		                            }
 		                        }
 		                    }*/
-		                	
+
 		                	if (list.getSelectedValue() != null)
 		                    {
 		                    	String[] transaction = list.getSelectedValue();
@@ -1084,10 +1084,10 @@ public class DashboardPanel
 		                    		detailsPabelForSelection.selectTransactionWithID(transaction[6]);
 		                    	}
 		                    	e.consume();
-		                    } 		                    
+		                    }
 		                }
 		        	}
-		        	
+
 		            public void mouseReleased(MouseEvent e)
 		            {
 		            	if ((!e.isConsumed()) && e.isPopupTrigger())
@@ -1097,12 +1097,12 @@ public class DashboardPanel
 		            }
 		        });
 			}
-			
-			
+
+
 			public void updateTransactions(String[][] transactions)
 			{
 				DefaultListModel<String[]> model = new DefaultListModel<String[]>();
-				
+
 				// By default only 5 transactions are shown
 				int i = 0;
 				for (String[] trans : transactions)
@@ -1111,41 +1111,41 @@ public class DashboardPanel
 					{
 						break;
 					}
-					
+
 					model.addElement(trans);
 				}
-				
+
 				this.setModel(model);
 			}
-			
-			
+
+
 			@Override
-			public ListCellRenderer<String[]> getCellRenderer() 
+			public ListCellRenderer<String[]> getCellRenderer()
 			{
-				return new ListCellRenderer<String[]>() 
+				return new ListCellRenderer<String[]>()
 				{
 					@Override
 					public Component getListCellRendererComponent(
 							JList<? extends String[]> list,
-							String[] data, int index, boolean isSelected, boolean cellHasFocus) 
-					{					
+							String[] data, int index, boolean isSelected, boolean cellHasFocus)
+					{
 						return new SingleTransactionPanel(data);
 					}
 				};
 			}
 
 		}
-		
-		
+
+
 		class SingleTransactionPanel
 			extends ZcashJPanel
-		{			
+		{
 			// TODO: depends on the format of the gathering thread
 			public SingleTransactionPanel(String[] transactionFields)
 			{
 				this.setLayout(new FlowLayout(FlowLayout.LEFT, 3, 3));
 				this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-				
+
 				String destinationAddress = transactionFields[5];
 
 				String label = DashboardPanel.this.labelStorage.getLabel(destinationAddress);
@@ -1153,12 +1153,12 @@ public class DashboardPanel
 				{
 					destinationAddress = label + " - " + destinationAddress;
 				}
-				
+
 				if (destinationAddress.length() > 37)
 				{
 					destinationAddress = destinationAddress.substring(0, 37) + "...";
 				}
-				
+
 				// Set the correct icon for input/output
 				ImageIcon inOutIcon = inoutTransactionIcon;
 				if (transactionFields[1] != null)
@@ -1171,24 +1171,24 @@ public class DashboardPanel
 						inOutIcon = outputTransactionIcon;
 					}
 				}
-				
+
 				ZcashJLabel imgLabel = new ZcashJLabel();
 				imgLabel.setIcon(inOutIcon);
 				this.add(imgLabel);
-				
+
 				// Set the two icons for public/private and confirmations
-				ImageIcon confirmationIcon = 
-					transactionFields[2].contains((langUtil.getString("panel.dashboard.table.transactions.confirmed.yes"))) 
+				ImageIcon confirmationIcon =
+					transactionFields[2].contains((langUtil.getString("panel.dashboard.table.transactions.confirmed.yes")))
 					? confirmedTXIcon : unConfirmedTXIcon;
-				ImageIcon pubPrivIcon = 
+				ImageIcon pubPrivIcon =
 						transactionFields[0].contains("Private") ? lockClosedIcon : lockOpenIcon;
 				ZcashJPanel iconsPanel = new ZcashJPanel(new BorderLayout(0, 1));
 				iconsPanel.add(new ZcashJLabel(pubPrivIcon), BorderLayout.SOUTH);
 				iconsPanel.add(new ZcashJLabel(confirmationIcon), BorderLayout.NORTH);
 				this.add(iconsPanel);
-				
+
 				this.add(new ZcashJLabel("<html>&nbsp;</html>"));
-				
+
 				// Set the transaction information
 				ZcashJLabel transactionInfo = new ZcashJLabel(
 						langUtil.getString("panel.dashboard.transactions.info",
@@ -1204,6 +1204,6 @@ public class DashboardPanel
 			}
 		}
 	}
-	
-	
+
+
 } // End class
