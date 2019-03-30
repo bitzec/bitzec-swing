@@ -962,42 +962,11 @@ public class DashboardPanel
 				}
 			} catch (Exception ioe)
 			{
-				Log.warning("Could not obtain ZEC exchange information from coinmarketcap.com due to: {0} {1}",
+				Log.warning("Could not obtain BZC exchange information from coinmarketcap.com due to: {0} {1}",
 						    ioe.getClass().getName(), ioe.getMessage());
 			}
 
-			try
-			{
-				URL u = new URL("https://rates.zecmate.com");
-				HttpURLConnection huc = (HttpURLConnection) u.openConnection();
-				huc.setConnectTimeout(2019);
-				int responseCode = huc.getResponseCode();
 
-				if (responseCode != HttpURLConnection.HTTP_OK) {
-					Log.warning("Could not connect to https://rates.zecmate.com");
-				} else {
-					Reader r = new InputStreamReader(u.openStream(), "UTF-8");
-					JsonArray ar = Json.parse(r).asArray();
-					Log.info("Looking in https://rates.zecmate.com for currency: "+currency);
-					for (int i = 0; i < ar.size(); ++i) {
-						JsonObject obj = ar.get(i).asObject();
-						String id = obj.get("code").toString().replaceAll("\"", "");
-						if (id.equals(currency)) {
-							data.add("rates",obj);
-							break;
-						}
-						if(i+1 == ar.size()) {
-							Log.warning("Could not find the currency in https://rates.zecmate.com");
-						}
-					}
-				}
-			} catch (Exception ioe)
-			{
-				Log.warning("Could not obtain ZEC exchange information from rates.zecmate.com due to: {0} {1}",
-						    ioe.getClass().getName(), ioe.getMessage());
-			}
-			Log.info(data.toString());
-			return data;
 		}
 	}
 
