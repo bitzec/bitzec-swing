@@ -648,7 +648,7 @@ public class ZCashClientCaller
 	 * @param from source address (T/Z)
 	 * @param to destination address (T/Z)
 	 * @param balance current confirmed balance of the source address
-	 * @param amount BZCamount to send
+	 * @param amount BZC amount to send
 	 * @param memo text memo to include in the transaction
 	 * @param transactionFee transaction see to include
 	 * 
@@ -1151,8 +1151,7 @@ public class ZCashClientCaller
 		} else if (strResult.trim().toLowerCase(Locale.ROOT).startsWith("error code:"))
 		{
  			 JsonObject respObject = Util.getJsonErrorMessage(strResult);
- 			 if ((respObject.getDouble("code", +123) == -1) &&
- 				 (respObject.getString("message", "ERR").indexOf("wrong network type") != -1))
+ 			 if (((respObject.getDouble("code", +123) == -1) && (respObject.getString("message", "ERR").indexOf("wrong network type") != -1)) || strResult.trim().toLowerCase(Locale.ROOT).indexOf("invalid spending key") != -1)
  			 {
  				 // Obviously T address - do nothing here
  			 } else
