@@ -87,14 +87,14 @@ public class TransactionTable
 				try
 				{
 					int row = TransactionTable.this.convertRowIndexToModel(TransactionTable.this.getSelectedRow());
-					
+
 					String txID = TransactionTable.this.getModel().getValueAt(row, 6).toString();
 					txID = txID.replaceAll("\"", ""); // In case it has quotes
-					
+
 					Log.info("Transaction ID for detail dialog is: " + txID);
 					Map<String, String> details = caller.getRawTransactionDetails(txID);
 					String rawTrans = caller.getRawTransaction(txID);
-					
+
 					DetailsDialog dd = new DetailsDialog(parent, details);
 					dd.setVisible(true);
 				} catch (Exception ex)
@@ -118,18 +118,18 @@ public class TransactionTable
 				try
 				{
 					int row = TransactionTable.this.convertRowIndexToModel(TransactionTable.this.getSelectedRow());
-					
+
 					String txID = TransactionTable.this.getModel().getValueAt(row, 6).toString();
 					txID = txID.replaceAll("\"", ""); // In case it has quotes
-					
+
 					Log.info("Transaction ID for block explorer is: " + txID);
 					// https://explorer.zcha.in/transactions/<ID>
-					String urlPrefix = "https://explorer.zecmate.com/tx/";
+					String urlPrefix = "http://35.204.174.237:3001/insight/tx/";
 					if (installationObserver.isOnTestNet())
 					{
-						urlPrefix = "https://explorer.testnet.z.cash/tx/";
+						urlPrefix = "http://35.204.174.237:3001/insight/tx/";
 					}
-					
+
 					Desktop.getDesktop().browse(new URL(urlPrefix + txID).toURI());
 				} catch (Exception ex)
 				{
@@ -153,10 +153,10 @@ public class TransactionTable
 				try
 				{
 					int row = TransactionTable.this.convertRowIndexToModel(TransactionTable.this.getSelectedRow());
-					
+
 					String txID = TransactionTable.this.getModel().getValueAt(row, 6).toString();
 					txID = txID.replaceAll("\"", ""); // In case it has quotes
-					
+
 
 					String acc = TransactionTable.this.getModel().getValueAt(row, 5).toString();
 					// TODO: better way to remove a label if it preceeds
@@ -164,9 +164,9 @@ public class TransactionTable
 					{
 						acc = acc.substring(acc.lastIndexOf(" - ") + 3);
 					}
-					
+
 					acc = acc.replaceAll("\"", ""); // In case it has quotes
-					
+
 					boolean isZAddress = Util.isZAddress(acc);
 					if (!isZAddress)
 					{
@@ -177,8 +177,8 @@ public class TransactionTable
 					            JOptionPane.ERROR_MESSAGE);
 					    return;
 					}
-					
-					
+
+
 					Log.info("Transaction ID for Memo field is: " + txID);
 					Log.info("Account for Memo field is: " + acc);
 					parent.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -186,15 +186,15 @@ public class TransactionTable
 					String MemoField = caller.getMemoField(acc, txID);
 					parent.setCursor(oldCursor);
 					Log.info("Memo field is: " + MemoField);
-					
+
 					if (MemoField != null)
 					{
 						Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 						clipboard.setContents(new StringSelection(MemoField), null);
-						
+
 						MemoField = Util.blockWrapString(MemoField, 80);
 						JOptionPane.showMessageDialog(
-							parent, 
+							parent,
 							langUtil.getString("transactions.table.memo.clipboard.text", MemoField),
 							langUtil.getString("transactions.table.memo.clipboard.title"),
 							JOptionPane.PLAIN_MESSAGE);

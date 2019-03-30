@@ -1,11 +1,11 @@
 /************************************************************************************************
- *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _   
- *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |  
- *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_ 
+ *   ____________ _   _  _____          _      _____ _    _ _______          __   _ _      _
+ *  |___  /  ____| \ | |/ ____|        | |    / ____| |  | |_   _\ \        / /  | | |    | |
+ *     / /| |__  |  \| | |     __ _ ___| |__ | |  __| |  | | | |  \ \  /\  / /_ _| | | ___| |_
  *    / / |  __| | . ` | |    / _` / __| '_ \| | |_ | |  | | | |   \ \/  \/ / _` | | |/ _ \ __|
- *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_ 
+ *   / /__| |____| |\  | |___| (_| \__ \ | | | |__| | |__| |_| |_   \  /\  / (_| | | |  __/ |_
  *  /_____|______|_| \_|\_____\__,_|___/_| |_|\_____|\____/|_____|   \/  \/ \__,_|_|_|\___|\__|
- *                                       
+ *
  * Copyright (c) 2016-2018 The ZEN Developers
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -52,14 +52,14 @@ import com.cabecinha84.zcashui.ZcashQRCodeDialog;
 /**
  * Table to be used for addresses - specifically.
  */
-public class AddressTable 
-	extends DataTable 
-{	
+public class AddressTable
+	extends DataTable
+{
 	private LabelStorage labelStorage;
 	private ZCashInstallationObserver installationObserver;
 	private ZcashJFrame parentFrame;
-	
-	public AddressTable(final Object[][] rowData, final Object[] columnNames, 
+
+	public AddressTable(final Object[][] rowData, final Object[] columnNames,
 			            final ZCashClientCaller caller, LabelStorage labelStorage, 	ZCashInstallationObserver installationObserver,
 			            ZcashJFrame parentFrame)
 	{
@@ -67,59 +67,59 @@ public class AddressTable
 		this.parentFrame = parentFrame;
 		this.labelStorage = labelStorage;
 		this.installationObserver = installationObserver;
-		
+
 		int accelaratorKeyMask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 		final LanguageUtil langUtil = LanguageUtil.instance();
 		ZcashJMenuItem obtainPrivateKey = new ZcashJMenuItem(langUtil.getString("table.address.option.obtain.private.key.label"));
 		obtainPrivateKey.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, accelaratorKeyMask));
         popupMenu.add(obtainPrivateKey);
-        
-        obtainPrivateKey.addActionListener(new ActionListener() 
-        {	
+
+        obtainPrivateKey.addActionListener(new ActionListener()
+        {
 			@Override
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e)
 			{
 				try
 				{
 					int row = AddressTable.this.convertRowIndexToModel(AddressTable.this.getSelectedRow());
-					
+
 					String address = AddressTable.this.getModel().getValueAt(row, 3).toString();
 					boolean isZAddress = Util.isZAddress(address);
-					
+
 					// Check for encrypted wallet
 					final boolean bEncryptedWallet = caller.isWalletEncrypted();
 					if (bEncryptedWallet)
 					{
 						PasswordDialog pd = new PasswordDialog((ZcashJFrame)(AddressTable.this.getRootPane().getParent()));
 						pd.setVisible(true);
-						
+
 						if (!pd.isOKPressed())
 						{
 							return;
 						}
-						
+
 						caller.unlockWallet(pd.getPassword());
 					}
-					
+
 					String privateKey = isZAddress ?
 						caller.getZPrivateKey(address) : caller.getTPrivateKey(address);
-						
-					// Lock the wallet again 
+
+					// Lock the wallet again
 					if (bEncryptedWallet)
 					{
 						caller.lockWallet();
 					}
-						
+
 					Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 					clipboard.setContents(new StringSelection(privateKey), null);
-					
+
 					JOptionPane.showMessageDialog(
-						AddressTable.this.getRootPane().getParent(), 
+						AddressTable.this.getRootPane().getParent(),
 						(isZAddress ? langUtil.getString("table.address.option.pane.text.private") : langUtil.getString("table.address.option.pane.text.transparent")) +
 							langUtil.getString("table.address.option.pane.text.rest", address, privateKey),
 							langUtil.getString("table.address.option.pane.title"), JOptionPane.INFORMATION_MESSAGE);
 
-					
+
 				} catch (Exception ex){
 					Log.error("Unexpected error: ", ex);
 		            JOptionPane.showMessageDialog(
@@ -130,18 +130,18 @@ public class AddressTable
 				}
 			}
 		});
-        
+
         ZcashJMenuItem qrCode = new ZcashJMenuItem(langUtil.getString("data.table.menu.item.qrcode"));
         popupMenu.add(qrCode);
-        
+
         qrCode.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, accelaratorKeyMask));
-        qrCode.addActionListener(new ActionListener() 
-        {	
+        qrCode.addActionListener(new ActionListener()
+        {
 			@Override
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e)
 			{
 				int row = AddressTable.this.convertRowIndexToModel(AddressTable.this.getSelectedRow());
-				
+
 				String address = AddressTable.this.getModel().getValueAt(row, 3).toString();
 				ZcashQRCodeDialog ad;
 				try {
@@ -149,26 +149,26 @@ public class AddressTable
 					ad.setVisible(true);
 				} catch (IOException e1) {
 					Log.error("Error caused by"+e1.getMessage());
-				}		
+				}
 
 			}
 		});
-        
+
 		ZcashJMenuItem setLabel = new ZcashJMenuItem("Set label...");
 		setLabel.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, accelaratorKeyMask));
         popupMenu.add(setLabel);
-        
-        setLabel.addActionListener(new ActionListener() 
-        {	
+
+        setLabel.addActionListener(new ActionListener()
+        {
 			@Override
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e)
 			{
 
 				try
 				{
 		            TableModel model = AddressTable.this.getModel();
 		            int row = AddressTable.this.convertRowIndexToModel(AddressTable.this.getSelectedRow());
-					
+
 		            String oldLabel = (String)model.getValueAt(row, 0);
 					String label = (String) JOptionPane.showInputDialog(AddressTable.this,
 		                    "Please enter a label for the address:",
@@ -179,10 +179,10 @@ public class AddressTable
 					{
 						model.setValueAt(label, row, 0);
 					}
-		            
+
 		            AddressTable.this.invalidate();
 		            AddressTable.this.repaint();
-					
+
 				} catch (Exception ex)
 				{
 					Log.error("Unexpected error: ", ex);
@@ -198,19 +198,19 @@ public class AddressTable
         ZcashJMenuItem showInExplorer = new ZcashJMenuItem(langUtil.getString("table.address.show.in.explorer"));
 		showInExplorer.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, accelaratorKeyMask));
         popupMenu.add(showInExplorer);
-        
-        showInExplorer.addActionListener(new ActionListener() 
-        {	
+
+        showInExplorer.addActionListener(new ActionListener()
+        {
 			@Override
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e)
 			{
 				try
 				{
 					int row = AddressTable.this.convertRowIndexToModel(AddressTable.this.getSelectedRow());
-					
+
 					String address = AddressTable.this.getModel().getValueAt(row, 3).toString();
 					address = address.replaceAll("\"", ""); // In case it has quotes
-					
+
 					if ((!AddressTable.this.installationObserver.isOnTestNet()) && Util.isZAddress(address))
 					{
 			           JOptionPane.showMessageDialog(
@@ -221,15 +221,15 @@ public class AddressTable
 
 						return;
 					}
-					
+
 					Log.info("Address for block explorer is: " + address);
-					
-					String urlPrefix = "https://explorer.zecmate.com/address/";
+
+					String urlPrefix = "http://35.204.174.237:3001/insight//address/";
 					if (AddressTable.this.installationObserver.isOnTestNet())
 					{
-						urlPrefix = "https://explorer.testnet.z.cash/address/";
+						urlPrefix = "http://35.204.174.237:3001/insight//address/";
 					}
-					
+
 					Desktop.getDesktop().browse(new URL(urlPrefix + address).toURI());
 				} catch (Exception ex)
 				{
@@ -238,12 +238,12 @@ public class AddressTable
 				}
 			}
 		});
-        
+
         // Model listener for labels
-        this.getModel().addTableModelListener(new TableModelListener() 
-        {	
+        this.getModel().addTableModelListener(new TableModelListener()
+        {
 			@Override
-			public void tableChanged(TableModelEvent e) 
+			public void tableChanged(TableModelEvent e)
 			{
 				// Make sure we respond only to editing labels
 				if ((e.getType() == TableModelEvent.UPDATE) &&
@@ -253,7 +253,7 @@ public class AddressTable
 					TableModel model = AddressTable.this.getModel();
 					String address = model.getValueAt(e.getFirstRow(), 3).toString();
 					String newLabel = model.getValueAt(e.getFirstRow(), 0).toString();
-					
+
 					try
 					{
 						AddressTable.this.labelStorage.setLabel(address, newLabel);
@@ -267,18 +267,18 @@ public class AddressTable
 					           ex.getMessage() + "\n\n",
 					           "Error in editing label!",
 					           JOptionPane.ERROR_MESSAGE);
-					}		
+					}
 				}
 			}
 		});
-        
+
 	} // End constructor
 
-	
+
 	// Make sure labels may be edited
 	@Override
-    public boolean isCellEditable(int row, int column) 
-    {                
+    public boolean isCellEditable(int row, int column)
+    {
         return column == 0;
     }
 }
