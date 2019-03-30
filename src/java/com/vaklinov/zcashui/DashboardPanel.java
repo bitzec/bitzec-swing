@@ -924,7 +924,7 @@ public class DashboardPanel
 			String tableData[][] = new String[][]
 			{
 				{ currencyMessage,     lastCurrencyPrice == null ? "N/A" : Double.toString(price)},
-				{ langUtil.getString("panel.dashboard.marketcap.price.btc"),     cmc.getString("price_btc",          "N/A") },
+				{ langUtil.getString("panel.dashboard.marketcap.price.btc"),     cmc.getString("price_usd",          "N/A") },
 				{ langUtil.getString("panel.dashboard.marketcap.capitalisation"), usdMarketCap },
 				{ langUtil.getString("panel.dashboard.marketcap.daily.change"), cmc.getString("percent_change_24h", "N/A") + "%"},
 				{ langUtil.getString("panel.dashboard.marketcap.weekly.change"), cmc.getString("percent_change_7d", "N/A") + "%"},
@@ -962,7 +962,7 @@ public class DashboardPanel
 				}
 			} catch (Exception ioe)
 			{
-				Log.warning("Could not obtain ZEC exchange information from coinmarketcap.com due to: {0} {1}", 
+				Log.warning("Could not obtain ZEC exchange information from coinmarketcap.com due to: {0} {1}",
 						    ioe.getClass().getName(), ioe.getMessage());
 			}
 
